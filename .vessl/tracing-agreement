@@ -1,0 +1,23 @@
+# Tracing Agreement
+Purpose of Data Collection: We are committed to improving our CLI tool and enhancing user experience. To achieve this, we collect data on user interactions with our CLI commands.
+This data helps us understand how our tool is used, identify areas for improvement, and ensure the reliability and performance of our services.
+
+Data Collected
+1. Executed Command Types: commands executed by users to understand usage patterns and identify commonly used features (this does not include user provided options nor keys of any form)
+2. System Version: system version information to ensure compatibility and provide targeted support.
+
+Usage of Collected Data: The collected data will be used solely for the following purposes:
+- To analyze and improve the functionality of our CLI tool.
+- To identify and resolve bugs or issues.
+- To provide better support and updates based on user needs and system compatibility.
+
+Data Storage and Privacy: The collected data is stored securely and access is restricted to authorized personnel only.
+We do not share the collected data with third parties, except as required by law.
+
+User Consent: By using our CLI tool, you consent to the collection and use of the above data as described in this agreement.
+If you do not agree to this data collection, you can choose to opt out by setting `export VESSL_DATA_COLLECTION_OPT_OUT=true`.
+
+Contact Information: If you have any questions or concerns about this agreement or the collection process, please contact us at: support@vessl.ai
+
+Thank you for helping us improve our services.
+_Last updated: 2024.07.10_

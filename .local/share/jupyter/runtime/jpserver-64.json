@@ -1,0 +1,13 @@
+{
+  "base_url": "/",
+  "hostname": "0.0.0.0",
+  "password": false,
+  "pid": 64,
+  "port": 8888,
+  "root_dir": "/",
+  "secure": false,
+  "sock": "",
+  "token": "pPKd7ZVjhvhx9Ri0kI07C13nrVSHb6EZ",
+  "url": "http://workspace-wixnqwzxa0do-0:8888/",
+  "version": "2.14.2"
+}
