@@ -1,0 +1,6 @@
+{
+  "scorer_accuracy": 1.0,
+  "best_loop_accuracy": 1.0,
+  "best_prompt": "Based on the sentiment expressed, classify the review as positive or negative.",
+  "status": "all passed"
+}

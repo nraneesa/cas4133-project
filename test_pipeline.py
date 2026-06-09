@@ -10,7 +10,7 @@ Runs:
   - 3 steps   (instead of 30)
   - Mode C only
 
-Expected cost: ~$0.05 (almost free)
+Expected cost: ~$0.05 
 Expected time: ~3-5 minutes
 
 Usage:

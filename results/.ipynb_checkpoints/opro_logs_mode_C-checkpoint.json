@@ -1,0 +1,143 @@
+[
+  {
+    "step": 0,
+    "seed": 1,
+    "instruction": "Classify this movie review as positive or negative.",
+    "examples": [
+      {
+        "text": "This is a classic that will be able to hold up with drama's to come simply because of the fact that it is shot with a 70's style and it's a story about the 70's. It is funny, action-filled, entertaining and sad at the same time. It has the effect to pull you into the lives of these poor folks and the consequences for their actions. 4 STARS!",
+        "label": "positive"
+      },
+      {
+        "text": "I am very unpolitically correct guy, so when I say sexist I really mean it reduced the female guest lead, Dr Miranda Jones played by Diana Muldar. in spite of all her supposed brilliance and self control, to nothing more inside but a big, jealous unreasonable baby You prolly got the plot by now, after her technical sidekick Marvik, also a spurned lover, flips out when he tried to kill the Medusan, Ambassador Kollos, out of a jealous rage, but glimpsed first it instead. (You think he could have just walked in to the room with his eyes shut and phasered the box, too easy) he takes the Enterprise into un-navigable space outside the galaxy before the boys could subdue him. Well, the ship is stuck in limbo, at that point they could have gone to the good lady doctor-liaison and discussed it. \"Spock has to make a mind meld with the Medusan so we can get home. I mean like beetch do you want to stay adrift until we run out of supplies and die?\" But the lady in true Star Trek fashion is a jealous monsters who whines and wails when the idea is broached, even when her Medusan idol told her to shut up & go along with them. So the beetch out of spite messes with the melded Spock causing him to forget to put on his visor which makes Spock go insane. Kirk, naturally, figured out what a total twit she was and shamed her into fixing Spock up with her superior telepathic powers. Of course, at the end the Lady and Medusan leave and all is forgiven. You almost wish the President from Battle Star Galactica showed up to jettison the witch out of an airlock for her destructive stunt. But in Star Trek land, ladies are permitted to be totally unreasonable and cruel, yet at the same time supposedly there is sexual equality. This is what I mean by sexist.",
+        "label": "negative"
+      },
+      {
+        "text": "This is one of the first independent movies I've ever seen. For such a very low budget, it was done well; as an insomniac myself, I can sympathize with the main character, although my sleeping problems have never been as intense or as disturbing. <br /><br />Well directed, well acted, of a subject that I haven't seen much in theaters, lighting and set both perfect for the movie setting. There are few noticeable goofs, but they may be intended; you'll see after you watch the movie. The movie is very personal, and worth watching twice. No movie is flawless, but a Hollywood version couldn't do the story better. all in all, 8/10.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 1.0,
+    "correct": 10,
+    "total": 10,
+    "timestamp": "2026-06-09T01:40:53.137386",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 2,
+    "instruction": "Read the movie review below carefully. Determine whether the reviewer liked or disliked the movie. Reply with 'positive' if they liked it, 'negative' if they disliked it.",
+    "examples": [
+      {
+        "text": "I am 17, and I still like most of the Scooby Doo movies and the old episodes. I love the 1990s movies, and recently we were treated to one of the better direct to DVD Scooby Doo outings of this decade, Scooby Doo and the Goblin King, which I wasn't expecting to be as good as it was. Anyway, back to Get a Clue! I watched some episodes, expecting something very good, but from what I saw of it, I wasn't impressed at all. First of all, I hated the animation. It was flat, deflated and very Saturday- morning -cartoon -standard, easily the worst aspect of the series. Even some shows I really hate had slightly better animation. Even worse, Shaggy and Scooby looked like aliens, and I really missed Fred, Velma and Daphne, as they added a lot to the old episodes, when Scooby Doo was positively good. I also hated the character changes, because it seemed like instead of solving mysteries, Shaggy and Scooby were now playing superhero, something they would've never had done in the movies or in the Scooby-Doo Where Are You? show. The theme tune wasn't very good either, I can't even remember it, and the jokes were lame and contrived. Though, I do acknowledge that there is a very talented voice cast, had they had better material, and hadn't been told to sound as different to the original voices as humanly possible, which they did, might I add. In conclusion, I personally thought it was awful, and I am not trying to discredit it, it's what I personally feel. 1/10 Bethany Cox",
+        "label": "negative"
+      },
+      {
+        "text": "Absolute must see documentary for anyone interested in getting to the bottom of this story. Told with unflinching eye and with gripping style. If you think conspiracy theories are for paranoid disturbed people, this could change your mind. Something for you feds too: A good model for government coverups! If you like your news all tidy and easy to consume this is not for you.",
+        "label": "positive"
+      },
+      {
+        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about the movie was seeing if Rourke's face would move. One has heard so much \"gossip\" about his botched face lift, etc., so like an accident on the side of the road, we just had to slow down and see the wreck. The plot was thin. Here we have a very professional mob hit man who somehow latches on to a wild and uncontrollable punk/crook, and throughout this movie we're wondering why this guy stays with this idiot, let alone gets together with the guy in the first place. Then the crime that was not even committed has the pro to go after the witnesses. He would have popped them right then and there. But then, we would not have had a movie then, would we? And why did the realtor even agree to the extortion? There were more holes in this flick than in my colander. The acting was horrid, the entire movie predictable down to the minute, and even the ending. And so much could have been done to make this a much better movie. But if you have about 90 minutes to kill and not have to use any brain cells in the process, then this movie is just what the doctor ordered.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 1.0,
+    "correct": 10,
+    "total": 10,
+    "timestamp": "2026-06-09T01:41:01.175864",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 3,
+    "instruction": "Is this movie review positive or negative? Answer in one word.",
+    "examples": [
+      {
+        "text": "I guess if a film has magic, I don't need it to be fluid or seamless. It can skip background information, go too fast in some places, too slow in others, etc. Magic in this film: the scene in the library. There are many minor flaws in Stanley & Iris, yet they don't detract from the overall positive impact of watching people help each other in areas of life that seem the most incomprehensible, the hardest to fix. Both characters are smart. Yet Stanley can't understand enough to function because he can't read; he can't read because he's had too much adventure in his childhood. Iris, although well-educated, hasn't had enough adventure and so can't understand how to move past the U-turn her life took. In both their faults and strengths, the characters compliment each other. It may be a bit of a stretch to accept that an Iris would wind up working year after year in a factory, or that a Stanley never hid his illiteracy enough to work in construction or some other better-paying job. And while these \"mysteries\" are explained in the course of the story, their unfolding seems somewhat contrived. I assume no one took the time to rethink the script. Even so, it's a good movie\u0097just imagine what De Niro, Fonda and Plimpton would have done on screen if someone had!",
+        "label": "positive"
+      },
+      {
+        "text": "Description: Corny, utterly stupid and worthless. It's so cheap and lame, it'll make you wonder why these abnormally dumb people even wasted 2 months or so to spend a budget (I'm guessing this...) probably no more than 700 dollars to make this movie. It was just hysterical to watch with or without Mystery Science Theater. I am giving you the best advice in the world:<br /><br />Spare yourself, spare your time, life, and money, by NOT--I repeat, NOT even ponder about whether you should see this movie. This movie is so corny, it'll make your face turn purple of outraged boredom. If you have a one-digit IQ, then be my guest and watch this absolutely despicable movie. You might actually admire it. (Like I said before, IF you have a one-digit IQ)<br /><br />With about 12 actors of your own, a few puppets you bought at a garage sale, and of course cameras and music, I gaurentee you'll make a slightly more entertaining home video than this piece of absolute crap.",
+        "label": "negative"
+      },
+      {
+        "text": "Man on fire, is definitely one of the best drama/crime thrillers I have ever seen. Despite having a slow beginning the story is so amazingly complex and sensitive that it sticks together rather well. This is Denzel Washington's perfect role, in which he plays a body guard, called Creasy that is tormented by his past and is an alcoholic but never gives up on his duty to save his latest prot\u00e9g\u00e9e, Pita. Dakota Fanning plays Pita, the very smart, enthusiastic little girl that loves so many things, and acts in a very convincing manner, she has a great future ahead of her. As I said the story is somewhat complicated, in order to fully understand it, you must watch it a couple of times.<br /><br />This film is made in two parts, there's the first hour, where everyone is happy, nothing's wrong, everyone's just living their lives happily until the kidnapping of Pita occurs and where Creasy is almost killed. And then there's the second part, the rest of the film, where suddenly everything becomes complicated and somewhat gruesome and disturbing, when Creasy's recovered from his severe injury and starts chasing and killing the numerous criminals and \"La Hermamdad\" that were responsible for the planning and execution of the kidnapping of Pita.<br /><br />Denzel Washington shows us his most up to date acting talents alongside many other talented actors which have a great future ahead of them. It is a real shame that this film hasn't been acknowledged enough, Washington really deserved another Oscar for his performance, and so did Fanning and the director. And even maybe the visual effects which were of very high quality.<br /><br />If you like excellent, slightly deranged, suspenseful thrillers, this is the one to see. The most amazing thing is that elements of this film are actually based on a real story and real characters! 10/10",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 1.0,
+    "correct": 10,
+    "total": 10,
+    "timestamp": "2026-06-09T01:41:08.146020",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 1,
+    "instruction": "Analyze the movie review below and classify it as either positive or negative based on the reviewer's sentiment.",
+    "examples": [
+      {
+        "text": "I found this movie on Netflix and had to add it to my queue. I wasn't disappointed when I got it as",
+        "label": "positive"
+      },
+      {
+        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about t",
+        "label": "negative"
+      },
+      {
+        "text": "This is the kind of movie I fear the most. Arrogant and Irresponsible, it presents a sketch of the c",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 1.0,
+    "correct": 10,
+    "total": 10,
+    "timestamp": "2026-06-09T01:41:18.390654",
+    "reasoning": "This instruction is more specific about the analysis required, and the examples include varied sentiments and styles, ensuring comprehensive understanding."
+  },
+  {
+    "step": 2,
+    "instruction": "Evaluate the following movie review and determine if the sentiment expressed is positive or negative. Please respond with either 'positive' or 'negative'.",
+    "examples": [
+      {
+        "text": "I saw this movie while it was under limited release, mainly for the novelty of seeing Pierce Brosnan",
+        "label": "positive"
+      },
+      {
+        "text": "Description: Corny, utterly stupid and worthless. It's so cheap and lame, it'll make you wonder why",
+        "label": "negative"
+      },
+      {
+        "text": "I am a Shakespeare lover since childhood. I am also a Jew. Merchant of Venice is anti-semitic throug",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 1.0,
+    "correct": 10,
+    "total": 10,
+    "timestamp": "2026-06-09T01:41:28.752118",
+    "reasoning": "This instruction is specific and clear, while the examples encompass a range of sentiments and styles, including a more nuanced negative review."
+  },
+  {
+    "step": 3,
+    "instruction": "Carefully analyze the following movie review and classify it as positive or negative based on the sentiment expressed. Please respond with 'positive' if the overall sentiment is favorable and 'negative' if it is unfavorable.",
+    "examples": [
+      {
+        "text": "I found this movie on Netflix and had to add it to my queue. I wasn't disappointed when I got it as it turned out to be a great watch!",
+        "label": "positive"
+      },
+      {
+        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about this film was waiting for it to end.",
+        "label": "negative"
+      },
+      {
+        "text": "Ok let's start with saying that when a dutch movie is bad, it's REALLY BAD. Rarely something with a good premise falls so flat.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 1.0,
+    "correct": 10,
+    "total": 10,
+    "timestamp": "2026-06-09T01:41:41.541399",
+    "reasoning": "This instruction is more detailed and explicitly outlines the sentiment analysis task while the examples cover a range of sentiment expressions, enhancing clarity and effectiveness."
+  }
+]

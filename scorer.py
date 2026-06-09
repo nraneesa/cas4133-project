@@ -32,7 +32,7 @@ from load_imdb import get_optimization_set
 
 
 # ── Config
-SCORER_MODEL   = "gpt-4o-mini"       # cheap + fast, good enough for scoring
+SCORER_MODEL   = "gpt-3.5-turbo"       # cheap + fast, good enough for scoring
 MAX_RETRIES    = 3                    # retry on API errors
 RETRY_DELAY    = 2                    # seconds between retries
 BATCH_SIZE     = 100                  # how many reviews to score (full opt set)

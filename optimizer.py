@@ -40,7 +40,7 @@ from load_imdb import get_optimization_set
 
 
 # ── Config 
-OPTIMIZER_MODEL  = "gpt-4o-mini"   # can upgrade to gpt-4o for better suggestions
+OPTIMIZER_MODEL  = "gpt-3.5-turbo"   # can upgrade to gpt-4o for better suggestions
 MAX_RETRIES      = 3
 RETRY_DELAY      = 2
 NUM_EXAMPLES     = 3               # how many few-shot examples to optimize
