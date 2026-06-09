@@ -1,6 +1,6 @@
 {
   "scorer_accuracy": 1.0,
   "best_loop_accuracy": 1.0,
-  "best_prompt": "Based on the sentiment expressed, classify the review as positive or negative.",
+  "best_prompt": "Evaluate the following movie review and indicate if the sentiment is 'positive' when the reviewer enjoyed the film or 'negative' when they were dissatisfied. Respond with one word.",
   "status": "all passed"
 }

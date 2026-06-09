@@ -20,7 +20,7 @@
     "accuracy": 1.0,
     "correct": 10,
     "total": 10,
-    "timestamp": "2026-06-09T02:12:18.911810",
+    "timestamp": "2026-06-09T01:40:53.137386",
     "reasoning": "seed prompt"
   },
   {
@@ -44,7 +44,7 @@
     "accuracy": 1.0,
     "correct": 10,
     "total": 10,
-    "timestamp": "2026-06-09T02:12:29.700533",
+    "timestamp": "2026-06-09T01:41:01.175864",
     "reasoning": "seed prompt"
   },
   {
@@ -68,76 +68,76 @@
     "accuracy": 1.0,
     "correct": 10,
     "total": 10,
-    "timestamp": "2026-06-09T02:12:40.811011",
+    "timestamp": "2026-06-09T01:41:08.146020",
     "reasoning": "seed prompt"
   },
   {
     "step": 1,
-    "instruction": "Determine if the sentiment expressed in the review is positive or negative, and provide the corresponding label.",
+    "instruction": "Analyze the movie review below and classify it as either positive or negative based on the reviewer's sentiment.",
     "examples": [
       {
-        "text": "I am a Shakespeare lover since childhood. I am also a Jew. Merchant of Venice is anti-semitic throug",
+        "text": "I found this movie on Netflix and had to add it to my queue. I wasn't disappointed when I got it as",
+        "label": "positive"
+      },
+      {
+        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about t",
         "label": "negative"
       },
       {
-        "text": "This is a classic that will be able to hold up with drama's to come simply because of the fact that",
-        "label": "positive"
-      },
-      {
-        "text": "I guess if a film has magic, I don't need it to be fluid or seamless. It can skip background informa",
-        "label": "positive"
+        "text": "This is the kind of movie I fear the most. Arrogant and Irresponsible, it presents a sketch of the c",
+        "label": "negative"
       }
     ],
     "accuracy": 1.0,
     "correct": 10,
     "total": 10,
-    "timestamp": "2026-06-09T02:12:54.067385",
-    "reasoning": "This instruction is clear and specific, and the examples cover a range of writing styles and sentiments, including subtle or ambiguous ones."
+    "timestamp": "2026-06-09T01:41:18.390654",
+    "reasoning": "This instruction is more specific about the analysis required, and the examples include varied sentiments and styles, ensuring comprehensive understanding."
   },
   {
     "step": 2,
-    "instruction": "Analyze the sentiment of the review and categorize it as either positive or negative.",
-    "examples": [
-      {
-        "text": "This is a classic that will be able to hold up with drama's to come simply because of the fact that",
-        "label": "positive"
-      },
-      {
-        "text": "I almost never comment on movies, but I saw the 5 glowing reviews of this \"movie\" and decided I had",
-        "label": "negative"
-      },
-      {
-        "text": "I first saw this masterpiece on VHS 10 years ago, and the powerful interpretation on angry-kid-painf",
-        "label": "positive"
-      }
-    ],
-    "accuracy": 1.0,
-    "correct": 10,
-    "total": 10,
-    "timestamp": "2026-06-09T02:13:05.598012",
-    "reasoning": "This instruction is straightforward and the examples cover a range of sentiments and writing styles."
-  },
-  {
-    "step": 3,
-    "instruction": "Based on the sentiment expressed, classify the review as positive or negative.",
+    "instruction": "Evaluate the following movie review and determine if the sentiment expressed is positive or negative. Please respond with either 'positive' or 'negative'.",
     "examples": [
       {
         "text": "I saw this movie while it was under limited release, mainly for the novelty of seeing Pierce Brosnan",
         "label": "positive"
       },
       {
-        "text": "Man on fire, is definitely one of the best drama/crime thrillers I have ever seen. Despite having a",
-        "label": "positive"
+        "text": "Description: Corny, utterly stupid and worthless. It's so cheap and lame, it'll make you wonder why",
+        "label": "negative"
       },
       {
-        "text": "This is the kind of movie i fear the most. Arrogant and Irresponsible, it presents a sketch of the c",
+        "text": "I am a Shakespeare lover since childhood. I am also a Jew. Merchant of Venice is anti-semitic throug",
         "label": "negative"
       }
     ],
     "accuracy": 1.0,
     "correct": 10,
     "total": 10,
-    "timestamp": "2026-06-09T02:13:16.620546",
-    "reasoning": "This combination covers a wide range of sentiments and includes a subtly ambiguous example, providing a comprehensive test for the classifier."
+    "timestamp": "2026-06-09T01:41:28.752118",
+    "reasoning": "This instruction is specific and clear, while the examples encompass a range of sentiments and styles, including a more nuanced negative review."
+  },
+  {
+    "step": 3,
+    "instruction": "Carefully analyze the following movie review and classify it as positive or negative based on the sentiment expressed. Please respond with 'positive' if the overall sentiment is favorable and 'negative' if it is unfavorable.",
+    "examples": [
+      {
+        "text": "I found this movie on Netflix and had to add it to my queue. I wasn't disappointed when I got it as it turned out to be a great watch!",
+        "label": "positive"
+      },
+      {
+        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about this film was waiting for it to end.",
+        "label": "negative"
+      },
+      {
+        "text": "Ok let's start with saying that when a dutch movie is bad, it's REALLY BAD. Rarely something with a good premise falls so flat.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 1.0,
+    "correct": 10,
+    "total": 10,
+    "timestamp": "2026-06-09T01:41:41.541399",
+    "reasoning": "This instruction is more detailed and explicitly outlines the sentiment analysis task while the examples cover a range of sentiment expressions, enhancing clarity and effectiveness."
   }
 ]

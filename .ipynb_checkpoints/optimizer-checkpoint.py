@@ -4,27 +4,7 @@ optimizer.py
 The Optimizer LLM — looks at the history of all past (instruction, examples,
 score) triplets and generates a new, hopefully better combination.
 
-This is the "search engine" of the OPRO loop.
-
-Usage:
-    from optimizer import generate_new_prompt
-
-    history = [
-        {
-            "instruction": "Classify this review.",
-            "examples": [...],
-            "accuracy": 0.72
-        },
-        {
-            "instruction": "Determine if this movie review is positive or negative.",
-            "examples": [...],
-            "accuracy": 0.81
-        },
-    ]
-
-    result = generate_new_prompt(history)
-    print(result["instruction"])   # new instruction text
-    print(result["examples"])      # new list of 3 examples
+This version is configured for SST-5 (5-class fine-grained sentiment).
 """
 
 import os
@@ -36,36 +16,29 @@ import random
 from openai import OpenAI
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "data"))
-from load_imdb import get_optimization_set
+from load_sst5 import get_optimization_set, get_labels
 
 
 # ── Config ────────────────────────────────────────────────────────────────────
-OPTIMIZER_MODEL  = "gpt-4o-mini"   # can upgrade to gpt-4o for better suggestions
-MAX_RETRIES      = 3
-RETRY_DELAY      = 2
-NUM_EXAMPLES     = 3               # how many few-shot examples to optimize
-# How many past results to show the optimizer (too many = bloated prompt)
+OPTIMIZER_MODEL   = "gpt-4o-mini"   # smarter model for generating better prompts
+MAX_RETRIES       = 3
+RETRY_DELAY       = 2
+NUM_EXAMPLES      = 5                # one example per class for 5-class task
 MAX_HISTORY_SHOWN = 8
+
+LABELS         = get_labels()
+LABEL_LIST_STR = ", ".join(f"'{l}'" for l in LABELS)
 
 
 # ── Client ────────────────────────────────────────────────────────────────────
 def get_client():
-    """Return OpenAI client. Called lazily so import works without API key."""
     return OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
 # ── History Formatter ─────────────────────────────────────────────────────────
 def format_history(history: list[dict]) -> str:
-    """
-    Format the past (instruction, examples, score) history for the optimizer.
-
-    Shows results sorted lowest → highest so the optimizer can clearly
-    see the trend of what works better.
-    """
-    # Sort by accuracy ascending (worst → best)
+    """Format past (instruction, examples, score) history sorted low→high."""
     sorted_history = sorted(history, key=lambda x: x["accuracy"])
-
-    # Only show the last MAX_HISTORY_SHOWN to avoid bloating the prompt
     shown = sorted_history[-MAX_HISTORY_SHOWN:]
 
     lines = []
@@ -84,37 +57,35 @@ def format_history(history: list[dict]) -> str:
 
 # ── Optimizer Prompt Builder ──────────────────────────────────────────────────
 def build_optimizer_prompt(history: list[dict], candidate_reviews: list[dict]) -> str:
-    """
-    Build the meta-prompt sent to the Optimizer LLM.
-
-    The optimizer sees:
-    1. Task description
-    2. History of past attempts sorted by score (low → high)
-    3. Pool of reviews it can choose examples from
-    4. Instruction to generate something better
-
-    Returns the full prompt string.
-    """
+    """Build the meta-prompt sent to the Optimizer LLM."""
     history_text = format_history(history)
 
-    # Give optimizer a sample of reviews to pick examples from
-    # Show 20 candidate reviews (10 pos + 10 neg) so it has good variety
-    pos_candidates = [r for r in candidate_reviews if r["label"] == "positive"][:10]
-    neg_candidates = [r for r in candidate_reviews if r["label"] == "negative"][:10]
-    all_candidates = pos_candidates + neg_candidates
+    # Show 25 candidate reviews (5 per class) so optimizer has variety
+    candidates_by_class = {label: [] for label in LABELS}
+    for r in candidate_reviews:
+        if r["label"] in candidates_by_class and len(candidates_by_class[r["label"]]) < 5:
+            candidates_by_class[r["label"]].append(r)
+    all_candidates = []
+    for label in LABELS:
+        all_candidates.extend(candidates_by_class[label])
     random.shuffle(all_candidates)
 
     candidate_text = ""
     for i, r in enumerate(all_candidates, 1):
         candidate_text += f"  {i}. [{r['label']}] {r['text'][:100]}\n"
 
-    prompt = f"""You are an expert prompt engineer optimizing a sentiment classifier for movie reviews.
+    prompt = f"""You are an expert prompt engineer optimizing a fine-grained sentiment classifier for movie reviews.
 
 TASK:
-The classifier reads a movie review and must output exactly 'positive' or 'negative'.
+The classifier reads a movie review and must output EXACTLY one of these 5 labels:
+  {LABEL_LIST_STR}
+
+This is a HARD task — distinguishing between adjacent classes (e.g., 'positive' vs 'very_positive')
+requires careful prompt engineering and well-chosen examples.
+
 Your goal is to find the BEST combination of:
   1. An instruction that tells the LLM how to classify reviews
-  2. Three few-shot examples that best demonstrate correct classification
+  2. Five few-shot examples (ideally one per class) that demonstrate clear boundaries
 
 PAST ATTEMPTS (sorted from worst to best score):
 {history_text}
@@ -124,22 +95,25 @@ AVAILABLE REVIEWS TO USE AS EXAMPLES:
 {candidate_text}
 WHAT TO DO:
 Study the pattern — what made higher-scoring attempts better than lower ones?
-Then generate a NEW instruction and NEW set of 3 examples that will score HIGHER.
+Then generate a NEW instruction and NEW set of 5 examples that will score HIGHER.
 
 Rules:
-- The instruction must be clear and specific about the classification task
-- Choose examples that cover different writing styles and difficulty levels
-- Include at least one example that handles subtle or ambiguous sentiment
+- The instruction must be clear about the 5-class scale and what distinguishes each class
+- Choose examples that cover ALL 5 classes (one per class is ideal)
+- Pick examples that clearly show the boundary between adjacent classes
 - Do NOT reuse an instruction that already appears in the history above
 - Examples must come from the available reviews listed above
+- Use the exact label spelling: {LABEL_LIST_STR}
 
 Respond with ONLY a valid JSON object in this exact format:
 {{
   "instruction": "your new instruction text here",
   "examples": [
-    {{"text": "exact review text from the list above", "label": "positive or negative"}},
-    {{"text": "exact review text from the list above", "label": "positive or negative"}},
-    {{"text": "exact review text from the list above", "label": "positive or negative"}}
+    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
+    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
+    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
+    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
+    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}}
   ],
   "reasoning": "one sentence explaining why you think this will score higher"
 }}
@@ -151,12 +125,7 @@ JSON only. No markdown. No explanation outside the JSON."""
 
 # ── Response Parser ───────────────────────────────────────────────────────────
 def parse_optimizer_response(raw: str) -> dict | None:
-    """
-    Parse the optimizer's JSON response.
-
-    Returns dict with 'instruction' and 'examples' keys, or None on failure.
-    """
-    # Strip markdown code fences if present
+    """Parse the optimizer's JSON response."""
     raw = raw.strip()
     if raw.startswith("```"):
         raw = raw.split("```")[1]
@@ -167,7 +136,6 @@ def parse_optimizer_response(raw: str) -> dict | None:
     try:
         parsed = json.loads(raw)
 
-        # Validate required fields
         if "instruction" not in parsed:
             print("    [optimizer] Missing 'instruction' in response")
             return None
@@ -175,18 +143,38 @@ def parse_optimizer_response(raw: str) -> dict | None:
             print("    [optimizer] Missing or empty 'examples' in response")
             return None
 
-        # Validate each example has text + label
+        # Validate and normalize each example's label
+        valid_examples = []
         for ex in parsed["examples"]:
             if "text" not in ex or "label" not in ex:
-                print(f"    [optimizer] Malformed example: {ex}")
-                return None
-            if ex["label"] not in ("positive", "negative"):
-                print(f"    [optimizer] Invalid label: {ex['label']}")
-                ex["label"] = "positive" if "pos" in ex["label"].lower() else "negative"
+                print(f"    [optimizer] Skipping malformed example: {ex}")
+                continue
+            label = ex["label"].strip().lower().replace(" ", "_").replace("-", "_")
+            if label not in LABELS:
+                # Try to coerce to closest valid label
+                if "very" in label and ("pos" in label or "good" in label):
+                    label = "very_positive"
+                elif "very" in label and ("neg" in label or "bad" in label):
+                    label = "very_negative"
+                elif "pos" in label:
+                    label = "positive"
+                elif "neg" in label:
+                    label = "negative"
+                elif "neutral" in label:
+                    label = "neutral"
+                else:
+                    print(f"    [optimizer] Invalid label '{ex['label']}' — skipping example")
+                    continue
+            ex["label"] = label
+            valid_examples.append(ex)
+
+        if len(valid_examples) == 0:
+            print("    [optimizer] No valid examples after parsing")
+            return None
 
         return {
             "instruction": parsed["instruction"].strip(),
-            "examples"   : parsed["examples"][:NUM_EXAMPLES],
+            "examples"   : valid_examples[:NUM_EXAMPLES],
             "reasoning"  : parsed.get("reasoning", "")
         }
 
@@ -202,27 +190,7 @@ def generate_new_prompt(
     candidate_reviews: list[dict] | None = None,
     verbose: bool = True
 ) -> dict | None:
-    """
-    Given the history of past attempts, generate a new (instruction, examples) combo.
-
-    Parameters
-    ----------
-    history : list of dict
-        Each entry must have: 'instruction', 'examples', 'accuracy'
-    candidate_reviews : list of dict, optional
-        Pool of reviews the optimizer can choose examples from.
-        Defaults to the full optimization set.
-    verbose : bool
-        Print progress information.
-
-    Returns
-    -------
-    dict with keys:
-        instruction : str   — new instruction text
-        examples    : list  — new list of example dicts
-        reasoning   : str   — optimizer's explanation
-    or None if generation failed after all retries.
-    """
+    """Given past history, generate a new (instruction, examples) combo."""
     if candidate_reviews is None:
         candidate_reviews = get_optimization_set()
 
@@ -254,8 +222,8 @@ def generate_new_prompt(
                         "content": optimizer_prompt
                     }
                 ],
-                max_tokens=800,
-                temperature=0.8,   # some creativity — we want diverse suggestions
+                max_tokens=1200,
+                temperature=0.8,
             )
 
             raw    = response.choices[0].message.content
@@ -283,47 +251,50 @@ def generate_new_prompt(
 
 # ── Seed Prompt Generator ─────────────────────────────────────────────────────
 def generate_seed_prompts(n: int = 3) -> list[dict]:
-    """
-    Generate n diverse seed prompts to kick off the OPRO loop.
-    The optimizer needs at least a few examples to work from.
-
-    These are handcrafted starting points — deliberately varied in quality
-    so the optimizer has a clear gradient to learn from.
-    """
+    """Generate n diverse seed prompts to kick off the OPRO loop."""
     reviews = get_optimization_set()
 
-    # Pick 9 diverse reviews for seeds (3 per seed prompt)
-    pos_reviews = [r for r in reviews if r["label"] == "positive"]
-    neg_reviews = [r for r in reviews if r["label"] == "negative"]
+    # Group reviews by class
+    by_class = {label: [] for label in LABELS}
+    for r in reviews:
+        if r["label"] in by_class:
+            by_class[r["label"]].append(r)
+
+    # Build 3 seed prompts with one example per class
+    def pick_one_per_class(offset):
+        return [
+            {"text": by_class[label][offset % len(by_class[label])]["text"],
+             "label": label}
+            for label in LABELS
+        ]
 
     seeds = [
         {
-            "instruction": "Classify this movie review as positive or negative.",
-            "examples": [
-                {"text": pos_reviews[0]["text"], "label": "positive"},
-                {"text": neg_reviews[0]["text"], "label": "negative"},
-                {"text": pos_reviews[1]["text"], "label": "positive"},
-            ]
+            "instruction": (
+                f"Classify this movie review's sentiment. "
+                f"Choose from: {LABEL_LIST_STR}."
+            ),
+            "examples": pick_one_per_class(0)
         },
         {
             "instruction": (
                 "Read the movie review below carefully. "
-                "Determine whether the reviewer liked or disliked the movie. "
-                "Reply with 'positive' if they liked it, 'negative' if they disliked it."
+                "Rate its sentiment on a 5-point scale where "
+                "'very_negative' means strongly disliked, 'negative' means disliked, "
+                "'neutral' means mixed or no clear opinion, 'positive' means liked, "
+                "and 'very_positive' means loved. "
+                "Reply with one label only."
             ),
-            "examples": [
-                {"text": neg_reviews[1]["text"], "label": "negative"},
-                {"text": pos_reviews[2]["text"], "label": "positive"},
-                {"text": neg_reviews[2]["text"], "label": "negative"},
-            ]
+            "examples": pick_one_per_class(1)
         },
         {
-            "instruction": "Is this movie review positive or negative? Answer in one word.",
-            "examples": [
-                {"text": pos_reviews[3]["text"], "label": "positive"},
-                {"text": neg_reviews[3]["text"], "label": "negative"},
-                {"text": pos_reviews[4]["text"], "label": "positive"},
-            ]
+            "instruction": (
+                f"What is the sentiment of this movie review? "
+                f"Pick exactly one: {LABEL_LIST_STR}. "
+                f"Be precise — distinguish between 'positive' and 'very_positive', "
+                f"and between 'negative' and 'very_negative'."
+            ),
+            "examples": pick_one_per_class(2)
         },
     ]
 
@@ -335,30 +306,32 @@ if __name__ == "__main__":
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         print("ERROR: OPENAI_API_KEY not set!")
-        print("Run: export OPENAI_API_KEY='sk-...'")
         sys.exit(1)
 
-    print("Testing optimizer with mock history...\n")
+    print("Testing optimizer for SST-5...\n")
 
-    # Simulate a small history to test the optimizer
     mock_history = [
         {
-            "instruction": "Classify this movie review as positive or negative.",
+            "instruction": f"Classify this review. Choose from: {LABEL_LIST_STR}.",
             "examples"   : [
-                {"text": "Loved every minute!", "label": "positive"},
-                {"text": "Terrible film.",      "label": "negative"},
-                {"text": "A masterpiece.",       "label": "positive"},
+                {"text": "Loved every minute!",          "label": "very_positive"},
+                {"text": "Pretty good film.",            "label": "positive"},
+                {"text": "It was okay.",                  "label": "neutral"},
+                {"text": "Boring and slow.",              "label": "negative"},
+                {"text": "Worst movie of the year.",     "label": "very_negative"},
             ],
-            "accuracy": 0.72
+            "accuracy": 0.45
         },
         {
-            "instruction": "Is this movie review positive or negative?",
+            "instruction": "Rate the sentiment on a 5-point scale.",
             "examples"   : [
-                {"text": "Boring and predictable.", "label": "negative"},
-                {"text": "Absolutely fantastic!",  "label": "positive"},
-                {"text": "Waste of time.",          "label": "negative"},
+                {"text": "A masterpiece.",                "label": "very_positive"},
+                {"text": "Solid entertainment.",          "label": "positive"},
+                {"text": "Mixed feelings.",               "label": "neutral"},
+                {"text": "Disappointing.",                "label": "negative"},
+                {"text": "Truly awful.",                  "label": "very_negative"},
             ],
-            "accuracy": 0.78
+            "accuracy": 0.52
         },
     ]
 
@@ -372,5 +345,3 @@ if __name__ == "__main__":
             print(f"  {i}. [{ex['label']}] {ex['text'][:80]}")
         print(f"Reasoning   : {result['reasoning']}")
         print("\noptimizer.py is working correctly!")
-    else:
-        print("optimizer.py failed to generate a prompt — check API key and errors above.")

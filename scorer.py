@@ -4,20 +4,20 @@ scorer.py
 The Scorer LLM — evaluates how good a (instruction, examples) combo is
 by testing it against the optimization set and returning an accuracy score.
 
-This is the OPRO loop.
+This version is configured for SST-5 (5-class fine-grained sentiment).
 
 Usage:
     from scorer import score_prompt
 
-    instruction = "Classify this movie review as positive or negative."
+    instruction = "Classify this movie review's sentiment on a 5-point scale."
     examples = [
-        {"text": "Loved every minute!", "label": "positive"},
-        {"text": "Terrible film.",      "label": "negative"},
-        {"text": "A true masterpiece.", "label": "positive"},
+        {"text": "An absolute masterpiece!",   "label": "very_positive"},
+        {"text": "Pretty good film.",          "label": "positive"},
+        {"text": "It was okay.",               "label": "neutral"},
     ]
 
     result = score_prompt(instruction, examples)
-    print(result["accuracy"])   # e.g. 0.82
+    print(result["accuracy"])
 """
 
 import os
@@ -28,43 +28,31 @@ import time
 from openai import OpenAI
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "data"))
-from load_imdb import get_optimization_set
+from load_sst5 import get_optimization_set, get_labels
 
 
-# ── Config
-SCORER_MODEL   = "gpt-3.5-turbo"       # cheap + fast, good enough for scoring
-MAX_RETRIES    = 3                    # retry on API errors
-RETRY_DELAY    = 2                    # seconds between retries
-BATCH_SIZE     = 100                  # how many reviews to score (full opt set)
+# ── Config ────────────────────────────────────────────────────────────────────
+SCORER_MODEL   = "gpt-3.5-turbo"      # weaker model — gives OPRO room to improve
+MAX_RETRIES    = 3
+RETRY_DELAY    = 2
+BATCH_SIZE     = 100
+
+# Valid labels for SST-5
+LABELS         = get_labels()         # ['very_negative', 'negative', 'neutral', 'positive', 'very_positive']
+LABEL_LIST_STR = ", ".join(f"'{l}'" for l in LABELS)
 
 
-# ── Client 
+# ── Client ────────────────────────────────────────────────────────────────────
 def get_client():
     """Return OpenAI client. Called lazily so import works without API key."""
     return OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
-# ── Prompt Builder 
+# ── Prompt Builder ────────────────────────────────────────────────────────────
 def build_prompt(instruction: str, examples: list[dict], review_text: str) -> str:
-    """
-    Build the full prompt sent to the Scorer LLM for a single review.
-
-    Structure:
-        [instruction]
-
-        Example 1:
-        Review: ...
-        Label: positive/negative
-
-        ... more examples ...
-
-        Now classify this review:
-        Review: ...
-        Label:
-    """
+    """Build the full prompt sent to the Scorer LLM for a single review."""
     lines = []
 
-    # Instruction
     lines.append(instruction.strip())
     lines.append("")
 
@@ -78,21 +66,47 @@ def build_prompt(instruction: str, examples: list[dict], review_text: str) -> st
     # The review to classify
     lines.append("Now classify this review.")
     lines.append(f"Review: {review_text.strip()}")
-    lines.append("Label (respond with ONLY 'positive' or 'negative'):")
+    lines.append(f"Label (respond with ONLY one of: {LABEL_LIST_STR}):")
 
     return "\n".join(lines)
 
 
-# ── Single Review Classifier
+# ── Response Parser ───────────────────────────────────────────────────────────
+def parse_label(raw: str) -> str:
+    """
+    Parse LLM response into one of the 5 valid labels.
+    Returns 'unknown' if no valid label is detected.
+    """
+    raw = raw.strip().lower()
+    # Normalize separators
+    cleaned = raw.replace(" ", "_").replace("-", "_")
+
+    # Direct match (check very_* first so 'positive' doesn't match 'very_positive')
+    for label in ["very_negative", "very_positive", "negative", "positive", "neutral"]:
+        if label in cleaned:
+            return label
+
+    # Soft fallback
+    if "very" in raw and ("pos" in raw or "good" in raw):
+        return "very_positive"
+    if "very" in raw and ("neg" in raw or "bad" in raw):
+        return "very_negative"
+    if "pos" in raw or "good" in raw:
+        return "positive"
+    if "neg" in raw or "bad" in raw:
+        return "negative"
+    if "neutral" in raw or "mixed" in raw or "okay" in raw:
+        return "neutral"
+
+    return "unknown"
+
+
+# ── Single Review Classifier ──────────────────────────────────────────────────
 def classify_review(instruction: str, examples: list[dict], review_text: str) -> str:
-    """
-    Ask the LLM to classify a single review.
-
-    Returns 'positive', 'negative', or 'unknown' on failure.
-    """
+    """Ask the LLM to classify a single review on the 5-point scale."""
     prompt = build_prompt(instruction, examples, review_text)
-
     client = get_client()
+
     for attempt in range(MAX_RETRIES):
         try:
             response = client.chat.completions.create(
@@ -101,9 +115,9 @@ def classify_review(instruction: str, examples: list[dict], review_text: str) ->
                     {
                         "role": "system",
                         "content": (
-                            "You are a sentiment classifier. "
-                            "You must respond with ONLY one word: "
-                            "'positive' or 'negative'. No explanation."
+                            f"You are a fine-grained sentiment classifier. "
+                            f"You must respond with ONLY one label from this list: "
+                            f"{LABEL_LIST_STR}. No explanation."
                         )
                     },
                     {
@@ -111,20 +125,17 @@ def classify_review(instruction: str, examples: list[dict], review_text: str) ->
                         "content": prompt
                     }
                 ],
-                max_tokens=5,        # only need one word
-                temperature=0.0,     # deterministic — same input = same output
+                max_tokens=10,
+                temperature=0.0,
             )
 
-            raw = response.choices[0].message.content.strip().lower()
+            raw    = response.choices[0].message.content
+            label  = parse_label(raw)
 
-            # Clean up response — sometimes model adds punctuation
-            if "positive" in raw:
-                return "positive"
-            elif "negative" in raw:
-                return "negative"
-            else:
-                print(f"    [scorer] Unexpected response: '{raw}' — marking as unknown")
-                return "unknown"
+            if label == "unknown":
+                print(f"    [scorer] Unexpected response: '{raw.strip()}' — marking as unknown")
+
+            return label
 
         except Exception as e:
             if attempt < MAX_RETRIES - 1:
@@ -135,38 +146,14 @@ def classify_review(instruction: str, examples: list[dict], review_text: str) ->
                 return "unknown"
 
 
-# ── Main Scorer
+# ── Main Scorer ───────────────────────────────────────────────────────────────
 def score_prompt(
     instruction: str,
     examples: list[dict],
     reviews: list[dict] | None = None,
     verbose: bool = True
 ) -> dict:
-    """
-    Score a (instruction, examples) combo on the optimization set.
-
-    Parameters
-    ----------
-    instruction : str
-        The instruction text to prepend to every review.
-    examples : list of dict
-        Few-shot examples, each with 'text' and 'label' keys.
-        Pass an empty list [] for zero-shot (no examples).
-    reviews : list of dict, optional
-        Reviews to score against. Defaults to full optimization set.
-    verbose : bool
-        Print progress as scoring runs.
-
-    Returns
-    -------
-    dict with keys:
-        instruction  : str    — the instruction that was scored
-        examples     : list   — the examples that were scored
-        accuracy     : float  — fraction correct (0.0 – 1.0)
-        correct      : int    — number of correct predictions
-        total        : int    — total reviews scored
-        predictions  : list   — per-review results for debugging
-    """
+    """Score a (instruction, examples) combo on the optimization set."""
     if reviews is None:
         reviews = get_optimization_set()
 
@@ -178,6 +165,7 @@ def score_prompt(
         print(f"  Examples    : {len(examples)} provided")
         print(f"  Reviews     : {len(reviews)} to score")
         print(f"  Model       : {SCORER_MODEL}")
+        print(f"  Task        : SST-5 (5-class sentiment)")
         print()
 
     correct     = 0
@@ -219,18 +207,22 @@ def score_prompt(
     }
 
 
-# ── Baseline Scorer 
+# ── Baseline Scorer ───────────────────────────────────────────────────────────
 def score_baseline_prompts(save_path: str = "results/baseline_scores.json"):
-    """
-    Score 3 baseline prompts to establish reference points before OPRO runs.
-
-    Condition A: zero-shot, no instruction, no examples
-    Condition B: simple instruction, no examples
-    Condition C: simple instruction + 3 random examples
-    """
+    """Score 3 baseline prompts for the SST-5 task."""
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
-    reviews  = get_optimization_set()
+    reviews = get_optimization_set()
+
+    # Pick 5 diverse examples (one per class if possible)
+    examples_by_class = {}
+    for r in reviews:
+        if r["label"] not in examples_by_class:
+            examples_by_class[r["label"]] = r
+        if len(examples_by_class) == 5:
+            break
+    sample_examples = list(examples_by_class.values())[:5]
+
     baselines = [
         {
             "name"       : "A_zero_shot",
@@ -240,19 +232,21 @@ def score_baseline_prompts(save_path: str = "results/baseline_scores.json"):
         },
         {
             "name"       : "B_simple_instruction",
-            "instruction": "Classify this movie review as positive or negative.",
+            "instruction": (
+                f"Classify this movie review's sentiment on a 5-point scale. "
+                f"Choose from: {LABEL_LIST_STR}."
+            ),
             "examples"   : [],
-            "description": "Simple instruction only, no examples"
+            "description": "Simple instruction, no examples"
         },
         {
             "name"       : "C_simple_with_examples",
-            "instruction": "Classify this movie review as positive or negative.",
-            "examples"   : [
-                {"text": reviews[0]["text"], "label": reviews[0]["label"]},
-                {"text": reviews[1]["text"], "label": reviews[1]["label"]},
-                {"text": reviews[2]["text"], "label": reviews[2]["label"]},
-            ],
-            "description": "Simple instruction + 3 random examples"
+            "instruction": (
+                f"Classify this movie review's sentiment on a 5-point scale. "
+                f"Choose from: {LABEL_LIST_STR}."
+            ),
+            "examples"   : sample_examples,
+            "description": "Simple instruction + 5 examples (one per class)"
         },
     ]
 
@@ -276,18 +270,20 @@ def score_baseline_prompts(save_path: str = "results/baseline_scores.json"):
         json.dump(save_data, f, indent=2)
 
     print(f"\n{'='*55}")
-    print("BASELINE SUMMARY")
+    print("BASELINE SUMMARY (SST-5)")
     print(f"{'='*55}")
     for r in results:
         print(f"  {r['name']:<30} {r['accuracy']:.1%}")
     print(f"\nSaved to {save_path}")
+    print()
+    print(f"Expected range with gpt-3.5-turbo: 40-55%")
+    print(f"If baselines are 40-55%, OPRO has plenty of room to improve!")
 
     return results
 
 
-# ── Main
+# ── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    # Quick smoke test with a single review (no API key needed check)
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         print("ERROR: OPENAI_API_KEY not set!")
@@ -295,5 +291,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     print("OpenAI API key found.")
-    print("Running baseline scoring...\n")
+    print(f"Scorer model: {SCORER_MODEL}")
+    print(f"Task: SST-5 (5-class sentiment classification)")
+    print(f"Labels: {LABELS}")
+    print("\nRunning baseline scoring...\n")
     score_baseline_prompts()
