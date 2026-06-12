@@ -1,0 +1,95 @@
+[
+  {
+    "step": 0,
+    "seed": 1,
+    "instruction": "Classify this movie review's sentiment. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:06:56.281385",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 2,
+    "instruction": "Read the movie review and rate its sentiment on a 5-point scale: 'very_negative' (strongly disliked), 'negative' (disliked), 'neutral' (mixed/no opinion), 'positive' (liked), 'very_positive' (loved). Reply with one label.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T08:07:02.354363",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 3,
+    "instruction": "What is the sentiment of this movie review? Pick exactly one: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:07:08.871651",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 1,
+    "instruction": "Classify the sentiment of the given movie review. Select the most fitting category: 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:07:20.412157",
+    "reasoning": "Clear and concise instruction with varied examples covering all categories."
+  },
+  {
+    "step": 2,
+    "instruction": "Classify the movie review\u2019s sentiment by selecting the most appropriate label: 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.33,
+    "correct": 33,
+    "total": 100,
+    "timestamp": "2026-06-12T08:07:33.100100",
+    "reasoning": "Simplified language and direct instruction should improve clarity and performance."
+  },
+  {
+    "step": 3,
+    "instruction": "Determine the overall sentiment of the movie review. Assign one of the following labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.37,
+    "correct": 37,
+    "total": 100,
+    "timestamp": "2026-06-12T08:07:56.417440",
+    "reasoning": "This instruction clearly states the task and uses specific examples that cover all sentiment categories."
+  },
+  {
+    "step": 4,
+    "instruction": "Rate the movie review's sentiment on a 5-point scale, using the provided labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Provide only the label.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T08:08:09.100998",
+    "reasoning": "Clarifying to use the provided labels and providing only the label simplifies understanding and may improve precision."
+  },
+  {
+    "step": 5,
+    "instruction": "Classify the movie review's sentiment by selecting the most fitting category: 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Ensure your choice matches the overall tone and intensity of the review.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:08:21.521571",
+    "reasoning": "Instructing to match the overall tone and intensity more closely provides clearer guidance."
+  },
+  {
+    "step": 6,
+    "instruction": "Rate the sentiment of each movie review on a 5-point scale, choosing from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Provide only the label.",
+    "examples": [],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T08:08:34.517262",
+    "reasoning": "This instruction explicitly requires selection from the exact labels and emphasizes providing only the label, which may help in achieving higher accuracy."
+  }
+]
