@@ -1,0 +1,535 @@
+[
+  {
+    "step": 0,
+    "seed": 1,
+    "instruction": "Sentiment label for this movie review: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:16:51.440808",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 2,
+    "instruction": "Analyze the movie review and assign a sentiment label using this scale:\n- 'very_negative': harsh criticism, strong disgust, called bad/terrible\n- 'negative': clearly disliked, complaints outweigh praise\n- 'neutral': mixed feelings or balanced/factual description\n- 'positive': clearly liked, praise outweighs complaints\n- 'very_positive': strong praise, called masterpiece/brilliant\nRespond with exactly one label.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:16:59.125338",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 3,
+    "instruction": "You are a professional film critic categorizing reviews. Identify the sentiment as one of: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Look at emotional language, intensity words (very, somewhat, absolutely), and overall tone. Be decisive \u2014 pick one label, no hedging.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:17:07.412105",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 1,
+    "instruction": "Determine the sentiment of the following movie review by closely analyzing the language used and overall tone, then assign one of the following labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:17:26.404196",
+    "reasoning": "This instruction provides clearer direction on the importance of analyzing language and tone, and uses the exact label spelling."
+  },
+  {
+    "step": 2,
+    "instruction": "Analyze each movie review's tone and intensity of language, then classify it into one of five distinct categories: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Provide your classification with certainty.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:17:45.970520",
+    "reasoning": "This instruction provides clearer guidelines and emphasis on certainty, potentially leading to better differentiation among the sentiment classes."
+  },
+  {
+    "step": 3,
+    "instruction": "Classify the sentiment of the given movie review using precise language and a decisive tone, selecting one of these labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Consider the use of emotional and intensity words.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T12:18:06.299697",
+    "reasoning": "This instruction focuses more on precision and decisiveness and includes a specific directive to consider emotional and intensity words."
+  },
+  {
+    "step": 4,
+    "instruction": "Classify the following movie reviews into one of these five distinct sentiment categories using exact label spelling and focusing on the emotional language and intensity of the words used.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:18:24.150867",
+    "reasoning": "This instruction is more direct and emphasizes the importance of exact label usage and emotional language, potentially leading to more precise classifications."
+  },
+  {
+    "step": 5,
+    "instruction": "Analyze the sentiment of the following movie reviews and categorize them accurately into one of the five provided labels by carefully examining the emotional language and intensity of the words used.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T12:18:42.811037",
+    "reasoning": "This instruction focuses on accuracy and provides more clarity on the label choices."
+  },
+  {
+    "step": 6,
+    "instruction": "Classify the movie reviews into 'very_negative', 'negative', 'neutral', 'positive', 'very_positive' based on the intensity and emotional language of the review, being precise and decisive in your choice.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:19:02.517256",
+    "reasoning": "This instruction emphasizes precision and decisiveness while ensuring clarity in label usage, which should lead to higher accuracy."
+  },
+  {
+    "step": 7,
+    "instruction": "Classify the movie reviews into sentiment categories by focusing on emotional language, intensity, and overall tone. Assign one of the following labels precisely: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Do not hedge.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T12:19:21.411426",
+    "reasoning": "Providing more emphasis on precision and clarity should lead to a higher score."
+  },
+  {
+    "step": 8,
+    "instruction": "Analyze each movie review and categorize it into one of five distinct sentiment categories ('very_negative', 'negative', 'neutral', 'positive', 'very_positive') by considering the emotional language and overall tone. Provide your classification confidently.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:19:40.945251",
+    "reasoning": "This instruction emphasizes confidence in classification, which can help improve precision and accuracy."
+  },
+  {
+    "step": 9,
+    "instruction": "Analyze the sentiment of the movie reviews and classify them into precise categories 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Focus on the emotional language, intensity of words, and overall tone to make your judgment decisively.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T12:20:00.891928",
+    "reasoning": "This instruction emphasizes precision and decisiveness further and uses a more direct approach which might help in distinguishing similar sentiments more accurately."
+  },
+  {
+    "step": 10,
+    "instruction": "Classify the movie reviews into 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Use precise language and focus on the emotional content and overall tone to ensure accurate categorization.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T12:20:31.807459",
+    "reasoning": "This instruction emphasizes precision and focuses on specific elements like emotional content and tone, which may lead to more accurate classifications."
+  },
+  {
+    "step": 11,
+    "instruction": "Analyze the following movie reviews and classify them into precise sentiment categories: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Utilize emotional language, intensity of words, and overall tone to ensure a clear classification.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:20:53.280510",
+    "reasoning": "This instruction provides clarity on the exact label spelling and emphasizes precision in classification, which should enhance the classifier's performance."
+  },
+  {
+    "step": 12,
+    "instruction": "Categorize the following movie reviews with exact labels 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', focusing on the emotional language, intensity, and overall tone.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:21:12.889851",
+    "reasoning": "Clear instructions and varied examples should improve understanding and accuracy."
+  },
+  {
+    "step": 13,
+    "instruction": "Analyze the emotional language, intensity of words, and overall tone to classify each movie review precisely into 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Provide a clear and decisive classification.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T12:21:32.782979",
+    "reasoning": "This instruction reinforces the importance of exact label use and provides clearer criteria for decisive classification."
+  },
+  {
+    "step": 14,
+    "instruction": "As a discerning film analyst, accurately determine the sentiment expressed in these movie reviews by selecting the most fitting category: 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Pay careful attention to the emotional language and the overall tone.",
+    "examples": [],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T12:21:52.677367",
+    "reasoning": "This instruction emphasizes discernment and thorough analysis while specifying the exact label usage."
+  },
+  {
+    "step": 15,
+    "instruction": "Classify the movie reviews into the precise sentiment categories based on the emotional language, intensity of words, and overall tone. Provide a definitive label without any ambiguity.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:22:11.295643",
+    "reasoning": "Clear and definitive instruction promotes more accurate classification."
+  },
+  {
+    "step": 16,
+    "instruction": "Analyze the following movie reviews and assign each one a precise sentiment label based on the emotional language, intensity of words, and overall tone. Your classification should be decisive.",
+    "examples": [],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T12:22:30.948633",
+    "reasoning": "This instruction emphasizes decisiveness and precision without repetition, potentially leading to a more focused and accurate classification."
+  },
+  {
+    "step": 17,
+    "instruction": "As a seasoned film reviewer, carefully analyze the provided movie reviews and assign each one a specific sentiment label based on the emotional language, intensity of words, and overall tone. Ensure clarity and precision in your classifications.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:22:50.343483",
+    "reasoning": "This instruction emphasizes clarity and precision, ensuring that the classifier is not only decisive but also focused on the nuances of language."
+  },
+  {
+    "step": 18,
+    "instruction": "Analyze these movie reviews and assign each one the most appropriate sentiment label by focusing on the emotional language, intensity of words, and overall tone. Ensure precision and confidence in your classifications.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:23:08.608114",
+    "reasoning": "This instruction emphasizes precision and confidence further, potentially leading to higher accuracy."
+  },
+  {
+    "step": 19,
+    "instruction": "Analyze the movie reviews and confidently assign each one to one of the specified sentiment labels based on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T12:23:27.475147",
+    "reasoning": "This instruction emphasizes confidence and specificity, ensuring clarity and precision in the classifications."
+  },
+  {
+    "step": 20,
+    "instruction": "Classify movie reviews into one of five distinct categories: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Focus on the emotional language, intensity of words, and the overall tone to provide precise and decisive labels.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:23:47.497453",
+    "reasoning": "This instruction is more concise and clear, removing redundancy while ensuring precision."
+  },
+  {
+    "step": 21,
+    "instruction": "Analyze these movie reviews and confidently assign each one the most fitting sentiment category based on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:24:08.002645",
+    "reasoning": "The instruction emphasizes confidence and precision, which aligns well with the highest scoring attempts."
+  },
+  {
+    "step": 22,
+    "instruction": "Analyze these movie reviews and precisely label them as one of 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Consider the emotional language, intensity of words, and the overall tone. Provide clear and decisive labels.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:24:28.450135",
+    "reasoning": "This instruction emphasizes precision and decisiveness, ensuring that the classifier focuses on the core elements that differentiate between the sentiment categories."
+  },
+  {
+    "step": 23,
+    "instruction": "As a skilled film analyst, carefully review each movie review and classify it into one of the five distinct sentiment categories, providing exact label spellings based on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:24:47.276588",
+    "reasoning": "This instruction emphasizes precision and the use of exact label spellings more clearly than previous attempts."
+  },
+  {
+    "step": 24,
+    "instruction": "As a meticulous film critic, evaluate each movie review and confidently assign the most precise sentiment label from 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Focus on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T12:25:06.855857",
+    "reasoning": "More specific and detailed instruction helps in achieving higher precision and confidence."
+  },
+  {
+    "step": 25,
+    "instruction": "Analyze the movie reviews and decisively assign each one to the most fitting sentiment category based on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T12:25:26.120584",
+    "reasoning": "This instruction is more concise and focuses on decisiveness, which may help in improving the classifier's performance."
+  },
+  {
+    "step": 26,
+    "instruction": "Analyze the movie reviews and decisively assign each one to the most fitting sentiment category based on the emotional language, intensity of words, and overall tone, ensuring clarity and precision.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:25:45.246295",
+    "reasoning": "This instruction emphasizes decisiveness and precision, which can improve clarity and reduce ambiguity."
+  },
+  {
+    "step": 27,
+    "instruction": "Analyze the following movie reviews and precisely assign the most fitting sentiment label based on the emotional language, intensity of words, and overall tone. Ensure each classification is decisive.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:26:04.193013",
+    "reasoning": "This instruction emphasizes precision and decisiveness further while maintaining the focus on key elements."
+  },
+  {
+    "step": 28,
+    "instruction": "Analyze the movie reviews and decisively assign each one to the most fitting sentiment category, ensuring a high degree of accuracy through close examination of emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:26:24.403043",
+    "reasoning": "This instruction emphasizes accuracy and includes a reminder to focus on specific aspects, potentially leading to higher precision."
+  },
+  {
+    "step": 29,
+    "instruction": "Analyze the movie reviews and decisively assign each one to the most fitting sentiment category, focusing on the intensity and nuances of the emotional language and overall tone.",
+    "examples": [],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T12:26:43.639897",
+    "reasoning": "This instruction emphasizes the importance of focusing on intensity and nuances, which can help in distinguishing between similar sentiments and improving accuracy."
+  },
+  {
+    "step": 30,
+    "instruction": "Analyze the movie reviews and confidently assign each one to one of the five sentiment labels based on the emotional language, intensity of words, and overall tone, emphasizing the distinction between the levels of positive and negative sentiments.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:27:03.925738",
+    "reasoning": "This instruction emphasizes the distinction between the levels of positive and negative sentiments, which may help the classifier better differentiate between them."
+  },
+  {
+    "step": 31,
+    "instruction": "As a seasoned film critic, meticulously analyze each movie review and precisely categorize it into one of the five sentiment labels, emphasizing the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T12:27:22.838816",
+    "reasoning": "This instruction uses more specific language like 'seasoned film critic' and emphasizes precision and emphasis on tone, which could potentially improve clarity and focus."
+  },
+  {
+    "step": 32,
+    "instruction": "Analyze each movie review thoroughly and confidently assign it to the most accurate sentiment category, taking into account the emotional language, intensity, and overall tone.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T12:27:40.882007",
+    "reasoning": "This instruction emphasizes thorough analysis and accuracy, potentially leading to higher scores."
+  },
+  {
+    "step": 33,
+    "instruction": "Analyze the movie reviews carefully and confidently assign each one to one of the specified sentiment categories based on the emotional language, intensity of words, and overall tone, ensuring a high degree of accuracy.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:27:59.907122",
+    "reasoning": "The instruction emphasizes accuracy and uses more precise language, which could help in fine-tuning the classifier."
+  },
+  {
+    "step": 34,
+    "instruction": "Analyze the movie reviews and precisely categorize each one into the most fitting sentiment category, focusing on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:28:18.939730",
+    "reasoning": "This instruction emphasizes precision and focuses on the emotional language and tone, which has shown higher scores in previous attempts."
+  },
+  {
+    "step": 35,
+    "instruction": "Analyze each movie review and assign it to the most fitting sentiment category by carefully considering the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:28:38.818186",
+    "reasoning": "This instruction maintains specificity in language while encouraging careful analysis which should lead to more precise classifications."
+  },
+  {
+    "step": 36,
+    "instruction": "Analyze the movie reviews carefully and decisively assign each one to one of the five sentiment labels, focusing on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:28:58.411670",
+    "reasoning": "This instruction emphasizes careful analysis and decisiveness, which can help refine the model's precision."
+  },
+  {
+    "step": 37,
+    "instruction": "Analyze the movie reviews and confidently assign each one to the most fitting sentiment category based on the emotional language, intensity of words, and overall tone, ensuring precise and consistent labeling.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T12:29:17.439147",
+    "reasoning": "This instruction emphasizes precision and consistency, which can improve scoring by ensuring clear and accurate labeling."
+  },
+  {
+    "step": 38,
+    "instruction": "Analyze the movie reviews and decisively assign each one to the most fitting sentiment category by carefully assessing the emotional language, intensity of words, and overall tone. Ensure your decision aligns closely with the provided examples.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T12:29:37.424034",
+    "reasoning": "This instruction emphasizes careful assessment which helps in finer differentiation between similar sentiments."
+  },
+  {
+    "step": 39,
+    "instruction": "As a discerning film analyst, analyze the movie reviews with precision and decisiveness, ensuring each one is categorized into the most fitting sentiment category based on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:29:58.003347",
+    "reasoning": "This instruction focuses more on precision and decisiveness, which can improve accuracy and thus the score."
+  },
+  {
+    "step": 40,
+    "instruction": "Analyze the movie reviews closely and confidently assign each one to the most fitting sentiment category from 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive', emphasizing the emotional language and overall tone.",
+    "examples": [],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T12:30:17.033270",
+    "reasoning": "This instruction provides clear direction and includes all necessary elements while slightly refining the language to ensure precision."
+  },
+  {
+    "step": 41,
+    "instruction": "As a discerning film analyst, carefully examine the movie reviews and confidently assign each one to the most precise sentiment category by considering the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T12:30:35.647042",
+    "reasoning": "This instruction emphasizes precision and provides a clearer directive for the sentiment analysis task."
+  },
+  {
+    "step": 42,
+    "instruction": "Analyze the movie reviews in depth, focusing on the specific nuances of the language used and the overall tone to assign the most appropriate sentiment category.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:30:54.886104",
+    "reasoning": "This instruction emphasizes depth and nuance, which can improve precision and differentiation between similar sentiments."
+  },
+  {
+    "step": 43,
+    "instruction": "Analyze the movie reviews carefully and decisively assign each one to the most appropriate sentiment category, focusing on the emotional language, intensity of words, and overall tone to achieve precision.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:31:15.059169",
+    "reasoning": "This instruction emphasizes precision and decisiveness, which should improve the classifier's ability to differentiate between close cases."
+  },
+  {
+    "step": 44,
+    "instruction": "Analyze the movie reviews provided and decisively assign each one to the sentiment category that best fits the overall tone and emotional language, ensuring the classification is as precise as possible.",
+    "examples": [],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T12:31:35.673114",
+    "reasoning": "This instruction emphasizes precision and decisiveness, which may help in achieving a higher score."
+  },
+  {
+    "step": 45,
+    "instruction": "Analyze the movie reviews and decisively assign each one to the precise sentiment category 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive', focusing on the emotional language and overall tone.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:31:55.283457",
+    "reasoning": "This instruction is more concise and emphasizes precision in labeling which could improve classification accuracy."
+  },
+  {
+    "step": 46,
+    "instruction": "Analyze each movie review and assign the most fitting sentiment category based on the emotional language, intensity of words, and overall tone, ensuring a clear distinction between intensity levels.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T12:32:13.630400",
+    "reasoning": "Clear and concise instruction with specific emphasis on distinguishing intensity levels."
+  },
+  {
+    "step": 47,
+    "instruction": "As a meticulous film evaluator, assign each movie review to one of the specified sentiment labels by carefully analyzing the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T12:32:33.526498",
+    "reasoning": "The instruction is more concise and directly ties to the exact task, potentially guiding the model to a more precise classification."
+  },
+  {
+    "step": 48,
+    "instruction": "Analyze the movie reviews provided and decisively assign each one to the most fitting sentiment category based on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T12:32:52.853857",
+    "reasoning": "This instruction maintains the core requirement for precision while slightly adjusting the wording to ensure clarity and specificity."
+  },
+  {
+    "step": 49,
+    "instruction": "Analyze the provided movie reviews and confidently categorize each one into one of the five sentiment categories by focusing on the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T12:33:12.442666",
+    "reasoning": "The instruction is concise yet comprehensive, ensuring clarity and specificity in the task."
+  },
+  {
+    "step": 50,
+    "instruction": "Analyze the movie reviews and decisively assign each one to the most fitting sentiment category by carefully considering the emotional language, intensity of words, and overall tone.",
+    "examples": [],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T12:33:30.789956",
+    "reasoning": "This instruction maintains clarity and focuses on precision without redundancy."
+  }
+]

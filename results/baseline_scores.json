@@ -2,8 +2,8 @@
   {
     "instruction": "Classify this movie review.",
     "examples": [],
-    "accuracy": 0.37,
-    "correct": 37,
+    "accuracy": 0.44,
+    "correct": 44,
     "total": 100,
     "name": "A_zero_shot",
     "description": "No instruction details, no examples"
@@ -41,8 +41,8 @@
         "label": "very_negative"
       }
     ],
-    "accuracy": 0.41,
-    "correct": 41,
+    "accuracy": 0.46,
+    "correct": 46,
     "total": 100,
     "name": "C_simple_with_examples",
     "description": "Simple instruction + 5 examples (one per class)"
