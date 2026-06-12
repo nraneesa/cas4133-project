@@ -4,16 +4,20 @@ scorer.py
 The Scorer LLM — evaluates how good a (instruction, examples) combo is
 by testing it against the optimization set and returning an accuracy score.
 
-Uses LOCAL Hugging Face models running on GPU. No API costs.
-
-Default scorer: Qwen2.5-1.5B-Instruct (small, fast, weak enough to leave
-room for OPRO to demonstrate improvement)
+This version is configured for SST-5 (5-class fine-grained sentiment).
 
 Usage:
-    from scorer import score_prompt, load_scorer_model
+    from scorer import score_prompt
 
-    load_scorer_model()  # Load once at startup
+    instruction = "Classify this movie review's sentiment on a 5-point scale."
+    examples = [
+        {"text": "An absolute masterpiece!",   "label": "very_positive"},
+        {"text": "Pretty good film.",          "label": "positive"},
+        {"text": "It was okay.",               "label": "neutral"},
+    ]
+
     result = score_prompt(instruction, examples)
+    print(result["accuracy"])
 """
 
 import os
@@ -21,67 +25,45 @@ import sys
 import json
 import time
 
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from openai import OpenAI
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "data"))
 from load_sst5 import get_optimization_set, get_labels
 
 
-# ── Config 
-SCORER_MODEL   = "Qwen/Qwen2.5-1.5B-Instruct"     # default scorer model
+# ── Config ────────────────────────────────────────────────────────────────────
+SCORER_MODEL   = "gpt-3.5-turbo"      # weaker model — gives OPRO room to improve
+MAX_RETRIES    = 3
+RETRY_DELAY    = 2
 BATCH_SIZE     = 100
-MAX_NEW_TOKENS = 10
 
 # Valid labels for SST-5
-LABELS         = get_labels()
+LABELS         = get_labels()         # ['very_negative', 'negative', 'neutral', 'positive', 'very_positive']
 LABEL_LIST_STR = ", ".join(f"'{l}'" for l in LABELS)
 
-# Globals loaded once on first call
-_model      = None
-_tokenizer  = None
-_loaded_for = None
+
+# ── Client ────────────────────────────────────────────────────────────────────
+def get_client():
+    """Return OpenAI client. Called lazily so import works without API key."""
+    return OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
-# ── Model Loading 
-def load_scorer_model(model_name: str = SCORER_MODEL):
-    """
-    Load the scorer model into GPU memory. Call once at startup.
-
-    Reuses the model across calls so we don't reload every time.
-    """
-    global _model, _tokenizer, _loaded_for
-
-    if _loaded_for == model_name and _model is not None:
-        return  # already loaded
-
-    print(f"Loading scorer model: {model_name}")
-    print(f"  This takes ~30 seconds on first run...")
-
-    _tokenizer = AutoTokenizer.from_pretrained(model_name)
-    _model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        torch_dtype=torch.bfloat16,
-        device_map="auto",
-    )
-    _model.eval()
-    _loaded_for = model_name
-
-    vram_used = torch.cuda.memory_allocated() / 1e9
-    print(f"  ✓ Loaded. VRAM in use: {vram_used:.1f} GB")
-
-
-# ── Prompt Builder 
+# ── Prompt Builder ────────────────────────────────────────────────────────────
 def build_prompt(instruction: str, examples: list[dict], review_text: str) -> str:
-    """Build the full prompt for a single review classification."""
-    lines = [instruction.strip(), ""]
+    """Build the full prompt sent to the Scorer LLM for a single review."""
+    lines = []
 
+    lines.append(instruction.strip())
+    lines.append("")
+
+    # Few-shot examples
     for i, ex in enumerate(examples, 1):
         lines.append(f"Example {i}:")
         lines.append(f"Review: {ex['text'].strip()}")
         lines.append(f"Label: {ex['label'].strip()}")
         lines.append("")
 
+    # The review to classify
     lines.append("Now classify this review.")
     lines.append(f"Review: {review_text.strip()}")
     lines.append(f"Label (respond with ONLY one of: {LABEL_LIST_STR}):")
@@ -89,13 +71,17 @@ def build_prompt(instruction: str, examples: list[dict], review_text: str) -> st
     return "\n".join(lines)
 
 
-# ── Response Parser 
+# ── Response Parser ───────────────────────────────────────────────────────────
 def parse_label(raw: str) -> str:
-    """Parse LLM response into one of the 5 valid labels."""
+    """
+    Parse LLM response into one of the 5 valid labels.
+    Returns 'unknown' if no valid label is detected.
+    """
     raw = raw.strip().lower()
+    # Normalize separators
     cleaned = raw.replace(" ", "_").replace("-", "_")
 
-    # Check very_* labels first (so 'positive' doesn't match 'very_positive')
+    # Direct match (check very_* first so 'positive' doesn't match 'very_positive')
     for label in ["very_negative", "very_positive", "negative", "positive", "neutral"]:
         if label in cleaned:
             return label
@@ -115,50 +101,52 @@ def parse_label(raw: str) -> str:
     return "unknown"
 
 
-# ── Single Review Classifier 
+# ── Single Review Classifier ──────────────────────────────────────────────────
 def classify_review(instruction: str, examples: list[dict], review_text: str) -> str:
-    """Classify a single review using the local model."""
-    global _model, _tokenizer
+    """Ask the LLM to classify a single review on the 5-point scale."""
+    prompt = build_prompt(instruction, examples, review_text)
+    client = get_client()
 
-    if _model is None:
-        load_scorer_model()
-
-    user_content = build_prompt(instruction, examples, review_text)
-
-    # Use chat template for instruct models
-    messages = [
-        {
-            "role": "system",
-            "content": (
-                f"You are a fine-grained sentiment classifier. "
-                f"Respond with ONLY one label from: {LABEL_LIST_STR}. No explanation."
+    for attempt in range(MAX_RETRIES):
+        try:
+            response = client.chat.completions.create(
+                model=SCORER_MODEL,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            f"You are a fine-grained sentiment classifier. "
+                            f"You must respond with ONLY one label from this list: "
+                            f"{LABEL_LIST_STR}. No explanation."
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                max_tokens=10,
+                temperature=0.0,
             )
-        },
-        {"role": "user", "content": user_content}
-    ]
 
-    prompt_text = _tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True
-    )
-    inputs = _tokenizer(prompt_text, return_tensors="pt").to(_model.device)
+            raw    = response.choices[0].message.content
+            label  = parse_label(raw)
 
-    with torch.no_grad():
-        outputs = _model.generate(
-            **inputs,
-            max_new_tokens=MAX_NEW_TOKENS,
-            do_sample=False,
-            temperature=1.0,
-            pad_token_id=_tokenizer.eos_token_id,
-        )
+            if label == "unknown":
+                print(f"    [scorer] Unexpected response: '{raw.strip()}' — marking as unknown")
 
-    # Decode only the newly generated tokens
-    new_tokens = outputs[0][inputs["input_ids"].shape[1]:]
-    raw = _tokenizer.decode(new_tokens, skip_special_tokens=True)
+            return label
 
-    return parse_label(raw)
+        except Exception as e:
+            if attempt < MAX_RETRIES - 1:
+                print(f"    [scorer] API error (attempt {attempt+1}): {e} — retrying...")
+                time.sleep(RETRY_DELAY)
+            else:
+                print(f"    [scorer] Failed after {MAX_RETRIES} attempts: {e}")
+                return "unknown"
 
 
-# ── Main Scorer 
+# ── Main Scorer ───────────────────────────────────────────────────────────────
 def score_prompt(
     instruction: str,
     examples: list[dict],
@@ -166,9 +154,6 @@ def score_prompt(
     verbose: bool = True
 ) -> dict:
     """Score a (instruction, examples) combo on the optimization set."""
-    if _model is None:
-        load_scorer_model()
-
     if reviews is None:
         reviews = get_optimization_set()
 
@@ -179,12 +164,12 @@ def score_prompt(
         print(f"  Instruction : {instruction[:80]}{'...' if len(instruction) > 80 else ''}")
         print(f"  Examples    : {len(examples)} provided")
         print(f"  Reviews     : {len(reviews)} to score")
-        print(f"  Model       : {_loaded_for}")
+        print(f"  Model       : {SCORER_MODEL}")
+        print(f"  Task        : SST-5 (5-class sentiment)")
         print()
 
     correct     = 0
     predictions = []
-    t_start     = time.time()
 
     for i, review in enumerate(reviews):
         true_label  = review["label"]
@@ -204,17 +189,13 @@ def score_prompt(
 
         if verbose and (i + 1) % 10 == 0:
             running_acc = correct / (i + 1)
-            elapsed_s   = time.time() - t_start
-            rate        = (i + 1) / elapsed_s
-            print(f"  [{i+1:>3}/{len(reviews)}] Running acc: {running_acc:.1%}  ({rate:.1f} reviews/sec)")
+            print(f"  [{i+1:>3}/{len(reviews)}] Running accuracy: {running_acc:.1%}")
 
     accuracy = correct / len(reviews) if reviews else 0.0
 
     if verbose:
-        elapsed = time.time() - t_start
         print(f"\n── Result ────────────────────────────────────────────")
         print(f"  Accuracy : {accuracy:.1%}  ({correct}/{len(reviews)} correct)")
-        print(f"  Time     : {elapsed:.1f} seconds")
 
     return {
         "instruction": instruction,
@@ -226,14 +207,14 @@ def score_prompt(
     }
 
 
-# ── Baseline Scorer 
+# ── Baseline Scorer ───────────────────────────────────────────────────────────
 def score_baseline_prompts(save_path: str = "results/baseline_scores.json"):
     """Score 3 baseline prompts for the SST-5 task."""
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
     reviews = get_optimization_set()
 
-    # Pick one example per class
+    # Pick 5 diverse examples (one per class if possible)
     examples_by_class = {}
     for r in reviews:
         if r["label"] not in examples_by_class:
@@ -247,7 +228,7 @@ def score_baseline_prompts(save_path: str = "results/baseline_scores.json"):
             "name"       : "A_zero_shot",
             "instruction": "Classify this movie review.",
             "examples"   : [],
-            "description": "No instruction details, no examples"
+            "description": "No instruction, no examples (zero-shot baseline)"
         },
         {
             "name"       : "B_simple_instruction",
@@ -289,30 +270,29 @@ def score_baseline_prompts(save_path: str = "results/baseline_scores.json"):
         json.dump(save_data, f, indent=2)
 
     print(f"\n{'='*55}")
-    print("BASELINE SUMMARY (SST-5, local model)")
+    print("BASELINE SUMMARY (SST-5)")
     print(f"{'='*55}")
-    print(f"Model: {_loaded_for}")
     for r in results:
         print(f"  {r['name']:<30} {r['accuracy']:.1%}")
     print(f"\nSaved to {save_path}")
     print()
-    print("Expected range: 35-55% (5-class is hard for small models)")
+    print(f"Expected range with gpt-3.5-turbo: 40-55%")
+    print(f"If baselines are 40-55%, OPRO has plenty of room to improve!")
 
     return results
 
 
-# ── Main 
+# ── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    if not torch.cuda.is_available():
-        print("ERROR: CUDA not available!")
-        print("This script needs a GPU. Run on Vessel.")
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        print("ERROR: OPENAI_API_KEY not set!")
+        print("Run: export OPENAI_API_KEY='sk-...'")
         sys.exit(1)
 
-    print(f"GPU: {torch.cuda.get_device_name(0)}")
-    print(f"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
+    print("OpenAI API key found.")
+    print(f"Scorer model: {SCORER_MODEL}")
     print(f"Task: SST-5 (5-class sentiment classification)")
     print(f"Labels: {LABELS}")
-    print()
-
-    load_scorer_model()
+    print("\nRunning baseline scoring...\n")
     score_baseline_prompts()
