@@ -1,0 +1,129 @@
+[
+  {
+    "step": 0,
+    "seed": 1,
+    "instruction": "Sentiment label for this movie review: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story .",
+        "label": "very_negative"
+      },
+      {
+        "text": "it 's definitely not made for kids or their parents , for that matter , and i think even fans of sandler 's comic taste may find it uninteresting .",
+        "label": "negative"
+      },
+      {
+        "text": "unofficially , national lampoon 's van wilder is son of animal house .",
+        "label": "neutral"
+      },
+      {
+        "text": "if not a home run , then at least a solid base hit .",
+        "label": "positive"
+      },
+      {
+        "text": "delirious fun .",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T09:56:18.971377",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 2,
+    "instruction": "Analyze the movie review and assign a sentiment label using this scale:\n- 'very_negative': harsh criticism, strong disgust, called bad/terrible\n- 'negative': clearly disliked, complaints outweigh praise\n- 'neutral': mixed feelings or balanced/factual description\n- 'positive': clearly liked, praise outweighs complaints\n- 'very_positive': strong praise, called masterpiece/brilliant\nRespond with exactly one label.",
+    "examples": [
+      {
+        "text": "a devastating indictment of unbridled greed and materalism .",
+        "label": "very_negative"
+      },
+      {
+        "text": "quitting , however , manages just to be depressing , as the lead actor phones in his autobiographical performance .",
+        "label": "negative"
+      },
+      {
+        "text": "in the end , all you can do is admire the ensemble players and wonder what the point of it is .",
+        "label": "neutral"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000 debut shanghai noon , but showtime 's uninspired send-up of tv cop show cliches mostly leaves him shooting blanks .",
+        "label": "positive"
+      },
+      {
+        "text": "combines sharp comedy , old-fashioned monster movie atmospherics , and genuine heart to create a film that 's not merely about kicking undead \\*\\*\\* , but also about dealing with regret and , ultimately , finding redemption .",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T09:56:31.581775",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 3,
+    "instruction": "You are a professional film critic categorizing reviews. Identify the sentiment as one of: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Look at emotional language, intensity words (very, somewhat, absolutely), and overall tone. Be decisive \u2014 pick one label, no hedging.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
+      },
+      {
+        "text": "evokes the frustration , the awkwardness and the euphoria of growing up , without relying on the usual tropes .",
+        "label": "negative"
+      },
+      {
+        "text": "demeo is not without talent ; he just needs better material .",
+        "label": "neutral"
+      },
+      {
+        "text": "got some good , organic character work , lots of obvious political insights and little room for engaging , imaginative filmmaking in its nearly 2\u00a01\\/2 - hour , dissipated length .",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie a mournful undercurrent that places the good-time shenanigans in welcome perspective .",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.48,
+    "correct": 48,
+    "total": 100,
+    "timestamp": "2026-06-12T09:56:44.793390",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 1,
+    "instruction": "Analyze the given movie review and assign the most fitting sentiment label considering both intensity and nuance.",
+    "examples": [
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story.",
+        "label": "very_negative"
+      },
+      {
+        "text": "the most consistently funny of the austin powers films.",
+        "label": "very_positive"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "it's definitely not made for kids or their parents, for that matter, and i think even fans of san",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T09:57:00.840310",
+    "reasoning": "This instruction encourages more nuanced analysis by emphasizing both intensity and nuance, which should help improve classification accuracy."
+  }
+]
