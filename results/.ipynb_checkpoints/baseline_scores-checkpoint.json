@@ -1,0 +1,38 @@
+[
+  {
+    "instruction": "Classify this movie review.",
+    "examples": [],
+    "accuracy": 0.27,
+    "correct": 27,
+    "total": 100,
+    "name": "A_zero_shot",
+    "description": "No instruction details, no examples"
+  },
+  {
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.25,
+    "correct": 25,
+    "total": 100,
+    "name": "B_simple_instruction",
+    "description": "Simple instruction, no examples"
+  },
+  {
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [
+      {
+        "text": "I am very unpolitically correct guy, so when I say sexist I really mean it reduced the female guest lead, Dr Miranda Jones played by Diana Muldar. in spite of all her supposed brilliance and self control, to nothing more inside but a big, jealous unreasonable baby You prolly got the plot by now, after her technical sidekick Marvik, also a spurned lover, flips out when he tried to kill the Medusan, Ambassador Kollos, out of a jealous rage, but glimpsed first it instead. (You think he could have just walked in to the room with his eyes shut and phasered the box, too easy) he takes the Enterprise into un-navigable space outside the galaxy before the boys could subdue him. Well, the ship is stuck in limbo, at that point they could have gone to the good lady doctor-liaison and discussed it. \"Spock has to make a mind meld with the Medusan so we can get home. I mean like beetch do you want to stay adrift until we run out of supplies and die?\" But the lady in true Star Trek fashion is a jealous monsters who whines and wails when the idea is broached, even when her Medusan idol told her to shut up & go along with them. So the beetch out of spite messes with the melded Spock causing him to forget to put on his visor which makes Spock go insane. Kirk, naturally, figured out what a total twit she was and shamed her into fixing Spock up with her superior telepathic powers. Of course, at the end the Lady and Medusan leave and all is forgiven. You almost wish the President from Battle Star Galactica showed up to jettison the witch out of an airlock for her destructive stunt. But in Star Trek land, ladies are permitted to be totally unreasonable and cruel, yet at the same time supposedly there is sexual equality. This is what I mean by sexist.",
+        "label": "negative"
+      },
+      {
+        "text": "This is a classic that will be able to hold up with drama's to come simply because of the fact that it is shot with a 70's style and it's a story about the 70's. It is funny, action-filled, entertaining and sad at the same time. It has the effect to pull you into the lives of these poor folks and the consequences for their actions. 4 STARS!",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.28,
+    "correct": 28,
+    "total": 100,
+    "name": "C_simple_with_examples",
+    "description": "Simple instruction + 5 examples (one per class)"
+  }
+]

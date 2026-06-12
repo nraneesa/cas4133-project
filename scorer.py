@@ -4,10 +4,7 @@ scorer.py
 The Scorer LLM — evaluates how good a (instruction, examples) combo is
 by testing it against the optimization set and returning an accuracy score.
 
-Uses LOCAL Hugging Face models running on GPU. No API costs.
-
-Default scorer: Qwen2.5-1.5B-Instruct (small, fast, weak enough to leave
-room for OPRO to demonstrate improvement)
+Default scorer: Qwen2.5-1.5B-Instruct
 
 Usage:
     from scorer import score_prompt, load_scorer_model
@@ -147,7 +144,9 @@ def classify_review(instruction: str, examples: list[dict], review_text: str) ->
             **inputs,
             max_new_tokens=MAX_NEW_TOKENS,
             do_sample=False,
-            temperature=1.0,
+            top_p=None,
+            top_k=None,
+            temperature=None,
             pad_token_id=_tokenizer.eos_token_id,
         )
 
@@ -296,7 +295,6 @@ def score_baseline_prompts(save_path: str = "results/baseline_scores.json"):
         print(f"  {r['name']:<30} {r['accuracy']:.1%}")
     print(f"\nSaved to {save_path}")
     print()
-    print("Expected range: 35-55% (5-class is hard for small models)")
 
     return results
 

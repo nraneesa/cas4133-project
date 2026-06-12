@@ -161,5 +161,3 @@ if __name__ == "__main__":
     verify_splits(opt_df, test_df)
 
     print(f"\nSST-5 dataset ready!")
-    print(f"Task difficulty: HARD (5 classes)")
-    print(f"Expected gpt-3.5-turbo baseline: 45-55%")

@@ -2,41 +2,49 @@
   {
     "instruction": "Classify this movie review.",
     "examples": [],
-    "accuracy": 0.97,
-    "correct": 97,
+    "accuracy": 0.37,
+    "correct": 37,
     "total": 100,
     "name": "A_zero_shot",
-    "description": "No instruction, no examples (zero-shot baseline)"
+    "description": "No instruction details, no examples"
   },
   {
-    "instruction": "Classify this movie review as positive or negative.",
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
     "examples": [],
-    "accuracy": 0.97,
-    "correct": 97,
+    "accuracy": 0.42,
+    "correct": 42,
     "total": 100,
     "name": "B_simple_instruction",
-    "description": "Simple instruction only, no examples"
+    "description": "Simple instruction, no examples"
   },
   {
-    "instruction": "Classify this movie review as positive or negative.",
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
     "examples": [
       {
-        "text": "I am very unpolitically correct guy, so when I say sexist I really mean it reduced the female guest lead, Dr Miranda Jones played by Diana Muldar. in spite of all her supposed brilliance and self control, to nothing more inside but a big, jealous unreasonable baby You prolly got the plot by now, after her technical sidekick Marvik, also a spurned lover, flips out when he tried to kill the Medusan, Ambassador Kollos, out of a jealous rage, but glimpsed first it instead. (You think he could have just walked in to the room with his eyes shut and phasered the box, too easy) he takes the Enterprise into un-navigable space outside the galaxy before the boys could subdue him. Well, the ship is stuck in limbo, at that point they could have gone to the good lady doctor-liaison and discussed it. \"Spock has to make a mind meld with the Medusan so we can get home. I mean like beetch do you want to stay adrift until we run out of supplies and die?\" But the lady in true Star Trek fashion is a jealous monsters who whines and wails when the idea is broached, even when her Medusan idol told her to shut up & go along with them. So the beetch out of spite messes with the melded Spock causing him to forget to put on his visor which makes Spock go insane. Kirk, naturally, figured out what a total twit she was and shamed her into fixing Spock up with her superior telepathic powers. Of course, at the end the Lady and Medusan leave and all is forgiven. You almost wish the President from Battle Star Galactica showed up to jettison the witch out of an airlock for her destructive stunt. But in Star Trek land, ladies are permitted to be totally unreasonable and cruel, yet at the same time supposedly there is sexual equality. This is what I mean by sexist.",
+        "text": "delirious fun .",
+        "label": "very_positive"
+      },
+      {
+        "text": "unofficially , national lampoon 's van wilder is son of animal house .",
+        "label": "neutral"
+      },
+      {
+        "text": "if not a home run , then at least a solid base hit .",
+        "label": "positive"
+      },
+      {
+        "text": "it 's definitely not made for kids or their parents , for that matter , and i think even fans of sandler 's comic taste may find it uninteresting .",
         "label": "negative"
       },
       {
-        "text": "I am 17, and I still like most of the Scooby Doo movies and the old episodes. I love the 1990s movies, and recently we were treated to one of the better direct to DVD Scooby Doo outings of this decade, Scooby Doo and the Goblin King, which I wasn't expecting to be as good as it was. Anyway, back to Get a Clue! I watched some episodes, expecting something very good, but from what I saw of it, I wasn't impressed at all. First of all, I hated the animation. It was flat, deflated and very Saturday- morning -cartoon -standard, easily the worst aspect of the series. Even some shows I really hate had slightly better animation. Even worse, Shaggy and Scooby looked like aliens, and I really missed Fred, Velma and Daphne, as they added a lot to the old episodes, when Scooby Doo was positively good. I also hated the character changes, because it seemed like instead of solving mysteries, Shaggy and Scooby were now playing superhero, something they would've never had done in the movies or in the Scooby-Doo Where Are You? show. The theme tune wasn't very good either, I can't even remember it, and the jokes were lame and contrived. Though, I do acknowledge that there is a very talented voice cast, had they had better material, and hadn't been told to sound as different to the original voices as humanly possible, which they did, might I add. In conclusion, I personally thought it was awful, and I am not trying to discredit it, it's what I personally feel. 1/10 Bethany Cox",
-        "label": "negative"
-      },
-      {
-        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about the movie was seeing if Rourke's face would move. One has heard so much \"gossip\" about his botched face lift, etc., so like an accident on the side of the road, we just had to slow down and see the wreck. The plot was thin. Here we have a very professional mob hit man who somehow latches on to a wild and uncontrollable punk/crook, and throughout this movie we're wondering why this guy stays with this idiot, let alone gets together with the guy in the first place. Then the crime that was not even committed has the pro to go after the witnesses. He would have popped them right then and there. But then, we would not have had a movie then, would we? And why did the realtor even agree to the extortion? There were more holes in this flick than in my colander. The acting was horrid, the entire movie predictable down to the minute, and even the ending. And so much could have been done to make this a much better movie. But if you have about 90 minutes to kill and not have to use any brain cells in the process, then this movie is just what the doctor ordered.",
-        "label": "negative"
+        "text": "no amount of good intentions is able to overcome the triviality of the story .",
+        "label": "very_negative"
       }
     ],
-    "accuracy": 0.99,
-    "correct": 99,
+    "accuracy": 0.41,
+    "correct": 41,
     "total": 100,
     "name": "C_simple_with_examples",
-    "description": "Simple instruction + 3 random examples"
+    "description": "Simple instruction + 5 examples (one per class)"
   }
 ]
