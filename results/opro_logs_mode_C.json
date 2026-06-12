@@ -2,142 +2,1001 @@
   {
     "step": 0,
     "seed": 1,
-    "instruction": "Classify this movie review as positive or negative.",
+    "instruction": "Classify this movie review's sentiment. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
     "examples": [
       {
-        "text": "This is a classic that will be able to hold up with drama's to come simply because of the fact that it is shot with a 70's style and it's a story about the 70's. It is funny, action-filled, entertaining and sad at the same time. It has the effect to pull you into the lives of these poor folks and the consequences for their actions. 4 STARS!",
-        "label": "positive"
+        "text": "no amount of good intentions is able to overcome the triviality of the story .",
+        "label": "very_negative"
       },
       {
-        "text": "I am very unpolitically correct guy, so when I say sexist I really mean it reduced the female guest lead, Dr Miranda Jones played by Diana Muldar. in spite of all her supposed brilliance and self control, to nothing more inside but a big, jealous unreasonable baby You prolly got the plot by now, after her technical sidekick Marvik, also a spurned lover, flips out when he tried to kill the Medusan, Ambassador Kollos, out of a jealous rage, but glimpsed first it instead. (You think he could have just walked in to the room with his eyes shut and phasered the box, too easy) he takes the Enterprise into un-navigable space outside the galaxy before the boys could subdue him. Well, the ship is stuck in limbo, at that point they could have gone to the good lady doctor-liaison and discussed it. \"Spock has to make a mind meld with the Medusan so we can get home. I mean like beetch do you want to stay adrift until we run out of supplies and die?\" But the lady in true Star Trek fashion is a jealous monsters who whines and wails when the idea is broached, even when her Medusan idol told her to shut up & go along with them. So the beetch out of spite messes with the melded Spock causing him to forget to put on his visor which makes Spock go insane. Kirk, naturally, figured out what a total twit she was and shamed her into fixing Spock up with her superior telepathic powers. Of course, at the end the Lady and Medusan leave and all is forgiven. You almost wish the President from Battle Star Galactica showed up to jettison the witch out of an airlock for her destructive stunt. But in Star Trek land, ladies are permitted to be totally unreasonable and cruel, yet at the same time supposedly there is sexual equality. This is what I mean by sexist.",
+        "text": "it 's definitely not made for kids or their parents , for that matter , and i think even fans of sandler 's comic taste may find it uninteresting .",
         "label": "negative"
       },
       {
-        "text": "This is one of the first independent movies I've ever seen. For such a very low budget, it was done well; as an insomniac myself, I can sympathize with the main character, although my sleeping problems have never been as intense or as disturbing. <br /><br />Well directed, well acted, of a subject that I haven't seen much in theaters, lighting and set both perfect for the movie setting. There are few noticeable goofs, but they may be intended; you'll see after you watch the movie. The movie is very personal, and worth watching twice. No movie is flawless, but a Hollywood version couldn't do the story better. all in all, 8/10.",
+        "text": "unofficially , national lampoon 's van wilder is son of animal house .",
+        "label": "neutral"
+      },
+      {
+        "text": "if not a home run , then at least a solid base hit .",
         "label": "positive"
+      },
+      {
+        "text": "delirious fun .",
+        "label": "very_positive"
       }
     ],
-    "accuracy": 1.0,
-    "correct": 10,
-    "total": 10,
-    "timestamp": "2026-06-09T01:40:53.137386",
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T07:56:30.247112",
     "reasoning": "seed prompt"
   },
   {
     "step": 0,
     "seed": 2,
-    "instruction": "Read the movie review below carefully. Determine whether the reviewer liked or disliked the movie. Reply with 'positive' if they liked it, 'negative' if they disliked it.",
+    "instruction": "Read the movie review and rate its sentiment on a 5-point scale: 'very_negative' (strongly disliked), 'negative' (disliked), 'neutral' (mixed/no opinion), 'positive' (liked), 'very_positive' (loved). Reply with one label.",
     "examples": [
       {
-        "text": "I am 17, and I still like most of the Scooby Doo movies and the old episodes. I love the 1990s movies, and recently we were treated to one of the better direct to DVD Scooby Doo outings of this decade, Scooby Doo and the Goblin King, which I wasn't expecting to be as good as it was. Anyway, back to Get a Clue! I watched some episodes, expecting something very good, but from what I saw of it, I wasn't impressed at all. First of all, I hated the animation. It was flat, deflated and very Saturday- morning -cartoon -standard, easily the worst aspect of the series. Even some shows I really hate had slightly better animation. Even worse, Shaggy and Scooby looked like aliens, and I really missed Fred, Velma and Daphne, as they added a lot to the old episodes, when Scooby Doo was positively good. I also hated the character changes, because it seemed like instead of solving mysteries, Shaggy and Scooby were now playing superhero, something they would've never had done in the movies or in the Scooby-Doo Where Are You? show. The theme tune wasn't very good either, I can't even remember it, and the jokes were lame and contrived. Though, I do acknowledge that there is a very talented voice cast, had they had better material, and hadn't been told to sound as different to the original voices as humanly possible, which they did, might I add. In conclusion, I personally thought it was awful, and I am not trying to discredit it, it's what I personally feel. 1/10 Bethany Cox",
+        "text": "a devastating indictment of unbridled greed and materalism .",
+        "label": "very_negative"
+      },
+      {
+        "text": "quitting , however , manages just to be depressing , as the lead actor phones in his autobiographical performance .",
         "label": "negative"
       },
       {
-        "text": "Absolute must see documentary for anyone interested in getting to the bottom of this story. Told with unflinching eye and with gripping style. If you think conspiracy theories are for paranoid disturbed people, this could change your mind. Something for you feds too: A good model for government coverups! If you like your news all tidy and easy to consume this is not for you.",
+        "text": "in the end , all you can do is admire the ensemble players and wonder what the point of it is .",
+        "label": "neutral"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000 debut shanghai noon , but showtime 's uninspired send-up of tv cop show cliches mostly leaves him shooting blanks .",
         "label": "positive"
       },
       {
-        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about the movie was seeing if Rourke's face would move. One has heard so much \"gossip\" about his botched face lift, etc., so like an accident on the side of the road, we just had to slow down and see the wreck. The plot was thin. Here we have a very professional mob hit man who somehow latches on to a wild and uncontrollable punk/crook, and throughout this movie we're wondering why this guy stays with this idiot, let alone gets together with the guy in the first place. Then the crime that was not even committed has the pro to go after the witnesses. He would have popped them right then and there. But then, we would not have had a movie then, would we? And why did the realtor even agree to the extortion? There were more holes in this flick than in my colander. The acting was horrid, the entire movie predictable down to the minute, and even the ending. And so much could have been done to make this a much better movie. But if you have about 90 minutes to kill and not have to use any brain cells in the process, then this movie is just what the doctor ordered.",
-        "label": "negative"
+        "text": "combines sharp comedy , old-fashioned monster movie atmospherics , and genuine heart to create a film that 's not merely about kicking undead \\*\\*\\* , but also about dealing with regret and , ultimately , finding redemption .",
+        "label": "very_positive"
       }
     ],
-    "accuracy": 1.0,
-    "correct": 10,
-    "total": 10,
-    "timestamp": "2026-06-09T01:41:01.175864",
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T07:56:36.625120",
     "reasoning": "seed prompt"
   },
   {
     "step": 0,
     "seed": 3,
-    "instruction": "Is this movie review positive or negative? Answer in one word.",
+    "instruction": "What is the sentiment of this movie review? Pick exactly one: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
     "examples": [
       {
-        "text": "I guess if a film has magic, I don't need it to be fluid or seamless. It can skip background information, go too fast in some places, too slow in others, etc. Magic in this film: the scene in the library. There are many minor flaws in Stanley & Iris, yet they don't detract from the overall positive impact of watching people help each other in areas of life that seem the most incomprehensible, the hardest to fix. Both characters are smart. Yet Stanley can't understand enough to function because he can't read; he can't read because he's had too much adventure in his childhood. Iris, although well-educated, hasn't had enough adventure and so can't understand how to move past the U-turn her life took. In both their faults and strengths, the characters compliment each other. It may be a bit of a stretch to accept that an Iris would wind up working year after year in a factory, or that a Stanley never hid his illiteracy enough to work in construction or some other better-paying job. And while these \"mysteries\" are explained in the course of the story, their unfolding seems somewhat contrived. I assume no one took the time to rethink the script. Even so, it's a good movie\u0097just imagine what De Niro, Fonda and Plimpton would have done on screen if someone had!",
-        "label": "positive"
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
       },
       {
-        "text": "Description: Corny, utterly stupid and worthless. It's so cheap and lame, it'll make you wonder why these abnormally dumb people even wasted 2 months or so to spend a budget (I'm guessing this...) probably no more than 700 dollars to make this movie. It was just hysterical to watch with or without Mystery Science Theater. I am giving you the best advice in the world:<br /><br />Spare yourself, spare your time, life, and money, by NOT--I repeat, NOT even ponder about whether you should see this movie. This movie is so corny, it'll make your face turn purple of outraged boredom. If you have a one-digit IQ, then be my guest and watch this absolutely despicable movie. You might actually admire it. (Like I said before, IF you have a one-digit IQ)<br /><br />With about 12 actors of your own, a few puppets you bought at a garage sale, and of course cameras and music, I gaurentee you'll make a slightly more entertaining home video than this piece of absolute crap.",
+        "text": "evokes the frustration , the awkwardness and the euphoria of growing up , without relying on the usual tropes .",
         "label": "negative"
       },
       {
-        "text": "Man on fire, is definitely one of the best drama/crime thrillers I have ever seen. Despite having a slow beginning the story is so amazingly complex and sensitive that it sticks together rather well. This is Denzel Washington's perfect role, in which he plays a body guard, called Creasy that is tormented by his past and is an alcoholic but never gives up on his duty to save his latest prot\u00e9g\u00e9e, Pita. Dakota Fanning plays Pita, the very smart, enthusiastic little girl that loves so many things, and acts in a very convincing manner, she has a great future ahead of her. As I said the story is somewhat complicated, in order to fully understand it, you must watch it a couple of times.<br /><br />This film is made in two parts, there's the first hour, where everyone is happy, nothing's wrong, everyone's just living their lives happily until the kidnapping of Pita occurs and where Creasy is almost killed. And then there's the second part, the rest of the film, where suddenly everything becomes complicated and somewhat gruesome and disturbing, when Creasy's recovered from his severe injury and starts chasing and killing the numerous criminals and \"La Hermamdad\" that were responsible for the planning and execution of the kidnapping of Pita.<br /><br />Denzel Washington shows us his most up to date acting talents alongside many other talented actors which have a great future ahead of them. It is a real shame that this film hasn't been acknowledged enough, Washington really deserved another Oscar for his performance, and so did Fanning and the director. And even maybe the visual effects which were of very high quality.<br /><br />If you like excellent, slightly deranged, suspenseful thrillers, this is the one to see. The most amazing thing is that elements of this film are actually based on a real story and real characters! 10/10",
+        "text": "demeo is not without talent ; he just needs better material .",
+        "label": "neutral"
+      },
+      {
+        "text": "got some good , organic character work , lots of obvious political insights and little room for engaging , imaginative filmmaking in its nearly 2\u00a01\\/2 - hour , dissipated length .",
         "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie a mournful undercurrent that places the good-time shenanigans in welcome perspective .",
+        "label": "very_positive"
       }
     ],
-    "accuracy": 1.0,
-    "correct": 10,
-    "total": 10,
-    "timestamp": "2026-06-09T01:41:08.146020",
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T07:56:43.094337",
     "reasoning": "seed prompt"
   },
   {
     "step": 1,
-    "instruction": "Analyze the movie review below and classify it as either positive or negative based on the reviewer's sentiment.",
+    "instruction": "Classify the sentiment of each movie review. Choose the most fitting label: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
     "examples": [
       {
-        "text": "I found this movie on Netflix and had to add it to my queue. I wasn't disappointed when I got it as",
+        "text": "combines sharp comedy , old-fashioned monster movie atmospherics , and genuine heart to create a film that is both hilarious and heartfelt.",
+        "label": "very_positive"
+      },
+      {
+        "text": "a bad movie that happened to good actors.",
+        "label": "negative"
+      },
+      {
+        "text": "demeo is not without talent ; he just needs better material.",
+        "label": "neutral"
+      },
+      {
+        "text": "a devastating indictment of unbridled greed and materialism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000 film.",
         "label": "positive"
-      },
-      {
-        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about t",
-        "label": "negative"
-      },
-      {
-        "text": "This is the kind of movie I fear the most. Arrogant and Irresponsible, it presents a sketch of the c",
-        "label": "negative"
       }
     ],
-    "accuracy": 1.0,
-    "correct": 10,
-    "total": 10,
-    "timestamp": "2026-06-09T01:41:18.390654",
-    "reasoning": "This instruction is more specific about the analysis required, and the examples include varied sentiments and styles, ensuring comprehensive understanding."
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T07:56:55.856351",
+    "reasoning": "More detailed instruction and varied examples should improve classification accuracy."
   },
   {
     "step": 2,
-    "instruction": "Evaluate the following movie review and determine if the sentiment expressed is positive or negative. Please respond with either 'positive' or 'negative'.",
+    "instruction": "Classify the sentiment of each movie review. Assign the label that best fits the overall tone of the review.",
     "examples": [
       {
-        "text": "I saw this movie while it was under limited release, mainly for the novelty of seeing Pierce Brosnan",
+        "text": "demeo is not without talent ; he just needs better material.",
+        "label": "neutral"
+      },
+      {
+        "text": "if not a home run , then at least a solid base hit.",
         "label": "positive"
       },
       {
-        "text": "Description: Corny, utterly stupid and worthless. It's so cheap and lame, it'll make you wonder why",
+        "text": "an enjoyably frothy ` date movie ' ...",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film.",
         "label": "negative"
       },
       {
-        "text": "I am a Shakespeare lover since childhood. I am also a Jew. Merchant of Venice is anti-semitic throug",
-        "label": "negative"
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie a unique and compelling edge.",
+        "label": "very_positive"
       }
     ],
-    "accuracy": 1.0,
-    "correct": 10,
-    "total": 10,
-    "timestamp": "2026-06-09T01:41:28.752118",
-    "reasoning": "This instruction is specific and clear, while the examples encompass a range of sentiments and styles, including a more nuanced negative review."
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T07:57:08.214387",
+    "reasoning": "This instruction clarifies that the label should reflect the overall tone, which should help in distinguishing between similar sentiments."
   },
   {
     "step": 3,
-    "instruction": "Carefully analyze the following movie review and classify it as positive or negative based on the sentiment expressed. Please respond with 'positive' if the overall sentiment is favorable and 'negative' if it is unfavorable.",
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
     "examples": [
       {
-        "text": "I found this movie on Netflix and had to add it to my queue. I wasn't disappointed when I got it as it turned out to be a great watch!",
+        "text": "an enjoyably frothy ` date movie ' ...",
+        "label": "very_positive"
+      },
+      {
+        "text": "a devastating indictment of unbridled greed and materalism .",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie ",
         "label": "positive"
       },
       {
-        "text": "Ugh. Even the ever-popular Diane Lane could not save this movie, and the most exciting thing about this film was waiting for it to end.",
-        "label": "negative"
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T07:57:20.797001",
+    "reasoning": "Clearer instruction and more direct examples should improve classification accuracy."
+  },
+  {
+    "step": 4,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification reflects the predominant emotion conveyed.",
+    "examples": [
+      {
+        "text": "demeo is not without talent ; he just needs better material.",
+        "label": "neutral"
       },
       {
-        "text": "Ok let's start with saying that when a dutch movie is bad, it's REALLY BAD. Rarely something with a good premise falls so flat.",
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement.",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique flavor.",
+        "label": "very_positive"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story.",
         "label": "negative"
       }
     ],
-    "accuracy": 1.0,
-    "correct": 10,
-    "total": 10,
-    "timestamp": "2026-06-09T01:41:41.541399",
-    "reasoning": "This instruction is more detailed and explicitly outlines the sentiment analysis task while the examples cover a range of sentiment expressions, enhancing clarity and effectiveness."
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T07:57:40.306879",
+    "reasoning": "This instruction emphasizes understanding the predominant emotion, which should improve accuracy by focusing on the overall tone."
+  },
+  {
+    "step": 5,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly distinguishes between subtle differences in sentiment intensity.",
+    "examples": [
+      {
+        "text": "the most consistently funny of the austin powers films.",
+        "label": "positive"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T07:57:53.067062",
+    "reasoning": "This instruction emphasizes distinguishing between subtle sentiment nuances, which should help improve accuracy by focusing on intensity."
+  },
+  {
+    "step": 6,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Make sure to distinguish between subtle differences in sentiment intensity by providing specific reasons for your choice.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive",
+        "reason": "The phrase 'delirious fun' strongly indicates a highly positive sentiment."
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story.",
+        "label": "very_negative",
+        "reason": "This statement clearly expresses a very negative sentiment due to the lack of meaningful content."
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative",
+        "reason": "The use of 'mediocre' suggests a below-average experience, indicating a negative sentiment."
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral",
+        "reason": "While the review acknowledges talent, the overall tone suggests a lack of strong emotion or engagement, fitting a neutral sentiment."
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie an unusual and compelling dynamic.",
+        "label": "very_positive",
+        "reason": "The complex and layered praise, despite some criticism, indicates a very positive sentiment due to the movie's unique qualities."
+      }
+    ],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T07:58:09.820397",
+    "reasoning": "This instruction requires more detailed reasoning for classification, which should improve the model's ability to differentiate between subtle sentiment nuances."
+  },
+  {
+    "step": 7,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone.",
+    "examples": [
+      {
+        "text": "an enjoyably frothy ` date movie ' ...",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
+      },
+      {
+        "text": "unofficially , national lampoon 's van wilder is son of animal house .",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie a unique and layered experience.",
+        "label": "positive"
+      },
+      {
+        "text": "a bad movie that happened to good actors .",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T07:58:23.816207",
+    "reasoning": "This instruction emphasizes differentiation and accuracy, which can help in achieving higher precision and recall."
+  },
+  {
+    "step": 8,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, considering both explicit and implicit sentiments.",
+    "examples": [
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie",
+        "label": "very_negative"
+      },
+      {
+        "text": "in the end , all you can do is admire the ensemble players and wonder what the point of it is",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie",
+        "label": "very_positive"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T07:58:38.241471",
+    "reasoning": "This instruction emphasizes understanding both explicit and implicit sentiments, which can help in differentiating between close nuances and improving accuracy."
+  },
+  {
+    "step": 9,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, including both explicit and implied sentiments, and differentiate more effectively between neutral and positive/negative sentiments.",
+    "examples": [
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "if all of eight legged freaks was as entertaining as the final hour, i would have no problem giving it a higher rating.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique and often exhilarating experience.",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T07:58:53.280635",
+    "reasoning": "This instruction emphasizes differentiation between nuanced sentiments and the accurate representation of both explicit and implied sentiments, which should help in achieving a higher score by providing clearer distinctions."
+  },
+  {
+    "step": 10,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a precise match to the emotional tone of the review.",
+    "examples": [
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "the most consistently funny of the austin powers films.",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T07:59:06.517219",
+    "reasoning": "This instruction emphasizes precision and match to emotional tone, which should help in distinguishing very nuanced sentiments."
+  },
+  {
+    "step": 11,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and considers both explicit and implied sentiments.",
+    "examples": [
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganes",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique edge",
+        "label": "positive"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '...",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T07:59:20.077333",
+    "reasoning": "This instruction emphasizes considering both explicit and implied sentiments, which should help in accurately capturing nuanced sentiments."
+  },
+  {
+    "step": 12,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification accurately captures the nuanced emotional tone and avoids ambiguity.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganes",
+        "label": "negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie",
+        "label": "very_positive"
+      },
+      {
+        "text": "if not a home run, then at least a solid base hit.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T07:59:33.314927",
+    "reasoning": "This instruction emphasizes accuracy and nuance, which should help in distinguishing between closely related sentiments."
+  },
+  {
+    "step": 13,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, considering both explicit and implied sentiments.",
+    "examples": [
+      {
+        "text": "demeo is not without talent ; he just needs better material.",
+        "label": "neutral"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "a bad movie that happened to good actors.",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique flavor.",
+        "label": "very_positive"
+      },
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganes",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T07:59:47.109858",
+    "reasoning": "This instruction emphasizes the need to consider both explicit and implied sentiments, which should help in distinguishing between nuanced sentiments more accurately."
+  },
+  {
+    "step": 14,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, avoiding any ambiguity.",
+    "examples": [
+      {
+        "text": "an enjoyably frothy ` date movie '...",
+        "label": "very_positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie an intriguing complexity.",
+        "label": "positive"
+      },
+      {
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical tale.",
+        "label": "negative"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      }
+    ],
+    "accuracy": 0.47,
+    "correct": 47,
+    "total": 100,
+    "timestamp": "2026-06-12T08:00:01.269483",
+    "reasoning": "This instruction emphasizes avoiding ambiguity, which helps in more precise classification."
+  },
+  {
+    "step": 15,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and accurately reflects the reviewer's emotional connection to the film.",
+    "examples": [
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000",
+        "label": "positive"
+      },
+      {
+        "text": "a devastating indictment of unbridled greed and materalism .",
+        "label": "very_negative"
+      },
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganes",
+        "label": "negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T08:00:14.662650",
+    "reasoning": "This instruction emphasizes the emotional connection which helps in distinguishing between similar sentiments more accurately."
+  },
+  {
+    "step": 16,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and considers both the explicit and implicit emotional cues to provide a precise and unambiguous match to the emotional tone of the review.",
+    "examples": [
+      {
+        "text": "an enjoyably frothy ` date movie '...",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a complex and engaging dynamic.",
+        "label": "positive"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T08:00:29.144325",
+    "reasoning": "This instruction emphasizes considering both explicit and implicit emotional cues, which helps in capturing the nuanced tones more accurately."
+  },
+  {
+    "step": 17,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity, captures both explicit and implied emotions, and avoids any ambiguity or misinterpretation.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie a complex and thought-provoking quality.",
+        "label": "very_positive"
+      },
+      {
+        "text": "in the end , all you can do is admire the ensemble players and wonder what the point of it is .",
+        "label": "neutral"
+      },
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganesha.",
+        "label": "negative"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '... the humor is light and the pacing is perfect for a fun night out.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T08:00:44.191248",
+    "reasoning": "This instruction emphasizes capturing both explicit and implied emotions, which helps in distinguishing between similar sentiments and ensuring clarity."
+  },
+  {
+    "step": 18,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity, captures both explicit and implied emotions, and is highly accurate to avoid any misinterpretation.",
+    "examples": [
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganesh.",
+        "label": "very_negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique charm.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '... the humor is light and the pacing is perfect.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T08:00:58.429745",
+    "reasoning": "This instruction emphasizes accuracy and clarity, which should help in distinguishing more nuanced sentiments and reducing misinterpretations."
+  },
+  {
+    "step": 19,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification accurately represents the emotional intensity and avoids any ambiguity or misinterpretation.",
+    "examples": [
+      {
+        "text": "a bad movie that happened to good actors.",
+        "label": "very_negative"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '...",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie ",
+        "label": "very_positive"
+      },
+      {
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical role.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T08:01:11.733950",
+    "reasoning": "The new instruction emphasizes accurate representation and avoids misinterpretation, which should improve the model's precision."
+  },
+  {
+    "step": 21,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly distinguishes between subtle nuances in sentiment intensity, captures both explicit and implied emotions, and is highly accurate to avoid any misinterpretation. Reviews should be classified based on the dominant emotion conveyed, with careful consideration given to the intensity of the sentiment.",
+    "examples": [
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganes",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a sense of melancholy and complexity",
+        "label": "very_negative"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a sense of joy and excitement",
+        "label": "very_positive"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '... the humor is light and the pacing is perfect",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T08:01:51.468844",
+    "reasoning": "This instruction emphasizes the need for distinguishing subtle nuances and captures both explicit and implied emotions, which should help improve the accuracy."
+  },
+  {
+    "step": 22,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and accurately reflects the reviewer's emotional connection to the film, using specific language to justify the chosen label.",
+    "examples": [
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical role.",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique flavor.",
+        "label": "very_positive"
+      },
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganesh.",
+        "label": "very_negative"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '... the humor is light and the pacing is perfect.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T08:02:05.805717",
+    "reasoning": "Incorporating specific language justifications improves accuracy by providing clear reasons for each classification."
+  },
+  {
+    "step": 23,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, avoiding any ambiguity or misinterpretation by focusing on both explicit and implied sentiments.",
+    "examples": [
+      {
+        "text": "an enjoyably frothy ` date movie '...",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical role.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T08:02:20.412768",
+    "reasoning": "This instruction emphasizes clarity and accuracy while specifically mentioning the need to focus on both explicit and implied sentiments, which should help in distinguishing between similar intensities."
+  },
+  {
+    "step": 24,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and accurately captures the emotional tone, avoiding any ambiguity or misinterpretation.",
+    "examples": [
+      {
+        "text": "a bad movie that happened to good actors.",
+        "label": "very_negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a complex and layered feel.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '... the humor is light and the pacing is perfect.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T08:02:34.380649",
+    "reasoning": "This instruction emphasizes capturing the emotional tone more explicitly and clearly, which should help in distinguishing between similar sentiments."
+  },
+  {
+    "step": 25,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, avoiding any ambiguity.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique and thought-provoking feel.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "if not a home run, then at least a solid base hit.",
+        "label": "positive"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T08:02:48.439952",
+    "reasoning": "This instruction emphasizes avoiding ambiguity which was a key area for improvement in past attempts."
+  },
+  {
+    "step": 26,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, emphasizing both the intensity and the context of the emotions expressed.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie an intriguing and complex dynamic.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '... the humor is light and the pacing is perfect.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T08:03:03.158059",
+    "reasoning": "This instruction emphasizes the importance of context and intensity, which helps in distinguishing between similar sentiments and improving accuracy."
+  },
+  {
+    "step": 27,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, avoiding any ambiguity.",
+    "examples": [
+      {
+        "text": "a devastating indictment of unbridled greed and materalism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a complex and engaging feel.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '...",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T08:03:17.085159",
+    "reasoning": "This instruction maintains the need for clear and accurate representation while adding a slight emphasis on providing a complex and engaging feel for positive reviews, which should help in differentiating between very positive and positive."
+  },
+  {
+    "step": 28,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity, captures both explicit and implied emotions, and provides a precise representation of the review's emotional tone.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique twist.",
+        "label": "positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T08:03:31.039607",
+    "reasoning": "This instruction emphasizes precision and clarity, which should help in better distinguishing between the nuances of sentiment."
+  },
+  {
+    "step": 29,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly distinguishes between subtle nuances in sentiment intensity and provides a precise and unambiguous representation of the review's emotional tone.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique twist.",
+        "label": "positive"
+      },
+      {
+        "text": "an enjoyably frothy ` date movie '...",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T08:03:44.972965",
+    "reasoning": "This instruction emphasizes precision and unambiguity more explicitly and uses a varied set of examples to cover all sentiment classes."
+  },
+  {
+    "step": 30,
+    "instruction": "Classify the overall sentiment of the movie review into one of these five labels: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your classification clearly differentiates between subtle nuances in sentiment intensity and provides a clear and accurate representation of the review's emotional tone, focusing on both explicit and implied sentiments.",
+    "examples": [
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "positive"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T08:03:58.535235",
+    "reasoning": "This instruction emphasizes focusing on both explicit and implied sentiments, which should help the model capture more nuanced emotional tones."
   }
 ]
