@@ -69,7 +69,7 @@ def strip_examples(history: list[dict]) -> list[dict]:
 def save_logs(logs: list[dict], mode: str):
     """Save optimization logs to JSON after every step."""
     os.makedirs(RESULTS_DIR, exist_ok=True)
-    path = os.path.join(RESULTS_DIR, f"phi_opro_logs_mode_{mode}_run1.json")
+    path = os.path.join(RESULTS_DIR, f"phi_opro_logs_mode_{mode}_run2.json")
     with open(path, "w") as f:
         json.dump(logs, f, indent=2)
     return path
