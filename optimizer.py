@@ -52,6 +52,7 @@ def load_optimizer_model(model_name: str = OPTIMIZER_MODEL):
         model_name,
         torch_dtype=torch.bfloat16,
         device_map="auto",
+        load_in_4bit=True,
     )
     _model.eval()
     _loaded_for = model_name

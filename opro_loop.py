@@ -230,7 +230,7 @@ def run_opro(
     print(f"  Time elapsed : ~{elapsed} minutes")
     print(f"  Best accuracy: {best['accuracy']:.1%}")
     print(f"  Best prompt  : {best['instruction'][:70]}...")
-    print(f"  Log saved to : results/opro_logs_mode_{mode}.json")
+    print(f"  Log saved to : results/phi_opro_logs_mode_{mode}.json")
     print(f"{'='*60}\n")
 
     return {
