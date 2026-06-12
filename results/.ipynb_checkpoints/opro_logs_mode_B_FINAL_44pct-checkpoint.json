@@ -1,0 +1,535 @@
+[
+  {
+    "step": 0,
+    "seed": 1,
+    "instruction": "Sentiment label for this movie review: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.26,
+    "correct": 26,
+    "total": 100,
+    "timestamp": "2026-06-12T08:38:18.431262",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 2,
+    "instruction": "Analyze the movie review and assign a sentiment label using this scale:\n- 'very_negative': harsh criticism, strong disgust, called bad/terrible\n- 'negative': clearly disliked, complaints outweigh praise\n- 'neutral': mixed feelings or balanced/factual description\n- 'positive': clearly liked, praise outweighs complaints\n- 'very_positive': strong praise, called masterpiece/brilliant\nRespond with exactly one label.",
+    "examples": [],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T08:38:24.474861",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 0,
+    "seed": 3,
+    "instruction": "You are a professional film critic categorizing reviews. Identify the sentiment as one of: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Look at emotional language, intensity words (very, somewhat, absolutely), and overall tone. Be decisive \u2014 pick one label, no hedging.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:38:31.169847",
+    "reasoning": "seed prompt"
+  },
+  {
+    "step": 1,
+    "instruction": "Identify the sentiment as 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive' based on the reviewer's use of specific emotional language and intensity words. Each example must reflect clear sentiment without ambiguity.",
+    "examples": [],
+    "accuracy": 0.28,
+    "correct": 28,
+    "total": 100,
+    "timestamp": "2026-06-12T08:38:44.409379",
+    "reasoning": "This instruction clarifies the need for clear sentiment without ambiguity and uses exact phrasing, which should improve the classifier's precision."
+  },
+  {
+    "step": 2,
+    "instruction": "Assign the appropriate sentiment label to the provided review. The labels are: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Ensure your analysis captures the emotional intensity and overall tone accurately.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:38:56.844281",
+    "reasoning": "Clearer direction on capturing emotional intensity and tone should improve accuracy."
+  },
+  {
+    "step": 3,
+    "instruction": "Analyze the movie review and select the most fitting sentiment label among 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Focus on the emotional impact and overall tone of the review.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:39:09.463006",
+    "reasoning": "This instruction emphasizes focusing on the emotional impact and tone, which helps in distinguishing between similar sentiments more effectively."
+  },
+  {
+    "step": 4,
+    "instruction": "Assign the sentiment label based on the review's overall tone, focusing on emotional intensity and specific language that indicates very strong negative, negative, neutral, positive, or very positive reactions.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:39:22.718794",
+    "reasoning": "This instruction focuses on both overall tone and specific language, which should help distinguish between the more nuanced categories like 'very_negative' and 'negative'."
+  },
+  {
+    "step": 5,
+    "instruction": "Classify the sentiment of each movie review into one of five categories based on emotional intensity and overall tone, ensuring a clear decision is made.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:39:34.419949",
+    "reasoning": "This instruction emphasizes clarity and focus on emotional intensity and tone, potentially leading to more precise classifications."
+  },
+  {
+    "step": 6,
+    "instruction": "Determine the sentiment by carefully analyzing the emotional tone and intensity of the provided movie review, assigning a label from 'very_negative' to 'very_positive'. Be precise and decisive.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:39:47.578423",
+    "reasoning": "This instruction emphasizes precision and decisiveness, which should improve accuracy."
+  },
+  {
+    "step": 7,
+    "instruction": "Analyze the movie review and assign the sentiment label that best fits the emotional intensity and overall tone, distinguishing between very strong positive and negative sentiments, and neutral to positive/negative sentiments.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:40:00.275931",
+    "reasoning": "This instruction clarifies the need to distinguish between very strong sentiments and emphasizes the importance of overall tone, which should improve classification accuracy."
+  },
+  {
+    "step": 8,
+    "instruction": "Analyze the movie review and assign the most fitting sentiment label from the given options, ensuring the label precisely matches the emotional intensity and overall tone of the review.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:40:12.619971",
+    "reasoning": "This instruction emphasizes precision and matching the label to the exact tone, which should improve accuracy."
+  },
+  {
+    "step": 9,
+    "instruction": "Analyze the movie review and assign the most appropriate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', ensuring the label precisely reflects the emotional intensity and overall tone.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:40:25.347935",
+    "reasoning": "Clearer instruction on precision and intensity differentiation should improve performance."
+  },
+  {
+    "step": 10,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', focusing on the emotional intensity and overall tone of the review.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:40:37.890330",
+    "reasoning": "This instruction emphasizes accuracy and focuses more on the specific task of selecting the correct label based on emotional intensity."
+  },
+  {
+    "step": 11,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', based on the emotional intensity and overall tone of the review. Focus on specific language and examples to justify the chosen label.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:40:52.123368",
+    "reasoning": "Includes explicit justification for each label choice, increasing precision and clarity."
+  },
+  {
+    "step": 12,
+    "instruction": "Analyze the movie review and assign the sentiment label that best fits the emotional intensity and overall tone, distinguishing between very strong positive and negative sentiments, clear neutrality, and more nuanced positive or negative sentiments.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:41:05.947892",
+    "reasoning": "This instruction adds nuance by including more detailed descriptions of how to distinguish between different levels of positivity and negativity, which should improve accuracy."
+  },
+  {
+    "step": 13,
+    "instruction": "Analyze the movie review and assign the sentiment label that best matches the emotional intensity and overall tone, ensuring each label is used distinctly and appropriately.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:41:18.828604",
+    "reasoning": "Clear guidance on label usage ensures differentiation and specificity, leading to better classification."
+  },
+  {
+    "step": 14,
+    "instruction": "Analyze the movie review and assign the sentiment label that best fits the emotional intensity and overall tone, clearly distinguishing between very strong positive and negative sentiments, and providing a rationale for the chosen label.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:41:37.980187",
+    "reasoning": "Provides a clear directive to distinguish very strong sentiments and requires a rationale, which should improve accuracy."
+  },
+  {
+    "step": 15,
+    "instruction": "Analyze the movie review and assign the most appropriate sentiment label, emphasizing emotional intensity and overall tone, and ensure labels are used consistently.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:41:50.251555",
+    "reasoning": "This instruction emphasizes consistency in label usage which helps the model understand the nuances better."
+  },
+  {
+    "step": 16,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', considering the emotional intensity and overall tone of the review. Ensure each example clearly fits into one of these categories without overlap.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:42:04.000959",
+    "reasoning": "This instruction emphasizes clear non-overlapping classification and provides examples that distinctly fall into each category."
+  },
+  {
+    "step": 17,
+    "instruction": "Analyze the movie review and assign the sentiment label that best fits the emotional intensity and overall tone, providing a concise explanation for the chosen label based on key emotional indicators and linguistic cues.",
+    "examples": [],
+    "accuracy": 0.3,
+    "correct": 30,
+    "total": 100,
+    "timestamp": "2026-06-12T08:42:35.759572",
+    "reasoning": "Provides a concise explanation for each label, enhancing clarity and differentiation among closely related sentiments."
+  },
+  {
+    "step": 18,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by identifying the emotional intensity and overall tone of the review.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T08:42:49.955308",
+    "reasoning": "This instruction is clearer and more concise, ensuring a focus on emotional intensity and overall tone, which will help in achieving a higher score."
+  },
+  {
+    "step": 19,
+    "instruction": "Analyze the movie review thoroughly to determine the most fitting sentiment category, emphasizing the intensity of the emotions conveyed and the overall tone.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:43:02.897568",
+    "reasoning": "This instruction emphasizes thorough analysis and emotion intensity, which should help in distinguishing nuances."
+  },
+  {
+    "step": 20,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by closely examining the specific language and tone that indicate the emotional intensity.",
+    "examples": [],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T08:43:15.665636",
+    "reasoning": "This instruction emphasizes specific language and tone, which helps in accurately capturing nuanced sentiments."
+  },
+  {
+    "step": 21,
+    "instruction": "Analyze the movie review to determine the most fitting sentiment label, considering the emotional intensity and overall tone, and provide a brief explanation justifying your choice.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:43:50.302346",
+    "reasoning": "This instruction includes a brief explanation, which helps in distinguishing nuances and ensuring higher accuracy."
+  },
+  {
+    "step": 22,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', considering both the emotional intensity and the specific language used to convey the reviewer's opinion.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:44:03.421098",
+    "reasoning": "Provides clearer guidance on language use and intensity, potentially improving precision."
+  },
+  {
+    "step": 23,
+    "instruction": "Carefully evaluate the movie review and assign the most precise sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Focus on the strength of the emotions and the distinct language used.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:44:16.573736",
+    "reasoning": "The instruction emphasizes precision and uses specific examples to cover all sentiment categories effectively."
+  },
+  {
+    "step": 24,
+    "instruction": "Analyze the movie review and assign the sentiment label that best fits the emotional intensity and overall tone, ensuring to use precise language to distinguish between the various levels of sentiment, especially focusing on the nuances of very strong positive and negative sentiments.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T08:44:29.942384",
+    "reasoning": "This instruction emphasizes precision and nuance, which should help in distinguishing very subtle differences in sentiment."
+  },
+  {
+    "step": 25,
+    "instruction": "Carefully analyze the movie review's emotional intensity and overall tone to select the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Pay close attention to the specific language used to gauge the reviewer's opinion.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:44:42.994529",
+    "reasoning": "This instruction emphasizes careful analysis and specific language, which helps in distinguishing nuanced sentiments and could lead to higher accuracy."
+  },
+  {
+    "step": 26,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by carefully considering the specific words and phrases that convey the emotional intensity and overall tone.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:44:56.553252",
+    "reasoning": "This instruction emphasizes careful consideration of specific words and phrases, which should improve accuracy in capturing nuanced sentiments."
+  },
+  {
+    "step": 27,
+    "instruction": "Analyze the movie review and assign the most precise sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Your task is to closely examine the specific language and tone that indicate the emotional intensity and overall tone of the review, using the provided scale to ensure accuracy.",
+    "examples": [],
+    "accuracy": 0.37,
+    "correct": 37,
+    "total": 100,
+    "timestamp": "2026-06-12T08:45:10.207472",
+    "reasoning": "This instruction provides a clear scale and emphasizes precision in labeling, which should improve accuracy."
+  },
+  {
+    "step": 28,
+    "instruction": "Analyze the movie review and assign the most fitting sentiment label based on the intensity and overall tone, ensuring the language used accurately reflects the reviewer's emotions.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:45:22.356878",
+    "reasoning": "This instruction specifies the importance of the language used, which may help in distinguishing nuances more accurately."
+  },
+  {
+    "step": 29,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', emphasizing the intensity and overall emotional impact, including how the reviewer uses specific phrases to convey strong feelings.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T08:45:36.620933",
+    "reasoning": "This instruction emphasizes the use of specific phrases to convey strong feelings, which should help in distinguishing nuanced sentiments and thus likely improving the classifier's accuracy."
+  },
+  {
+    "step": 30,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', based on the explicit language and emotional impact.",
+    "examples": [],
+    "accuracy": 0.35,
+    "correct": 35,
+    "total": 100,
+    "timestamp": "2026-06-12T08:45:48.843221",
+    "reasoning": "This instruction focuses on explicit language and emotional impact, which should help in differentiating between nuanced sentiments."
+  },
+  {
+    "step": 31,
+    "instruction": "Analyze the movie review carefully and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'. Focus on the specific language and emotional tone to determine the strength of the reviewer's feelings.",
+    "examples": [],
+    "accuracy": 0.37,
+    "correct": 37,
+    "total": 100,
+    "timestamp": "2026-06-12T08:46:02.762732",
+    "reasoning": "This instruction emphasizes specific language and tone, which should help in distinguishing nuances and achieving a higher accuracy."
+  },
+  {
+    "step": 32,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by carefully identifying the emotional intensity and specific language that indicates the reviewer's stance.",
+    "examples": [],
+    "accuracy": 0.37,
+    "correct": 37,
+    "total": 100,
+    "timestamp": "2026-06-12T08:46:16.484463",
+    "reasoning": "This instruction emphasizes careful identification of language, potentially leading to more precise classification."
+  },
+  {
+    "step": 33,
+    "instruction": "Analyze the movie review and assign the sentiment label that best captures the emotional intensity and overall tone, ensuring to use precise language and consider the context and specific phrases used to convey the sentiment.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:46:29.446128",
+    "reasoning": "This instruction emphasizes precision and context, which should help in achieving a higher score by clearly guiding the model."
+  },
+  {
+    "step": 34,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by closely examining the specific language and tone that indicate the emotional intensity and overall impact of the reviewer's comments.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:46:43.549378",
+    "reasoning": "Clarified the focus on both emotional intensity and overall impact, providing more detailed guidance."
+  },
+  {
+    "step": 35,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', focusing on key phrases and emotional intensity to ensure precise classification.",
+    "examples": [],
+    "accuracy": 0.37,
+    "correct": 37,
+    "total": 100,
+    "timestamp": "2026-06-12T08:46:56.805701",
+    "reasoning": "This instruction emphasizes key phrases and emotional intensity, which helps in achieving a higher precision in sentiment classification."
+  },
+  {
+    "step": 36,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', focusing on specific language and emotional intensity to discern nuanced sentiments.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:47:09.353438",
+    "reasoning": "Specifically highlights the need to use specific language and emotional intensity, potentially increasing precision."
+  },
+  {
+    "step": 37,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by focusing on the specific emotional language and overall impact.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:47:22.516057",
+    "reasoning": "This instruction emphasizes the specific emotional language, which should help differentiate between the nuances of each sentiment category."
+  },
+  {
+    "step": 38,
+    "instruction": "Analyze the movie review thoroughly and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', paying close attention to the emotional intensity and specific language used.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:47:35.995230",
+    "reasoning": "This instruction emphasizes thorough analysis and attention to specific language, which should improve precision."
+  },
+  {
+    "step": 39,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by closely examining the specific language and tone that indicate the emotional intensity and the context in which it is used.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:47:49.433598",
+    "reasoning": "This instruction emphasizes the context which is key for more nuanced classifications."
+  },
+  {
+    "step": 40,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', focusing on the intensity and emotional impact while considering the specific language used to express the reviewer's opinion.",
+    "examples": [],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T08:48:09.125558",
+    "reasoning": "This instruction emphasizes the need for precision in labeling and considers the specific language used, which should improve accuracy."
+  },
+  {
+    "step": 41,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', taking into account the overall emotional impact and the specific language used to convey the reviewer's feelings.",
+    "examples": [],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T08:48:22.652651",
+    "reasoning": "This instruction is clearer about emphasizing the overall emotional impact and includes more specific examples to cover all sentiment levels."
+  },
+  {
+    "step": 42,
+    "instruction": "Analyze the movie review to determine the most fitting sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', with a focus on both the emotional intensity and the specific language used to convey the reviewer's opinion.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:48:36.454269",
+    "reasoning": "This instruction clearly outlines the need to focus on both emotional intensity and specific language, which should help in differentiating between very strong sentiments and nuanced ones."
+  },
+  {
+    "step": 43,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by carefully examining the specific language and tone that reflect the emotional intensity and overall tone of the review.",
+    "examples": [],
+    "accuracy": 0.33,
+    "correct": 33,
+    "total": 100,
+    "timestamp": "2026-06-12T08:48:49.681539",
+    "reasoning": "This instruction is more specific about analyzing language and tone, which helps in distinguishing subtle nuances."
+  },
+  {
+    "step": 44,
+    "instruction": "Analyze the movie review carefully and assign the sentiment label that best fits the emotional intensity and overall tone, using precise language to distinguish between different levels of sentiment, and considering the specific language used to convey strong feelings.",
+    "examples": [],
+    "accuracy": 0.37,
+    "correct": 37,
+    "total": 100,
+    "timestamp": "2026-06-12T08:49:03.751918",
+    "reasoning": "This instruction provides more specific guidance on the use of language and emotional intensity, which can help in distinguishing nuanced sentiments."
+  },
+  {
+    "step": 45,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', focusing on the specific words and phrases that convey the reviewer's emotional state and the overall tone of the review.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:49:17.212935",
+    "reasoning": "This instruction provides a clear focus on specific words and phrases, which should help in distinguishing between very strong emotions and neutral tones more accurately."
+  },
+  {
+    "step": 46,
+    "instruction": "Analyze the movie review carefully and assign the most accurate sentiment label, taking into account the specific language, emotional intensity, and overall tone to distinguish between the nuanced levels of sentiment.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:49:29.715328",
+    "reasoning": "This instruction emphasizes careful analysis and considers nuanced language and tone, which should improve accuracy."
+  },
+  {
+    "step": 47,
+    "instruction": "Analyze the movie review carefully and assign the sentiment label that most accurately reflects the emotional intensity and overall tone, with a particular focus on the nuances between 'very_negative' and 'negative', and between 'positive' and 'very_positive'.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:49:42.061178",
+    "reasoning": "The instruction emphasizes the distinction between sentiment intensities, which can help improve accuracy."
+  },
+  {
+    "step": 48,
+    "instruction": "Analyze the movie review meticulously and assign the most appropriate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', ensuring clarity in distinguishing between levels of sentiment and emotional intensity.",
+    "examples": [],
+    "accuracy": 0.34,
+    "correct": 34,
+    "total": 100,
+    "timestamp": "2026-06-12T08:49:55.270620",
+    "reasoning": "The instruction emphasizes meticulous analysis and clear differentiation, which should improve precision and thus the score."
+  },
+  {
+    "step": 49,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', ensuring to focus on the emotional intensity and the use of specific language to convey the reviewer's feelings.",
+    "examples": [],
+    "accuracy": 0.36,
+    "correct": 36,
+    "total": 100,
+    "timestamp": "2026-06-12T08:50:08.999845",
+    "reasoning": "This instruction emphasizes focusing on the use of specific language which should improve the classifier's precision."
+  },
+  {
+    "step": 50,
+    "instruction": "Analyze the movie review and assign the most accurate sentiment label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive', by carefully evaluating the specific language and emotional intensity, particularly focusing on phrases that indicate very strong opinions.",
+    "examples": [],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T08:50:22.801624",
+    "reasoning": "The new instruction emphasizes careful evaluation and focus on specific language for very strong opinions, which should improve accuracy."
+  }
+]
