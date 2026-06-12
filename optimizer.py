@@ -4,8 +4,6 @@ optimizer.py
 The Optimizer LLM — looks at history of past attempts and generates
 a new (instruction, examples) combination.
 
-Uses LOCAL Hugging Face models running on GPU. No API costs.
-
 Default optimizer: Qwen2.5-7B-Instruct (smart enough to suggest
 good prompts; fits comfortably in 25GB VRAM alongside the scorer)
 """
@@ -38,7 +36,7 @@ _tokenizer  = None
 _loaded_for = None
 
 
-# ── Model Loading ─────────────────────────────────────────────────────────────
+# ── Model Loading 
 def load_optimizer_model(model_name: str = OPTIMIZER_MODEL):
     """Load the optimizer model into GPU memory."""
     global _model, _tokenizer, _loaded_for
@@ -250,8 +248,8 @@ def generate_new_prompt(
                 **inputs,
                 max_new_tokens=MAX_NEW_TOKENS,
                 do_sample=True,
-                temperature=0.8,
-                top_p=0.9,
+                temperature=1.0,    # higher = more creative exploration
+                top_p=0.95,
                 pad_token_id=_tokenizer.eos_token_id,
             )
 
@@ -291,25 +289,32 @@ def generate_seed_prompts(n: int = 3) -> list[dict]:
 
     seeds = [
         {
+            # Style 1: Minimalist direct
             "instruction": (
-                f"Classify this movie review's sentiment. "
-                f"Choose from: {LABEL_LIST_STR}."
+                f"Sentiment label for this movie review: {LABEL_LIST_STR}."
             ),
             "examples": pick_one_per_class(0)
         },
         {
+            # Style 2: Verbose with class definitions
             "instruction": (
-                "Read the movie review and rate its sentiment on a 5-point scale: "
-                "'very_negative' (strongly disliked), 'negative' (disliked), "
-                "'neutral' (mixed/no opinion), 'positive' (liked), "
-                "'very_positive' (loved). Reply with one label."
+                "Analyze the movie review and assign a sentiment label using this scale:\n"
+                "- 'very_negative': harsh criticism, strong disgust, called bad/terrible\n"
+                "- 'negative': clearly disliked, complaints outweigh praise\n"
+                "- 'neutral': mixed feelings or balanced/factual description\n"
+                "- 'positive': clearly liked, praise outweighs complaints\n"
+                "- 'very_positive': strong praise, called masterpiece/brilliant\n"
+                "Respond with exactly one label."
             ),
             "examples": pick_one_per_class(1)
         },
         {
+            # Style 3: Role-playing / expert framing
             "instruction": (
-                f"What is the sentiment of this movie review? "
-                f"Pick exactly one: {LABEL_LIST_STR}."
+                "You are a professional film critic categorizing reviews. "
+                f"Identify the sentiment as one of: {LABEL_LIST_STR}. "
+                "Look at emotional language, intensity words (very, somewhat, absolutely), "
+                "and overall tone. Be decisive — pick one label, no hedging."
             ),
             "examples": pick_one_per_class(2)
         },

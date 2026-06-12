@@ -4,6 +4,10 @@ opro_loop.py
 The main OPRO loop — connects the Scorer and Optimizer together into
 an iterative optimization process.
 
+Configured for:
+  - SST-5 dataset (5-class sentiment classification)
+  - Local Hugging Face models (no API needed)
+
 Flow:
   1. Generate seed prompts
   2. Score each seed
@@ -19,7 +23,7 @@ Usage:
 
 Modes:
     B = optimize instruction only       (replicates original OPRO paper)
-    C = optimize instruction + examples (new contribution)
+    C = optimize instruction + examples (our contribution)
 """
 
 import os
@@ -29,17 +33,19 @@ import time
 import argparse
 from datetime import datetime
 
+import torch
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "data"))
-from load_imdb   import get_optimization_set
-from scorer      import score_prompt
-from optimizer   import generate_new_prompt, generate_seed_prompts
+from load_sst5   import get_optimization_set
+from scorer      import score_prompt, load_scorer_model
+from optimizer   import generate_new_prompt, generate_seed_prompts, load_optimizer_model
 
 
 # ── Config 
-DEFAULT_STEPS    = 30       # number of optimization steps
-DEFAULT_MODE     = "C"      # B = instruction only, C = instruction + examples
-RESULTS_DIR      = os.path.join(os.path.dirname(__file__), "results")
-LOG_EVERY        = 1        # save logs every N steps
+DEFAULT_STEPS  = 30       # number of optimization steps
+DEFAULT_MODE   = "C"      # B = instruction only, C = instruction + examples
+RESULTS_DIR    = os.path.join(os.path.dirname(__file__), "results")
+LOG_EVERY      = 1        # save logs every N steps
 
 
 # ── Mode B Helper 
@@ -80,8 +86,7 @@ def print_step_summary(step: int, total: int, result: dict, best: dict):
     )
 
 
-# ── Main OPRO Loop
-# optimizer generates --> score evaluates --> log --> repeat
+# ── Main OPRO Loop 
 def run_opro(
     mode    : str  = DEFAULT_MODE,
     steps   : int  = DEFAULT_STEPS,
@@ -102,13 +107,7 @@ def run_opro(
 
     Returns
     -------
-    dict with keys:
-        best_instruction : str    — best instruction found
-        best_examples    : list   — best examples found
-        best_accuracy    : float  — best accuracy achieved
-        history          : list   — full log of all steps
-        mode             : str    — which mode was run
-        total_steps      : int    — how many steps were run
+    dict with best result and full history.
     """
     start_time = datetime.now()
     reviews    = get_optimization_set()
@@ -120,8 +119,13 @@ def run_opro(
     print(f"  Started: {start_time.strftime('%H:%M:%S')}")
     print(f"{'='*60}\n")
 
+    # ── Load models upfront so they don't reload mid-loop 
+    print("── Loading models ────────────────────────────────────")
+    load_scorer_model()
+    load_optimizer_model()
+
     # ── Step 0: Generate and score seed prompts 
-    print("── Phase 0: Scoring seed prompts ─────────────────────")
+    print("\n── Phase 0: Scoring seed prompts ─────────────────────")
     seeds   = generate_seed_prompts(3)
     history = []
 
@@ -171,7 +175,7 @@ def run_opro(
         new_prompt = generate_new_prompt(
             optimizer_history,
             candidate_reviews=reviews,
-            verbose=False       # keep output clean during loop
+            verbose=False
         )
 
         if new_prompt is None:
@@ -187,7 +191,7 @@ def run_opro(
             new_prompt["instruction"],
             new_prompt["examples"],
             reviews,
-            verbose=False       # keep output clean during loop
+            verbose=False
         )
 
         # Update best
@@ -242,10 +246,7 @@ def run_opro(
 # ── Run All Conditions 
 def run_all_conditions(steps: int = DEFAULT_STEPS):
     """
-    Run all experimental conditions and save a combined summary.
-
-    Condition B: OPRO instruction only
-    Condition C: OPRO instruction + examples (our method)
+    Run both Mode B and Mode C, save combined summary.
 
     Note: Condition A (zero-shot baseline) is handled in scorer.py
     """
@@ -257,7 +258,6 @@ def run_all_conditions(steps: int = DEFAULT_STEPS):
         print(f"{'#'*60}")
         result = run_opro(mode=mode, steps=steps)
         results[mode] = result
-        # Small pause between conditions
         print("Pausing 10 seconds before next condition...")
         time.sleep(10)
 
@@ -292,7 +292,7 @@ def run_all_conditions(steps: int = DEFAULT_STEPS):
     return results
 
 
-# ── Main
+# ── Main 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run OPRO optimization loop")
     parser.add_argument(
@@ -309,11 +309,14 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    # Check API key
-    if not os.environ.get("OPENAI_API_KEY"):
-        print("ERROR: OPENAI_API_KEY not set!")
-        print("Run: export OPENAI_API_KEY='sk-...'")
+    # Check GPU available
+    if not torch.cuda.is_available():
+        print("ERROR: CUDA not available!")
+        print("This script needs a GPU. Run on Vessel.")
         sys.exit(1)
+
+    print(f"GPU: {torch.cuda.get_device_name(0)}")
+    print(f"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
 
     if args.mode == "all":
         run_all_conditions(steps=args.steps)
