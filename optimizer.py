@@ -1,10 +1,13 @@
 """
 optimizer.py
 ------------
-The Optimizer LLM — looks at the history of all past (instruction, examples,
-score) triplets and generates a new, hopefully better combination.
+The Optimizer LLM — looks at history of past attempts and generates
+a new (instruction, examples) combination.
 
-This version is configured for SST-5 (5-class fine-grained sentiment).
+Uses LOCAL Hugging Face models running on GPU. No API costs.
+
+Default optimizer: Qwen2.5-7B-Instruct (smart enough to suggest
+good prompts; fits comfortably in 25GB VRAM alongside the scorer)
 """
 
 import os
@@ -13,31 +16,55 @@ import json
 import time
 import random
 
-from openai import OpenAI
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "data"))
 from load_sst5 import get_optimization_set, get_labels
 
 
-# ── Config ────────────────────────────────────────────────────────────────────
-OPTIMIZER_MODEL   = "gpt-4o-mini"   # smarter model for generating better prompts
-MAX_RETRIES       = 3
-RETRY_DELAY       = 2
-NUM_EXAMPLES      = 5                # one example per class for 5-class task
+# ── Config 
+OPTIMIZER_MODEL   = "Qwen/Qwen2.5-7B-Instruct"
+NUM_EXAMPLES      = 5
 MAX_HISTORY_SHOWN = 8
+MAX_NEW_TOKENS    = 1000
 
 LABELS         = get_labels()
 LABEL_LIST_STR = ", ".join(f"'{l}'" for l in LABELS)
 
+# Globals loaded once
+_model      = None
+_tokenizer  = None
+_loaded_for = None
 
-# ── Client ────────────────────────────────────────────────────────────────────
-def get_client():
-    return OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+
+# ── Model Loading ─────────────────────────────────────────────────────────────
+def load_optimizer_model(model_name: str = OPTIMIZER_MODEL):
+    """Load the optimizer model into GPU memory."""
+    global _model, _tokenizer, _loaded_for
+
+    if _loaded_for == model_name and _model is not None:
+        return
+
+    print(f"Loading optimizer model: {model_name}")
+    print(f"  7B model — may take 1-2 minutes on first run...")
+
+    _tokenizer = AutoTokenizer.from_pretrained(model_name)
+    _model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        torch_dtype=torch.bfloat16,
+        device_map="auto",
+    )
+    _model.eval()
+    _loaded_for = model_name
+
+    vram_used = torch.cuda.memory_allocated() / 1e9
+    print(f"  ✓ Loaded. VRAM in use: {vram_used:.1f} GB")
 
 
-# ── History Formatter ─────────────────────────────────────────────────────────
+# ── History Formatter 
 def format_history(history: list[dict]) -> str:
-    """Format past (instruction, examples, score) history sorted low→high."""
+    """Format past attempts sorted from worst to best score."""
     sorted_history = sorted(history, key=lambda x: x["accuracy"])
     shown = sorted_history[-MAX_HISTORY_SHOWN:]
 
@@ -55,16 +82,17 @@ def format_history(history: list[dict]) -> str:
     return "\n".join(lines)
 
 
-# ── Optimizer Prompt Builder ──────────────────────────────────────────────────
+# ── Optimizer Prompt Builder 
 def build_optimizer_prompt(history: list[dict], candidate_reviews: list[dict]) -> str:
     """Build the meta-prompt sent to the Optimizer LLM."""
     history_text = format_history(history)
 
-    # Show 25 candidate reviews (5 per class) so optimizer has variety
+    # Show 25 candidates (5 per class)
     candidates_by_class = {label: [] for label in LABELS}
     for r in candidate_reviews:
         if r["label"] in candidates_by_class and len(candidates_by_class[r["label"]]) < 5:
             candidates_by_class[r["label"]].append(r)
+
     all_candidates = []
     for label in LABELS:
         all_candidates.extend(candidates_by_class[label])
@@ -74,84 +102,80 @@ def build_optimizer_prompt(history: list[dict], candidate_reviews: list[dict]) -
     for i, r in enumerate(all_candidates, 1):
         candidate_text += f"  {i}. [{r['label']}] {r['text'][:100]}\n"
 
-    prompt = f"""You are an expert prompt engineer optimizing a fine-grained sentiment classifier for movie reviews.
+    best = max(e["accuracy"] for e in history)
+
+    prompt = f"""You are an expert prompt engineer optimizing a sentiment classifier.
 
 TASK:
-The classifier reads a movie review and must output EXACTLY one of these 5 labels:
-  {LABEL_LIST_STR}
+Build the best classifier that outputs one of: {LABEL_LIST_STR}
 
-This is a HARD task — distinguishing between adjacent classes (e.g., 'positive' vs 'very_positive')
-requires careful prompt engineering and well-chosen examples.
-
-Your goal is to find the BEST combination of:
-  1. An instruction that tells the LLM how to classify reviews
-  2. Five few-shot examples (ideally one per class) that demonstrate clear boundaries
-
-PAST ATTEMPTS (sorted from worst to best score):
+PAST ATTEMPTS (sorted worst to best):
 {history_text}
-The best score so far is {max(e['accuracy'] for e in history):.1%}.
+Best score so far: {best:.1%}
 
-AVAILABLE REVIEWS TO USE AS EXAMPLES:
+AVAILABLE EXAMPLE REVIEWS:
 {candidate_text}
-WHAT TO DO:
-Study the pattern — what made higher-scoring attempts better than lower ones?
-Then generate a NEW instruction and NEW set of 5 examples that will score HIGHER.
+Generate a NEW instruction and 5 examples (one per class) that will score HIGHER.
 
 Rules:
-- The instruction must be clear about the 5-class scale and what distinguishes each class
-- Choose examples that cover ALL 5 classes (one per class is ideal)
-- Pick examples that clearly show the boundary between adjacent classes
-- Do NOT reuse an instruction that already appears in the history above
-- Examples must come from the available reviews listed above
-- Use the exact label spelling: {LABEL_LIST_STR}
+- Use exact label spelling: {LABEL_LIST_STR}
+- Pick examples from the list above
+- Cover all 5 classes
+- Don't repeat past instructions
 
-Respond with ONLY a valid JSON object in this exact format:
+Respond with ONLY valid JSON:
 {{
-  "instruction": "your new instruction text here",
+  "instruction": "your new instruction",
   "examples": [
-    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
-    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
-    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
-    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}},
-    {{"text": "exact review text from the list above", "label": "one of the 5 valid labels"}}
+    {{"text": "review text", "label": "label"}},
+    {{"text": "review text", "label": "label"}},
+    {{"text": "review text", "label": "label"}},
+    {{"text": "review text", "label": "label"}},
+    {{"text": "review text", "label": "label"}}
   ],
-  "reasoning": "one sentence explaining why you think this will score higher"
-}}
-
-JSON only. No markdown. No explanation outside the JSON."""
+  "reasoning": "one sentence why this is better"
+}}"""
 
     return prompt
 
 
-# ── Response Parser ───────────────────────────────────────────────────────────
+# ── Response Parser 
 def parse_optimizer_response(raw: str) -> dict | None:
     """Parse the optimizer's JSON response."""
     raw = raw.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
+
+    # Strip markdown fences
+    if "```" in raw:
+        parts = raw.split("```")
+        for part in parts:
+            if "{" in part:
+                raw = part
+                break
         if raw.startswith("json"):
             raw = raw[4:]
         raw = raw.strip()
 
+    # Find JSON object boundaries
+    start = raw.find("{")
+    end   = raw.rfind("}")
+    if start == -1 or end == -1:
+        print(f"    [optimizer] No JSON object found in response")
+        return None
+    raw = raw[start:end + 1]
+
     try:
         parsed = json.loads(raw)
 
-        if "instruction" not in parsed:
-            print("    [optimizer] Missing 'instruction' in response")
-            return None
-        if "examples" not in parsed or len(parsed["examples"]) < 1:
-            print("    [optimizer] Missing or empty 'examples' in response")
+        if "instruction" not in parsed or "examples" not in parsed:
+            print(f"    [optimizer] Missing required fields")
             return None
 
-        # Validate and normalize each example's label
         valid_examples = []
         for ex in parsed["examples"]:
             if "text" not in ex or "label" not in ex:
-                print(f"    [optimizer] Skipping malformed example: {ex}")
                 continue
             label = ex["label"].strip().lower().replace(" ", "_").replace("-", "_")
             if label not in LABELS:
-                # Try to coerce to closest valid label
                 if "very" in label and ("pos" in label or "good" in label):
                     label = "very_positive"
                 elif "very" in label and ("neg" in label or "bad" in label):
@@ -163,13 +187,11 @@ def parse_optimizer_response(raw: str) -> dict | None:
                 elif "neutral" in label:
                     label = "neutral"
                 else:
-                    print(f"    [optimizer] Invalid label '{ex['label']}' — skipping example")
                     continue
             ex["label"] = label
             valid_examples.append(ex)
 
         if len(valid_examples) == 0:
-            print("    [optimizer] No valid examples after parsing")
             return None
 
         return {
@@ -180,92 +202,91 @@ def parse_optimizer_response(raw: str) -> dict | None:
 
     except json.JSONDecodeError as e:
         print(f"    [optimizer] JSON parse error: {e}")
-        print(f"    [optimizer] Raw response was: {raw[:200]}")
+        print(f"    [optimizer] Raw was: {raw[:200]}")
         return None
 
 
-# ── Main Optimizer ────────────────────────────────────────────────────────────
+# ── Main Optimizer 
 def generate_new_prompt(
     history: list[dict],
     candidate_reviews: list[dict] | None = None,
     verbose: bool = True
 ) -> dict | None:
     """Given past history, generate a new (instruction, examples) combo."""
+    if _model is None:
+        load_optimizer_model()
+
     if candidate_reviews is None:
         candidate_reviews = get_optimization_set()
 
     optimizer_prompt = build_optimizer_prompt(history, candidate_reviews)
-    client           = get_client()
 
     if verbose:
         best_so_far = max(e["accuracy"] for e in history)
         print(f"\n── Generating new prompt ─────────────────────────────")
         print(f"  History size  : {len(history)} attempts")
         print(f"  Best so far   : {best_so_far:.1%}")
-        print(f"  Model         : {OPTIMIZER_MODEL}")
+        print(f"  Model         : {_loaded_for}")
 
-    for attempt in range(MAX_RETRIES):
-        try:
-            response = client.chat.completions.create(
-                model=OPTIMIZER_MODEL,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": (
-                            "You are an expert prompt engineer. "
-                            "You always respond with valid JSON only. "
-                            "No markdown, no explanation outside JSON."
-                        )
-                    },
-                    {
-                        "role": "user",
-                        "content": optimizer_prompt
-                    }
-                ],
-                max_tokens=1200,
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "You are an expert prompt engineer. "
+                "Respond ONLY with valid JSON, no markdown, no extra text."
+            )
+        },
+        {"role": "user", "content": optimizer_prompt}
+    ]
+
+    prompt_text = _tokenizer.apply_chat_template(
+        messages, tokenize=False, add_generation_prompt=True
+    )
+    inputs = _tokenizer(prompt_text, return_tensors="pt").to(_model.device)
+
+    for attempt in range(3):
+        with torch.no_grad():
+            outputs = _model.generate(
+                **inputs,
+                max_new_tokens=MAX_NEW_TOKENS,
+                do_sample=True,
                 temperature=0.8,
+                top_p=0.9,
+                pad_token_id=_tokenizer.eos_token_id,
             )
 
-            raw    = response.choices[0].message.content
-            result = parse_optimizer_response(raw)
+        new_tokens = outputs[0][inputs["input_ids"].shape[1]:]
+        raw        = _tokenizer.decode(new_tokens, skip_special_tokens=True)
+        result     = parse_optimizer_response(raw)
 
-            if result is not None:
-                if verbose:
-                    print(f"  New instruction : {result['instruction'][:80]}...")
-                    print(f"  Reasoning       : {result['reasoning']}")
-                return result
-            else:
-                if attempt < MAX_RETRIES - 1:
-                    print(f"    [optimizer] Parse failed, retrying ({attempt+2}/{MAX_RETRIES})...")
-                    time.sleep(RETRY_DELAY)
+        if result is not None:
+            if verbose:
+                print(f"  New instruction : {result['instruction'][:80]}...")
+                print(f"  Reasoning       : {result['reasoning']}")
+            return result
 
-        except Exception as e:
-            if attempt < MAX_RETRIES - 1:
-                print(f"    [optimizer] API error (attempt {attempt+1}): {e} — retrying...")
-                time.sleep(RETRY_DELAY)
-            else:
-                print(f"    [optimizer] Failed after {MAX_RETRIES} attempts: {e}")
+        if verbose:
+            print(f"    [optimizer] Parse failed, retrying ({attempt+2}/3)...")
 
+    print(f"    [optimizer] Failed after 3 attempts")
     return None
 
 
-# ── Seed Prompt Generator ─────────────────────────────────────────────────────
+# ── Seed Prompt Generator 
 def generate_seed_prompts(n: int = 3) -> list[dict]:
     """Generate n diverse seed prompts to kick off the OPRO loop."""
     reviews = get_optimization_set()
 
-    # Group reviews by class
     by_class = {label: [] for label in LABELS}
     for r in reviews:
         if r["label"] in by_class:
             by_class[r["label"]].append(r)
 
-    # Build 3 seed prompts with one example per class
     def pick_one_per_class(offset):
         return [
             {"text": by_class[label][offset % len(by_class[label])]["text"],
              "label": label}
-            for label in LABELS
+            for label in LABELS if by_class[label]
         ]
 
     seeds = [
@@ -278,21 +299,17 @@ def generate_seed_prompts(n: int = 3) -> list[dict]:
         },
         {
             "instruction": (
-                "Read the movie review below carefully. "
-                "Rate its sentiment on a 5-point scale where "
-                "'very_negative' means strongly disliked, 'negative' means disliked, "
-                "'neutral' means mixed or no clear opinion, 'positive' means liked, "
-                "and 'very_positive' means loved. "
-                "Reply with one label only."
+                "Read the movie review and rate its sentiment on a 5-point scale: "
+                "'very_negative' (strongly disliked), 'negative' (disliked), "
+                "'neutral' (mixed/no opinion), 'positive' (liked), "
+                "'very_positive' (loved). Reply with one label."
             ),
             "examples": pick_one_per_class(1)
         },
         {
             "instruction": (
                 f"What is the sentiment of this movie review? "
-                f"Pick exactly one: {LABEL_LIST_STR}. "
-                f"Be precise — distinguish between 'positive' and 'very_positive', "
-                f"and between 'negative' and 'very_negative'."
+                f"Pick exactly one: {LABEL_LIST_STR}."
             ),
             "examples": pick_one_per_class(2)
         },
@@ -301,37 +318,27 @@ def generate_seed_prompts(n: int = 3) -> list[dict]:
     return seeds[:n]
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ── Main 
 if __name__ == "__main__":
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        print("ERROR: OPENAI_API_KEY not set!")
+    if not torch.cuda.is_available():
+        print("ERROR: CUDA not available!")
         sys.exit(1)
 
-    print("Testing optimizer for SST-5...\n")
+    print("Testing optimizer for SST-5 (local model)...\n")
+
+    load_optimizer_model()
 
     mock_history = [
         {
             "instruction": f"Classify this review. Choose from: {LABEL_LIST_STR}.",
             "examples"   : [
-                {"text": "Loved every minute!",          "label": "very_positive"},
-                {"text": "Pretty good film.",            "label": "positive"},
-                {"text": "It was okay.",                  "label": "neutral"},
-                {"text": "Boring and slow.",              "label": "negative"},
-                {"text": "Worst movie of the year.",     "label": "very_negative"},
+                {"text": "Loved every minute!",      "label": "very_positive"},
+                {"text": "Pretty good film.",        "label": "positive"},
+                {"text": "It was okay.",             "label": "neutral"},
+                {"text": "Boring and slow.",         "label": "negative"},
+                {"text": "Worst movie of the year.", "label": "very_negative"},
             ],
             "accuracy": 0.45
-        },
-        {
-            "instruction": "Rate the sentiment on a 5-point scale.",
-            "examples"   : [
-                {"text": "A masterpiece.",                "label": "very_positive"},
-                {"text": "Solid entertainment.",          "label": "positive"},
-                {"text": "Mixed feelings.",               "label": "neutral"},
-                {"text": "Disappointing.",                "label": "negative"},
-                {"text": "Truly awful.",                  "label": "very_negative"},
-            ],
-            "accuracy": 0.52
         },
     ]
 
@@ -340,8 +347,6 @@ if __name__ == "__main__":
     if result:
         print("\n── Generated Prompt ──────────────────────────────────")
         print(f"Instruction : {result['instruction']}")
-        print(f"Examples    :")
         for i, ex in enumerate(result["examples"], 1):
             print(f"  {i}. [{ex['label']}] {ex['text'][:80]}")
         print(f"Reasoning   : {result['reasoning']}")
-        print("\noptimizer.py is working correctly!")
