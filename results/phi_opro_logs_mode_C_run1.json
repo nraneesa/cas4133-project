@@ -28,7 +28,7 @@
     "accuracy": 0.42,
     "correct": 42,
     "total": 100,
-    "timestamp": "2026-06-12T12:59:33.385340",
+    "timestamp": "2026-06-12T13:05:09.660131",
     "reasoning": "seed prompt"
   },
   {
@@ -60,7 +60,7 @@
     "accuracy": 0.41,
     "correct": 41,
     "total": 100,
-    "timestamp": "2026-06-12T12:59:46.085172",
+    "timestamp": "2026-06-12T13:05:22.304529",
     "reasoning": "seed prompt"
   },
   {
@@ -92,13 +92,552 @@
     "accuracy": 0.48,
     "correct": 48,
     "total": 100,
-    "timestamp": "2026-06-12T12:59:59.498146",
+    "timestamp": "2026-06-12T13:05:35.642291",
     "reasoning": "seed prompt"
   },
   {
     "step": 1,
-    "instruction": "Analyze the review's sentiment and output the corresponding label based on the described scale.",
+    "instruction": "Classify the following movie review excerpts into 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Focus on identifying strong or subtle emotions and intensity.",
     "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "got some good , organic character work , lots of obvious political insights and little room for engagement.",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie an added layer of complexity.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T13:05:58.226398",
+    "reasoning": "This instruction adds clarity on focusing on emotions and intensity, and provides specific labels which will likely improve classification accuracy."
+  },
+  {
+    "step": 2,
+    "instruction": "Classify the following movie review excerpts into 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Use specific language patterns, tone, and intensity words to make your decision.",
+    "examples": [
+      {
+        "text": "a devastating indictment of unbridled greed and materialism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement.",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique twist.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T13:06:20.564342",
+    "reasoning": "This instruction is more specific about focusing on language patterns, tone, and intensity words, which should guide the model to better understand and classify sentiments accurately."
+  },
+  {
+    "step": 3,
+    "instruction": "Classify the sentiment of the movie review by focusing on the intensity of the language used and the overall impact on the audience, selecting the most appropriate label from 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "unofficially , national lampoon 's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun .",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:06:42.474679",
+    "reasoning": "This instruction emphasizes the importance of intensity and overall impact, providing clear guidelines for classification."
+  },
+  {
+    "step": 4,
+    "instruction": "You are a professional film critic summarizing reviews. Categorize each excerpt into 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive', using the most precise language possible based on the given examples.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000.",
+        "label": "positive"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a unique twist.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.38,
+    "correct": 38,
+    "total": 100,
+    "timestamp": "2026-06-12T13:07:05.463253",
+    "reasoning": "More precise language usage and inclusion of the very_positive example make the classification clearer."
+  },
+  {
+    "step": 5,
+    "instruction": "Analyze the movie review and classify the sentiment into 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Use the intensity and emotional language to determine the classification.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000 movie",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a deeper meaning",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T13:07:28.088292",
+    "reasoning": "This instruction is more detailed and specific, providing clear guidelines for the sentiment analysis which should result in more accurate classifications."
+  },
+  {
+    "step": 6,
+    "instruction": "Analyze the sentiment of the movie review using specific and intense language to determine the most fitting category.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000.",
+        "label": "positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it , giving the movie a rich complexity.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:07:50.565944",
+    "reasoning": "This instruction emphasizes specific and intense language, which should help differentiate between similar sentiments and improve accuracy."
+  },
+  {
+    "step": 7,
+    "instruction": "Analyze the movie review using specific and intense language to determine the most fitting category without ambiguity.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "got some good , organic character work , lots of obvious political insights and little room for engagement.",
+        "label": "positive"
+      },
+      {
+        "text": "in the end , all you can do is admire the ensemble players and wonder what the point of it is .",
+        "label": "neutral"
+      },
+      {
+        "text": "a devastating indictment of unbridled greed and materialism.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T13:08:11.536039",
+    "reasoning": "The new instruction is more specific and removes any ambiguity, ensuring clarity in classification."
+  },
+  {
+    "step": 8,
+    "instruction": "Analyze the sentiment of the movie review using specific and detailed language to determine the most fitting category, focusing on intensity and emotional impact.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.47,
+    "correct": 47,
+    "total": 100,
+    "timestamp": "2026-06-12T13:08:33.666353",
+    "reasoning": "This instruction focuses on specificity and detail, which can help in achieving a higher score by providing more clarity and focus."
+  },
+  {
+    "step": 9,
+    "instruction": "Analyze the sentiment of the movie review using specific and detailed language to determine the most fitting category, focusing on intensity and emotional impact, and use the following examples for guidance.",
+    "examples": [
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.47,
+    "correct": 47,
+    "total": 100,
+    "timestamp": "2026-06-12T13:08:56.173229",
+    "reasoning": "This instruction is more specific and emphasizes using detailed language, which should help improve accuracy."
+  },
+  {
+    "step": 10,
+    "instruction": "Analyze the movie review using vivid and specific language to determine the sentiment. Provide a clear and definitive classification.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly , perversely undercuts the joie de vivre even as he creates it",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:09:17.980502",
+    "reasoning": "This instruction focuses on vivid and specific language, which can help in determining the exact sentiment more accurately."
+  },
+  {
+    "step": 11,
+    "instruction": "Analyze the movie review using precise and expressive language to determine the sentiment, ensuring clarity and accuracy in classification.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:09:39.085643",
+    "reasoning": "This instruction emphasizes precision and expressiveness, which should enhance the classifier's ability to accurately distinguish between the fine nuances in sentiment."
+  },
+  {
+    "step": 12,
+    "instruction": "Analyze the movie review meticulously, focusing on the emotional and linguistic intensity to determine the sentiment and classify it clearly as 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall , it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T13:10:00.938142",
+    "reasoning": "This instruction is better because it explicitly asks for meticulous analysis and specifies the use of emotional and linguistic intensity, which should improve classification accuracy."
+  },
+  {
+    "step": 13,
+    "instruction": "Analyze the sentiment of the movie review using precise and vivid language to determine the most fitting category, emphasizing intensity and emotional impact.",
+    "examples": [
+      {
+        "text": "a devastating indictment of unbridled greed and materialism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T13:10:22.051930",
+    "reasoning": "This instruction emphasizes precision and vivid language, which should help in better distinguishing between similar sentiments and improving the classifier's accuracy."
+  },
+  {
+    "step": 14,
+    "instruction": "Classify the movie review by analyzing the language used and determining the overall sentiment towards the movie. Focus on identifying specific words that indicate the intensity of the sentiment and choose the most appropriate label.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:10:54.577257",
+    "reasoning": "This instruction is clearer and more focused, ensuring that the classifier pays close attention to specific words and overall sentiment, leading to more accurate classifications."
+  },
+  {
+    "step": 15,
+    "instruction": "Analyze the review content by carefully examining the language used, focusing on emotional intensity and overall tone to classify the sentiment accurately.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T13:11:15.329650",
+    "reasoning": "This instruction provides a clear focus on emotional intensity and tone, which should help improve the classifier's performance."
+  },
+  {
+    "step": 16,
+    "instruction": "Analyze the movie review, focusing on the intensity and emotional impact of the language to determine the sentiment. Provide a clear and decisive classification without any ambiguity.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is .",
+        "label": "neutral"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T13:11:36.929744",
+    "reasoning": "This instruction emphasizes clarity and decisiveness, aligning more closely with the goal of achieving a higher score."
+  },
+  {
+    "step": 17,
+    "instruction": "Analyze the movie review carefully and classify it according to the provided labels, emphasizing the intensity and emotional impact while being clear and decisive.",
+    "examples": [
+      {
+        "text": "demeo is not without talent ; he just needs better material .",
+        "label": "neutral"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:11:58.208746",
+    "reasoning": "This instruction emphasizes careful analysis, which should help in distinguishing nuances and achieving higher precision."
+  },
+  {
+    "step": 18,
+    "instruction": "Analyze the sentiment of the movie review and classify it into the most appropriate label based on the intensity of the language and the overall emotional impact, ensuring a decisive and clear classification.",
+    "examples": [
+      {
+        "text": "the most consistently funny of the austin powers films.",
+        "label": "positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
       {
         "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
         "label": "very_negative"
@@ -106,14 +645,64 @@
       {
         "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000",
         "label": "positive"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T13:12:20.050300",
+    "reasoning": "This instruction emphasizes decisiveness and clarity, which should improve the model's ability to choose the correct label."
+  },
+  {
+    "step": 19,
+    "instruction": "Analyze the movie review thoroughly and determine the sentiment based on the intensity and emotional impact of the language used, ensuring precise classification.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
       },
       {
-        "text": "just when you think you are making sense of it , something happens that tells you there is no sense",
+        "text": "overall, it's a pretty mediocre family film.",
         "label": "negative"
       },
       {
-        "text": "got some good , organic character work , lots of obvious political insights and little room for enga",
+        "text": "insightfully written, delicately performed",
         "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T13:12:39.658743",
+    "reasoning": "This instruction emphasizes thorough analysis and precision, which should lead to higher accuracy and better differentiation between sentiments."
+  },
+  {
+    "step": 20,
+    "instruction": "Analyze the movie review thoroughly, using precise and expressive language to identify the most fitting sentiment category. Make your judgment based on the intensity and emotional impact, avoiding ambiguity.",
+    "examples": [
+      {
+        "text": "a devastating indictment of unbridled greed and materalism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "if all of eight legged freaks was as entertaining as the final hour, i would have no problem giving",
+        "label": "neutral"
       },
       {
         "text": "delirious fun.",
@@ -123,30 +712,937 @@
     "accuracy": 0.42,
     "correct": 42,
     "total": 100,
-    "timestamp": "2026-06-12T13:00:31.316172",
-    "reasoning": "Providing a clear instruction and using diverse examples should help improve the classifier's accuracy."
+    "timestamp": "2026-06-12T13:13:00.887647",
+    "reasoning": "This instruction emphasizes thorough analysis and clarity in choosing the label, which should lead to more consistent and precise classifications."
   },
   {
-    "step": 2,
-    "instruction": "Classify the following movie review into one of the five sentiment categories based on the intensity and emotional impact of the language used.",
+    "step": 21,
+    "instruction": "As a discerning film analyst, accurately categorize the sentiment by deeply examining the nuances of the language used, ensuring the classification reflects both the intensity and emotional impact.",
+    "examples": [
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "neutral"
+      },
+      {
+        "text": "a devastating indictment of unbridled greed and materialism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000",
+        "label": "positive"
+      },
+      {
+        "text": "insanely funny and original",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T13:13:20.929944",
+    "reasoning": "This instruction encourages a deeper analysis of nuances, which can differentiate the sentiment more precisely."
+  },
+  {
+    "step": 22,
+    "instruction": "Analyze the movie review deeply, focusing on the intensity of emotions conveyed by the language and providing a clear and precise classification based on the overall tone.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "evokes the frustration, the awkwardness and the euphoria of growing up, without relying on the usual tropes.",
+        "label": "negative"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement beyond that.",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.47,
+    "correct": 47,
+    "total": 100,
+    "timestamp": "2026-06-12T13:13:45.419905",
+    "reasoning": "This instruction emphasizes deep analysis and precision, which should help differentiate between closely related sentiments and improve classification accuracy."
+  },
+  {
+    "step": 23,
+    "instruction": "Analyze the movie review thoroughly, focusing on the emotional language, intensity words, and the overall tone to precisely categorize the sentiment.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical narrative.",
+        "label": "negative"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie an enigmatic quality.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:14:07.530105",
+    "reasoning": "This instruction is more concise and emphasizes precision, which can help the model focus on the details needed for accurate classification."
+  },
+  {
+    "step": 24,
+    "instruction": "Analyze the movie review carefully, focusing on the intensity of emotions and the impact on the audience. Clearly classify the sentiment using 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive' based on the overall tone.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      }
+    ],
+    "accuracy": 0.47,
+    "correct": 47,
+    "total": 100,
+    "timestamp": "2026-06-12T13:14:30.347782",
+    "reasoning": "This instruction emphasizes the importance of intensity and impact on the audience, which should lead to more refined classifications."
+  },
+  {
+    "step": 25,
+    "instruction": "Analyze the movie review carefully, considering the intensity of emotional language, specificity of detail, and the overall tone to determine the most fitting category.",
     "examples": [
       {
         "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
         "label": "very_negative"
       },
       {
-        "text": "got some good , organic character work , lots of obvious political insights and little room for engagement.",
+        "text": "insightfully written, delicately performed.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "evokes the frustration , the awkwardness and the euphoria of growing up , without relying on the usu.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 0.41,
+    "correct": 41,
+    "total": 100,
+    "timestamp": "2026-06-12T13:14:52.176928",
+    "reasoning": "This instruction provides a clear directive to consider multiple aspects of the review, potentially leading to more nuanced and accurate classifications."
+  },
+  {
+    "step": 26,
+    "instruction": "Analyze the movie review meticulously, focusing on the depth of emotional impact and the language used to convey the sentiment. Determine the most appropriate category using 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Be precise and decisive.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a sense of authenticity.",
         "label": "positive"
       },
       {
-        "text": "demeo is not without talent ; he just needs better material .",
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical role.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:15:17.687213",
+    "reasoning": "This instruction emphasizes depth and precision, which should help in distinguishing between similar sentiments and improving accuracy."
+  },
+  {
+    "step": 27,
+    "instruction": "Analyze the movie review critically, focusing on the emotional language, intensity words, and overall tone to accurately determine the most suitable sentiment category.",
+    "examples": [
+      {
+        "text": "a devastating indictment of unbridled greed and materalism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement.",
+        "label": "negative"
+      },
+      {
+        "text": "if all of eight legged freaks was as entertaining as the final hour, i would have no problem giving",
         "label": "neutral"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T13:15:38.310340",
+    "reasoning": "This instruction emphasizes critical analysis which should enhance precision and clarity, leading to better classification."
+  },
+  {
+    "step": 28,
+    "instruction": "Analyze the movie review thoroughly, using specific and vivid language to determine the sentiment. Ensure the chosen label accurately reflects the overall tone and emotional impact, with a focus on intensity words.",
+    "examples": [
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "demeo is not without talent ; he just needs better material.",
+        "label": "neutral"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.47,
+    "correct": 47,
+    "total": 100,
+    "timestamp": "2026-06-12T13:16:01.082601",
+    "reasoning": "This instruction is more specific about the use of vivid language and the focus on intensity words, which should improve accuracy and clarity."
+  },
+  {
+    "step": 29,
+    "instruction": "Analyze the movie review carefully, identifying the primary sentiment and ensuring the chosen label clearly reflects the overall tone. Focus on emotional language, intensity words, and the impact on the viewer. Avoid vague classifications and provide a decisive label.",
+    "examples": [
+      {
+        "text": "combines sharp comedy, old-fashioned monster movie atmospherics, and genuine heart to create a film that is both thrilling and emotionally satisfying.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has been told a thousand times before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "evokes the frustration, the awkwardness and the euphoria of growing up, without relying on the usual tricks.",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.47,
+    "correct": 47,
+    "total": 100,
+    "timestamp": "2026-06-12T13:16:25.153778",
+    "reasoning": "This instruction is more focused and explicit about avoiding vague classifications and provides clearer guidelines for choosing labels."
+  },
+  {
+    "step": 30,
+    "instruction": "Analyze the movie review meticulously, ensuring each classification is decisively aligned with the overall tone and emotional impact. Use specific and vivid language to reflect the intensity of the sentiments expressed.",
+    "examples": [
+      {
+        "text": "a bad movie that happened to good actors.",
+        "label": "very_negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganes",
+        "label": "negative"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has been told a thousand times before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T13:16:47.152411",
+    "reasoning": "This instruction provides clear guidance for precision and decisiveness, reinforcing specificity and vividness which can differentiate it from past attempts."
+  },
+  {
+    "step": 31,
+    "instruction": "Analyze the movie review precisely, focusing on the emotional impact, intensity of language, and overall tone to determine the most appropriate sentiment category with confidence.",
+    "examples": [
+      {
+        "text": "just when you think you are making sense of it , something happens that tells you there is no sense",
+        "label": "negative"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has been told a thousand times before movie",
+        "label": "very_negative"
+      },
+      {
+        "text": "the most consistently funny of the austin powers films",
+        "label": "positive"
+      },
+      {
+        "text": "delirious fun",
+        "label": "very_positive"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T13:17:06.284290",
+    "reasoning": "This instruction emphasizes precision and confidence, which should lead to clearer classifications."
+  },
+  {
+    "step": 32,
+    "instruction": "Analyze the movie review comprehensively, focusing on the depth of emotional impact and the use of specific, vivid language to accurately determine the sentiment and provide a precise classification.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "a bad movie that happened to good actors.",
+        "label": "negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement.",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a complex and nuanced feel.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T13:17:30.015923",
+    "reasoning": "This instruction is more comprehensive and emphasizes the use of specific, vivid language, which should lead to more accurate classifications."
+  },
+  {
+    "step": 33,
+    "instruction": "Analyze the movie review thoroughly, focusing on the intensity and emotional impact of the language used. Provide a decisive label that accurately reflects the overall tone and sentiment. Do not use ambiguous terms like 'pretty' or 'mediocre'.",
+    "examples": [
+      {
+        "text": "if all of eight legged freaks was as entertaining as the final hour , i would have no problem giving",
+        "label": "neutral"
+      },
+      {
+        "text": "quitting , however , manages just to be depressing , as the lead actor phones in his autobiographical role",
+        "label": "negative"
+      },
+      {
+        "text": "the most consistently funny of the austin powers films .",
+        "label": "positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:17:52.482025",
+    "reasoning": "This instruction avoids ambiguity and uses specific language, which will likely improve clarity and precision in classification."
+  },
+  {
+    "step": 34,
+    "instruction": "Analyze the movie review carefully, identifying the primary sentiment and providing a clear label. Use the provided examples for guidance, focusing on the emotional impact and intensity of the language.",
+    "examples": [
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "the most consistently funny of the austin powers films.",
+        "label": "positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T13:18:13.258454",
+    "reasoning": "This instruction is more concise and specific, ensuring clarity and precision in labeling while reinforcing the use of emotionally charged language."
+  },
+  {
+    "step": 35,
+    "instruction": "Analyze the movie review carefully, focusing on the intensity of emotions and the overall tone to decide the sentiment. Use the exact labels 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Provide a decisive label reflecting the most impactful sentiment.",
+    "examples": [
+      {
+        "text": "unofficially , national lampoon 's van wilder is son of animal house .",
+        "label": "neutral"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie .",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
       }
     ],
     "accuracy": 0.45,
     "correct": 45,
     "total": 100,
-    "timestamp": "2026-06-12T13:01:04.054831",
-    "reasoning": "This instruction is more concise and focuses on the key aspect of intensity and emotional impact, which should help in differentiating between the sentiment categories."
+    "timestamp": "2026-06-12T13:18:36.149882",
+    "reasoning": "This instruction focuses more on the overall tone and tone intensity, aiming for higher precision in classification."
+  },
+  {
+    "step": 36,
+    "instruction": "Analyze the movie review carefully, using exact labeling ('very_negative', 'negative', 'neutral', 'positive', 'very_positive') and focusing on the intensity and emotional impact of the language used to provide a clear and definitive classification.",
+    "examples": [
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      },
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganesh legend.",
+        "label": "negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "director tom dey demonstrated a knack for mixing action and idiosyncratic humor in his charming 2000 film",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a layered and engaging complexity.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T13:18:59.932689",
+    "reasoning": "This instruction emphasizes exact labeling and focuses on intensity and emotional impact, which should help in achieving a higher score by providing more specific direction."
+  },
+  {
+    "step": 37,
+    "instruction": "Analyze the movie review meticulously, using precise and impactful language to determine the sentiment. Ensure the chosen label accurately represents the overall tone and emotional impact without ambiguity. Focus on intensity and the primary emotion conveyed.",
+    "examples": [
+      {
+        "text": "for all the wit and hoopla, festival in cannes offers rare insight into the structure of relationships.",
+        "label": "positive"
+      },
+      {
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical roles.",
+        "label": "negative"
+      },
+      {
+        "text": "just when you think you are making sense of it, something happens that tells you there is no sense.",
+        "label": "negative"
+      },
+      {
+        "text": "the most consistently funny of the austin powers films.",
+        "label": "positive"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie a sense of depth and intrigue.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:19:23.056437",
+    "reasoning": "This instruction focuses more on precision and impact, which should help the classifier make clearer distinctions between sentiments."
+  },
+  {
+    "step": 38,
+    "instruction": "Analyze the movie review meticulously, focusing on the intensity and emotional impact of the language to categorize the overall tone with precision. Ensure the chosen label ('very_negative', 'negative', 'neutral', 'positive', 'very_positive') clearly reflects the review\u2019s sentiment.",
+    "examples": [
+      {
+        "text": "just when you think you are making sense of it , something happens that tells you there is no sense",
+        "label": "very_negative"
+      },
+      {
+        "text": "the most consistently funny of the austin powers films.",
+        "label": "very_positive"
+      },
+      {
+        "text": "if not a home run , then at least a solid base hit.",
+        "label": "positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:19:46.607399",
+    "reasoning": "This instruction emphasizes precision and clarity in labeling, which should help the classifier better differentiate between similar sentiments."
+  },
+  {
+    "step": 39,
+    "instruction": "Classify the sentiment of the movie review using precise language and focus on the intensity of emotions and impact on the viewer, ensuring each review is decisively labeled without ambiguity.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "in the end, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:20:08.840245",
+    "reasoning": "This instruction emphasizes decisiveness and precision, leveraging the exact labeling requirement to ensure clarity and specificity."
+  },
+  {
+    "step": 40,
+    "instruction": "Analyze the movie review meticulously, incorporating precise language to determine the sentiment accurately and decisively, focusing on the intensity of emotions and the overall tone.",
+    "examples": [
+      {
+        "text": "the colorful masseur wastes its time on mood rather than riding with the inherent absurdity of ganesh worship.",
+        "label": "very_negative"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story.",
+        "label": "negative"
+      },
+      {
+        "text": "demeo is not without talent ; he just needs better material.",
+        "label": "neutral"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement.",
+        "label": "positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.39,
+    "correct": 39,
+    "total": 100,
+    "timestamp": "2026-06-12T13:20:30.311872",
+    "reasoning": "This instruction emphasizes meticulous analysis and precise language, which should improve clarity and reduce ambiguity."
+  },
+  {
+    "step": 41,
+    "instruction": "Analyze the movie review, focusing on the intensity of emotions and the overall tone to determine the sentiment. Clearly classify each review into one of the given labels.",
+    "examples": [
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      },
+      {
+        "text": "evokes the frustration, the awkwardness and the euphoria of growing up, without relying on the usual cheap tricks",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T13:20:52.825144",
+    "reasoning": "This instruction focuses more on the overall tone and uses clearer language which should improve precision and accuracy."
+  },
+  {
+    "step": 42,
+    "instruction": "Analyze the movie review thoroughly, focusing on the emotional language, intensity of words (very, extremely, quite), and the overall tone to accurately categorize the sentiment as one of 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Provide a decisive label.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "evokes the frustration , the awkwardness and the euphoria of growing up , without relying on the usu.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end , all you can do is admire the ensemble players and wonder what the point of it is .",
+        "label": "neutral"
+      },
+      {
+        "text": "got some good , organic character work , lots of obvious political insights and little room for engagement .",
+        "label": "positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.44,
+    "correct": 44,
+    "total": 100,
+    "timestamp": "2026-06-12T13:21:18.132790",
+    "reasoning": "This instruction provides more clarity on the importance of specific emotional language and intensity words, which should help in achieving higher precision."
+  },
+  {
+    "step": 43,
+    "instruction": "Analyze the movie review closely, identifying the primary sentiment and ensuring the chosen label clearly reflects the overall tone. Use specific and vivid language, focus on intensity words, and the impact on the viewer. Avoid vague classifications and provide a decisive label.",
+    "examples": [
+      {
+        "text": "just when you think you are making sense of it , something happens that tells you there is no sense",
+        "label": "negative"
+      },
+      {
+        "text": "insightfully written , delicately performed",
+        "label": "positive"
+      },
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "neutral"
+      },
+      {
+        "text": "delirious fun",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.48,
+    "correct": 48,
+    "total": 100,
+    "timestamp": "2026-06-12T13:21:39.428190",
+    "reasoning": "This instruction is more specific and emphasizes the need for specificity and vivid language, which should improve clarity and precision in labeling."
+  },
+  {
+    "step": 44,
+    "instruction": "Analyze the movie review carefully, identify the primary sentiment and ensure the chosen label clearly reflects the overall tone. Use specific and vivid language, focus on intensity words, the impact on the viewer, and avoid vague classifications.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:22:02.499532",
+    "reasoning": "This instruction is more concise and emphasizes clarity and specificity, which should lead to better classification scores."
+  },
+  {
+    "step": 45,
+    "instruction": "Analyze the movie review carefully, focusing on the intensity of emotions and the impact on the audience. Clearly classify the sentiment using 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive' based on the overall tone and choose labels that are more distinct and decisive.",
+    "examples": [
+      {
+        "text": "overall , it 's a pretty mediocre family film .",
+        "label": "neutral"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story .",
+        "label": "very_negative"
+      },
+      {
+        "text": "just when you think you are making sense of it , something happens that tells you there is no sense.",
+        "label": "negative"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "positive"
+      }
+    ],
+    "accuracy": 0.46,
+    "correct": 46,
+    "total": 100,
+    "timestamp": "2026-06-12T13:22:24.494138",
+    "reasoning": "This instruction emphasizes the importance of being more decisive and uses clearer, distinct labels to avoid vagueness."
+  },
+  {
+    "step": 46,
+    "instruction": "Analyze the movie review thoroughly, focusing on the primary sentiment and the impact on the viewer. Use specific and vivid language to clearly reflect the overall tone. Provide a decisive label without any vague classifications.",
+    "examples": [
+      {
+        "text": "a devastating indictment of unbridled greed and materialism.",
+        "label": "very_negative"
+      },
+      {
+        "text": "in the end, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "delirious fun",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.42,
+    "correct": 42,
+    "total": 100,
+    "timestamp": "2026-06-12T13:22:45.769787",
+    "reasoning": "This instruction emphasizes specificity and decisiveness, which should improve accuracy and reduce vagueness."
+  },
+  {
+    "step": 47,
+    "instruction": "Analyze the movie review carefully, using precise language to identify the sentiment and ensure the chosen label accurately reflects the overall tone and emotional impact.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story.",
+        "label": "negative"
+      },
+      {
+        "text": "demeo is not without talent ; he just needs better material.",
+        "label": "neutral"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "positive"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.4,
+    "correct": 40,
+    "total": 100,
+    "timestamp": "2026-06-12T13:23:06.761070",
+    "reasoning": "This instruction focuses on precision and accuracy in labeling, which may help in achieving higher scores by ensuring each sentiment is clearly defined."
+  },
+  {
+    "step": 48,
+    "instruction": "Analyze the movie review closely, identify the primary sentiment, and ensure the chosen label clearly reflects the overall tone. Focus on specific, vivid language, intensity words, and the impact on the viewer. Avoid vague classifications and provide a decisive label.",
+    "examples": [
+      {
+        "text": "combines sharp comedy, old-fashioned monster movie atmospherics, and genuine heart to create a film that is both fun and meaningful.",
+        "label": "very_positive"
+      },
+      {
+        "text": "a bad movie that happened to good actors; the storyline is weak and fails to engage.",
+        "label": "very_negative"
+      },
+      {
+        "text": "if all of eight legged freaks was as entertaining as the final hour, i would have no problem giving it a positive review.",
+        "label": "neutral"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement.",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b movie.",
+        "label": "very_negative"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:23:34.127627",
+    "reasoning": "This instruction specifies the use of specific and vivid language and focuses on the impact on the viewer, which should help in distinguishing between similar sentiments and improve accuracy."
+  },
+  {
+    "step": 49,
+    "instruction": "Analyze the movie review carefully, ensuring the chosen label accurately reflects the overall tone and emotional impact. Focus on intensity words and the impact on the viewer. Be specific and vivid.",
+    "examples": [
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - b",
+        "label": "very_negative"
+      },
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "delirious fun",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.43,
+    "correct": 43,
+    "total": 100,
+    "timestamp": "2026-06-12T13:23:55.868033",
+    "reasoning": "This instruction emphasizes accuracy and specificity, which should help improve the model's performance."
+  },
+  {
+    "step": 50,
+    "instruction": "Analyze the movie review closely, ensuring the sentiment label is exact ('very_negative', 'negative', 'neutral', 'positive', 'very_positive'). Use emotional language and intensity words to reflect the overall tone and provide a decisive label.",
+    "examples": [
+      {
+        "text": "if not a home run, then at least a solid base hit.",
+        "label": "positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie.",
+        "label": "very_negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "in the end, all you can do is admire the ensemble players and wonder what the point of it is.",
+        "label": "neutral"
+      },
+      {
+        "text": "delirious fun.",
+        "label": "very_positive"
+      }
+    ],
+    "accuracy": 0.45,
+    "correct": 45,
+    "total": 100,
+    "timestamp": "2026-06-12T13:24:18.346673",
+    "reasoning": "This instruction focuses on precision and clarity, which should improve the model's ability to assign exact labels."
   }
 ]
