@@ -26,7 +26,7 @@ from load_sst5 import get_optimization_set, get_labels
 
 
 # ── Config 
-SCORER_MODEL   = "microsoft/Phi-3-mini-4k-instruct"  # default scorer model
+SCORER_MODEL   = "Qwen/Qwen2.5-1.5B-Instruct"  # default scorer model
 BATCH_SIZE     = 100
 MAX_NEW_TOKENS = 10
 
