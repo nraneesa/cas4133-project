@@ -1,0 +1,84 @@
+[
+  {
+    "name": "A_zero_shot",
+    "instruction": "Classify this movie review.",
+    "examples": [],
+    "test_accuracy": 0.468,
+    "correct": 234,
+    "total": 500
+  },
+  {
+    "name": "B_simple_instruction",
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "test_accuracy": 0.436,
+    "correct": 218,
+    "total": 500
+  },
+  {
+    "name": "C_simple_with_examples",
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [
+      {
+        "text": "delirious fun .",
+        "label": "very_positive"
+      },
+      {
+        "text": "unofficially , national lampoon 's van wilder is son of animal house .",
+        "label": "neutral"
+      },
+      {
+        "text": "if not a home run , then at least a solid base hit .",
+        "label": "positive"
+      },
+      {
+        "text": "it 's definitely not made for kids or their parents , for that matter , and i think even fans of sandler 's comic taste may find it uninteresting .",
+        "label": "negative"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story .",
+        "label": "very_negative"
+      }
+    ],
+    "test_accuracy": 0.486,
+    "correct": 243,
+    "total": 500
+  },
+  {
+    "name": "Mode_B_OPRO_best (train: 45.0%)",
+    "instruction": "As a discerning film analyst, accurately determine the sentiment expressed in these movie reviews by selecting the most fitting category: 'very_negative', 'negative', 'neutral', 'positive', or 'very_positive'. Pay careful attention to the emotional language and the overall tone.",
+    "examples": [],
+    "test_accuracy": 0.482,
+    "correct": 241,
+    "total": 500
+  },
+  {
+    "name": "Mode_C_OPRO_best (train: 55.0%)",
+    "instruction": "Analyze the movie review and assign the appropriate sentiment label, ensuring the classification is accurate and concise, focusing on the emotional impact and overall tone.",
+    "examples": [
+      {
+        "text": "an enjoyably frothy ` date movie ' ...",
+        "label": "very_positive"
+      },
+      {
+        "text": "unofficially, national lampoon's van wilder is son of animal house.",
+        "label": "neutral"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "negative"
+      },
+      {
+        "text": "cuaron repeatedly, perversely undercuts the joie de vivre even as he creates it, giving the movie",
+        "label": "positive"
+      },
+      {
+        "text": "a bad movie that happened to good actors.",
+        "label": "very_negative"
+      }
+    ],
+    "test_accuracy": 0.544,
+    "correct": 272,
+    "total": 500
+  }
+]

@@ -1,0 +1,84 @@
+[
+  {
+    "name": "A_zero_shot",
+    "instruction": "Classify this movie review.",
+    "examples": [],
+    "test_accuracy": 0.42,
+    "correct": 210,
+    "total": 500
+  },
+  {
+    "name": "B_simple_instruction",
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [],
+    "test_accuracy": 0.472,
+    "correct": 236,
+    "total": 500
+  },
+  {
+    "name": "C_simple_with_examples",
+    "instruction": "Classify this movie review's sentiment on a 5-point scale. Choose from: 'very_negative', 'negative', 'neutral', 'positive', 'very_positive'.",
+    "examples": [
+      {
+        "text": "delirious fun .",
+        "label": "very_positive"
+      },
+      {
+        "text": "unofficially , national lampoon 's van wilder is son of animal house .",
+        "label": "neutral"
+      },
+      {
+        "text": "if not a home run , then at least a solid base hit .",
+        "label": "positive"
+      },
+      {
+        "text": "it 's definitely not made for kids or their parents , for that matter , and i think even fans of sandler 's comic taste may find it uninteresting .",
+        "label": "negative"
+      },
+      {
+        "text": "no amount of good intentions is able to overcome the triviality of the story .",
+        "label": "very_negative"
+      }
+    ],
+    "test_accuracy": 0.468,
+    "correct": 234,
+    "total": 500
+  },
+  {
+    "name": "Mode_B_OPRO_best (train: 44.0%)",
+    "instruction": "Analyze the movie review and assign a sentiment label using this scale:\n- 'very_negative': harsh criticism, strong disgust, called bad/terrible\n- 'negative': clearly disliked, complaints outweigh praise\n- 'neutral': mixed feelings or balanced/factual description\n- 'positive': clearly liked, praise outweighs complaints\n- 'very_positive': strong praise, called masterpiece/brilliant\nRespond with exactly one label.",
+    "examples": [],
+    "test_accuracy": 0.454,
+    "correct": 227,
+    "total": 500
+  },
+  {
+    "name": "Mode_C_OPRO_best (train: 51.0%)",
+    "instruction": "Analyze the movie review and assign a sentiment label based on the presence and balance of explicit praise or criticism, ensuring that 'very_negative' indicates extreme negativity without any positive aspects, 'negative' reflects predominantly negative opinions with some positives, 'neutral' represents balanced or factual descriptions, 'positive' demonstrates clear enjoyment with some negatives, and 'very_positive' denotes overwhelming praise.",
+    "examples": [
+      {
+        "text": "insightfully written, delicately performed",
+        "label": "very_positive"
+      },
+      {
+        "text": "there is nothing funny in this every-joke-has - been-told-a - thousand-times - before movie",
+        "label": "very_negative"
+      },
+      {
+        "text": "got some good, organic character work, lots of obvious political insights and little room for engagement",
+        "label": "positive"
+      },
+      {
+        "text": "quitting, however, manages just to be depressing, as the lead actor phones in his autobiographical tale",
+        "label": "negative"
+      },
+      {
+        "text": "overall, it's a pretty mediocre family film.",
+        "label": "neutral"
+      }
+    ],
+    "test_accuracy": 0.484,
+    "correct": 242,
+    "total": 500
+  }
+]

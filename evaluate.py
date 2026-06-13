@@ -28,12 +28,12 @@ from load_sst5 import get_test_set, get_labels
 from scorer   import score_prompt, load_scorer_model, SCORER_MODEL
 
 
-# ── Config 
+# ── Config ────────────────────────────────────────────────────────────────────
 RESULTS_DIR  = os.path.join(os.path.dirname(__file__), "results")
 LABELS       = get_labels()
 
 
-# ── Load Best Prompt from Logs 
+# ── Load Best Prompt from Logs ─────────────────────────────────────────────────
 def load_best_prompt(log_path: str) -> dict | None:
     """
     Load the best (instruction, examples) combo from an OPRO log file.
@@ -61,7 +61,7 @@ def load_best_prompt(log_path: str) -> dict | None:
     }
 
 
-# ── Evaluate Single Condition 
+# ── Evaluate Single Condition ──────────────────────────────────────────────────
 def evaluate_condition(
     name        : str,
     instruction : str,
@@ -97,7 +97,7 @@ def evaluate_condition(
     }
 
 
-# ── Main Evaluation 
+# ── Main Evaluation ───────────────────────────────────────────────────────────
 def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
     """
     Run final evaluation for all conditions on the test set.
@@ -132,7 +132,7 @@ def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
     print(f"  Test set      : 500 reviews (never seen during optimization)")
     print(f"{'#'*60}")
 
-    # ── Load test set 
+    # ── Load test set ─────────────────────────────────────────────────────────
     test_reviews = get_test_set()
     print(f"\n✓ Test set loaded: {len(test_reviews)} reviews")
     label_dist = {}
@@ -140,10 +140,10 @@ def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
         label_dist[r["label"]] = label_dist.get(r["label"], 0) + 1
     print(f"  Distribution: {label_dist}")
 
-    # ── Load scorer model 
+    # ── Load scorer model ─────────────────────────────────────────────────────
     load_scorer_model(scorer_model)
 
-    # ── Load baseline prompts 
+    # ── Load baseline prompts ─────────────────────────────────────────────────
     # Try model-specific baseline first, fall back to generic
     baseline_path = os.path.join(RESULTS_DIR, f"{model_prefix}_baseline_scores.json")
     if not os.path.exists(baseline_path):
@@ -155,10 +155,11 @@ def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
     with open(baseline_path) as f:
         baselines = json.load(f)
 
-    baseline_a = next((b for b in baselines if "zero" in b["name"]), None)
+    baseline_a = next((b for b in baselines if "zero"               in b["name"]), None)
     baseline_b = next((b for b in baselines if "simple_instruction" in b["name"]), None)
+    baseline_c = next((b for b in baselines if "with_examples"      in b["name"]), None)
 
-    # ── Load best OPRO prompts 
+    # ── Load best OPRO prompts ────────────────────────────────────────────────
     # Mode B
     mode_b_path = os.path.join(RESULTS_DIR, f"{model_prefix}_opro_logs_mode_B.json")
     mode_b_best = load_best_prompt(mode_b_path)
@@ -178,7 +179,13 @@ def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
         mode_c_best = None
         print(f"✗ No Mode C logs found for prefix: {model_prefix}")
 
-    # ── Define conditions to evaluate 
+    # ── Override BATCH_SIZE to use full 500 test reviews ─────────────────────
+    import scorer as scorer_module
+    original_batch_size = scorer_module.BATCH_SIZE
+    scorer_module.BATCH_SIZE = len(test_reviews)   # use ALL test reviews
+    print(f"\n✓ BATCH_SIZE set to {scorer_module.BATCH_SIZE} for full test evaluation")
+
+    # ── Define conditions to evaluate ────────────────────────────────────────
     conditions = []
 
     if baseline_a:
@@ -193,6 +200,13 @@ def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
             "name"       : "B_simple_instruction",
             "instruction": baseline_b["instruction"],
             "examples"   : baseline_b.get("examples", []),
+        })
+
+    if baseline_c:
+        conditions.append({
+            "name"       : "C_simple_with_examples",
+            "instruction": baseline_c["instruction"],
+            "examples"   : baseline_c.get("examples", []),
         })
 
     if mode_b_best:
@@ -211,9 +225,10 @@ def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
 
     if not conditions:
         print("ERROR: No conditions to evaluate — check your results/ folder")
+        scorer_module.BATCH_SIZE = original_batch_size
         return
-        
-    # ── Run evaluation 
+
+    # ── Run evaluation ────────────────────────────────────────────────────────
     results = []
     for cond in conditions:
         result = evaluate_condition(
@@ -228,13 +243,16 @@ def run_evaluation(scorer_model: str = SCORER_MODEL, model_prefix: str = None):
         # Save after each condition in case of crashes
         _save_results(results, scorer_model)
 
+    # ── Restore original batch size ───────────────────────────────────────────
+    scorer_module.BATCH_SIZE = original_batch_size
+
     # ── Print summary ─────────────────────────────────────────────────────────
     _print_summary(results, scorer_model)
 
     return results
 
 
-# ── Save Results 
+# ── Save Results ──────────────────────────────────────────────────────────────
 def _save_results(results: list, scorer_model: str):
     """Save evaluation results to JSON."""
     os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -250,7 +268,7 @@ def _save_results(results: list, scorer_model: str):
     return save_path
 
 
-# ── Print Summary 
+# ── Print Summary ─────────────────────────────────────────────────────────────
 def _print_summary(results: list, scorer_model: str):
     """Print a clean final summary table."""
     print(f"\n{'='*60}")
@@ -283,7 +301,7 @@ def _print_summary(results: list, scorer_model: str):
     print(f"{'='*60}\n")
 
 
-# ── Main 
+# ── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import argparse
 

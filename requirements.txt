@@ -1,7 +1,19 @@
-torch>=2.4.0
-transformers>=4.40.0
+# Install with:
+# pip install torch==2.3.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+torch==2.3.1
+
+# Transformers — must be >=4.40.0 to support Qwen2.5 and Phi-3
+transformers==4.40.0
+
+# Required for loading large models efficiently
 accelerate>=0.20.0
+
+# Dataset loading (SST-5 from HuggingFace)
 datasets>=2.0.0
+
+# Data handling
 numpy>=1.24.0
 pandas>=2.0.0
+
+# Plotting results
 matplotlib>=3.7.0
